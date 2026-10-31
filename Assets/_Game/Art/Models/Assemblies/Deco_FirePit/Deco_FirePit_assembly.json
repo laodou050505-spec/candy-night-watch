@@ -1,0 +1,66 @@
+{
+ "name": "Deco_FirePit",
+ "parts": {
+  "Stone": {
+   "src": "proc:Fp_Stone",
+   "scale": 1.0,
+   "size": [
+    1.4303,
+    1.349,
+    0.231
+   ],
+   "faces": 4320,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Log": {
+   "src": "proc:Fp_Log",
+   "scale": 1.0,
+   "size": [
+    0.8462,
+    0.8773,
+    0.4553
+   ],
+   "faces": 240,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Ember": {
+   "src": "proc:Fp_Ember",
+   "scale": 1.0,
+   "size": [
+    0.6364,
+    0.6211,
+    0.1022
+   ],
+   "faces": 588,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Fire": {
+   "src": "proc:Fp_Fire",
+   "scale": 1.0,
+   "size": [
+    0.4727,
+    0.4584,
+    0.4734
+   ],
+   "faces": 1800,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Tripod": {
+   "src": "proc:Fp_Tripod",
+   "scale": 1.0,
+   "size": [
+    1.6825,
+    1.5664,
+    1.8549
+   ],
+   "faces": 2544,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

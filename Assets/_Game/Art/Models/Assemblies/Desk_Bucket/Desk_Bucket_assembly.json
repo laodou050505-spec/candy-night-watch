@@ -1,0 +1,108 @@
+{
+ "name": "Desk_Bucket",
+ "parts": {
+  "Shell": {
+   "src": "P_BucketShell",
+   "scale": 0.2117,
+   "size": [
+    0.2116,
+    0.2095,
+    0.2
+   ],
+   "faces": 10874,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Handle": {
+   "src": "proc:Bucket_Handle",
+   "scale": 1.0,
+   "size": [
+    0.2186,
+    0.018,
+    0.1232
+   ],
+   "faces": 916,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Bed": {
+   "src": "proc:Candy_Bed",
+   "scale": 1.0,
+   "size": [
+    0.1738,
+    0.1738,
+    0.0922
+   ],
+   "faces": 1920,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Ball": {
+   "src": "P_CandyBall",
+   "scale": 0.03,
+   "size": [
+    0.0108,
+    0.03,
+    0.0242
+   ],
+   "faces": 500,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Corn": {
+   "src": "P_CandyCorn",
+   "scale": 0.032,
+   "size": [
+    0.0242,
+    0.0255,
+    0.032
+   ],
+   "faces": 400,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Wrapped": {
+   "src": "S10_CandyWrapped",
+   "scale": 0.0503,
+   "size": [
+    0.0422,
+    0.05,
+    0.0299
+   ],
+   "faces": 700,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Lolly": {
+   "src": "proc:Lollipop",
+   "scale": 0.9346,
+   "size": [
+    0.0598,
+    0.0112,
+    0.1
+   ],
+   "faces": 5248,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": [],
+ "drops": {
+  "Candy_0": 0.0228,
+  "Candy_1": 0.0402,
+  "Candy_2": 0.0502,
+  "Candy_3": 0.0626,
+  "Candy_4": 0.0767,
+  "Candy_5": 0.0854,
+  "Candy_6": 0.0965,
+  "Candy_7": 0.0879,
+  "Candy_8": 0.1223,
+  "Candy_9": 0.1312,
+  "Candy_10": 0.1234,
+  "Candy_11": 0.144,
+  "Candy_12": 0.1682,
+  "Candy_13": 0.1676,
+  "Candy_14": 0.1903,
+  "Candy_15": 0.1834
+ }
+}

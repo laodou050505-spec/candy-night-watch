@@ -1,0 +1,6 @@
+Stone	Col_Stone
+Arch	Col_Arch
+Vine	Col_Vine
+Leaf	Col_Leaf
+Pumpkin	Col_Pumpkin
+Stem	Col_Stem

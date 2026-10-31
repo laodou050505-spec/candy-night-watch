@@ -1,0 +1,18 @@
+{
+ "name": "Deco_TreeA",
+ "parts": {
+  "DeadA": {
+   "src": "proc:Tr_DeadA",
+   "scale": 1.0,
+   "size": [
+    3.7766,
+    3.9148,
+    4.5014
+   ],
+   "faces": 7524,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

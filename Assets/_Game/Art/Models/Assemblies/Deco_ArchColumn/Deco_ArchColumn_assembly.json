@@ -1,0 +1,78 @@
+{
+ "name": "Deco_ArchColumn",
+ "parts": {
+  "Stone": {
+   "src": "proc:Col_Stone",
+   "scale": 1.0,
+   "size": [
+    1.4,
+    1.4,
+    6.23
+   ],
+   "faces": 1924,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Arch": {
+   "src": "proc:Col_Arch",
+   "scale": 1.0,
+   "size": [
+    0.6,
+    3.58,
+    1.8971
+   ],
+   "faces": 196,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Vine": {
+   "src": "proc:Col_Vine",
+   "scale": 1.0,
+   "size": [
+    1.1153,
+    1.3124,
+    4.7236
+   ],
+   "faces": 7544,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Leaf": {
+   "src": "proc:Col_Leaf",
+   "scale": 1.0,
+   "size": [
+    1.3541,
+    1.3937,
+    4.7536
+   ],
+   "faces": 2016,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Pumpkin": {
+   "src": "proc:Col_Pumpkin",
+   "scale": 1.0,
+   "size": [
+    0.48,
+    0.48,
+    0.3565
+   ],
+   "faces": 1440,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stem": {
+   "src": "proc:Col_Stem",
+   "scale": 1.0,
+   "size": [
+    0.0762,
+    0.0533,
+    0.1316
+   ],
+   "faces": 220,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

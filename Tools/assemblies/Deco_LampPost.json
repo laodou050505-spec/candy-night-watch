@@ -1,0 +1,44 @@
+{
+ "name": "Deco_LampPost",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Iron",
+   "Glass"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Iron",
+   "src": "proc:Lp_Iron",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Iron",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Glass",
+   "src": "proc:Lp_Glass",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Glass",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

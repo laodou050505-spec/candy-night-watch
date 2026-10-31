@@ -1,0 +1,164 @@
+{
+ "name": "Deco_Scarecrow",
+ "allow_overlap": 0.012,
+ "allow_pairs": [
+  [
+   "Wood",
+   "Shirt"
+  ],
+  [
+   "Rope",
+   "Shirt"
+  ],
+  [
+   "Head",
+   "Stem"
+  ],
+  [
+   "Hat",
+   "Head"
+  ],
+  [
+   "Straw",
+   "Shirt"
+  ],
+  [
+   "Straw",
+   "Hat"
+  ],
+  [
+   "Straw",
+   "Wood"
+  ],
+  [
+   "Wood",
+   "Head"
+  ],
+  [
+   "Straw",
+   "Rope"
+  ],
+  [
+   "Shirt",
+   "Head"
+  ],
+  [
+   "Head",
+   "Straw"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Wood",
+   "src": "proc:Scr_Wood",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wood",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Shirt",
+   "src": "proc:Scr_Shirt",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Shirt",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Rope",
+   "src": "proc:Scr_Rope",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Rope",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Head",
+   "src": "proc:Scr_Head",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Head",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Stem",
+   "src": "proc:Scr_Stem",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stem",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Hat",
+   "src": "proc:Scr_Hat",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Hat",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Straw",
+   "src": "proc:Scr_Straw",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Straw",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

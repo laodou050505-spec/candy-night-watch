@@ -1,0 +1,203 @@
+{
+ "name": "Desk_Cauldron",
+ "allow_overlap": 0.006,
+ "allow_pairs": [
+  [
+   "Leg",
+   "Body"
+  ],
+  [
+   "Gem",
+   "Body"
+  ],
+  [
+   "Bone",
+   "Body"
+  ],
+  [
+   "Ring",
+   "Body"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Body",
+   "src": "proc:Cauldron_Body",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Body",
+     "pos": [
+      0,
+      0.022,
+      0
+     ]
+    }
+   ],
+   "decimate": 8000
+  },
+  {
+   "id": "Leg",
+   "src": "P_CauldronLeg",
+   "fit": {
+    "h": 0.035
+   },
+   "inst": [
+    {
+     "name": "Leg_0",
+     "pos": [
+      0.0,
+      0,
+      -0.07
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_1",
+     "pos": [
+      0.0606,
+      0,
+      0.035
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_2",
+     "pos": [
+      -0.0606,
+      0,
+      0.035
+     ],
+     "face_out": true
+    }
+   ],
+   "decimate": 1600
+  },
+  {
+   "id": "Ring",
+   "src": "proc:Cauldron_Ring",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Ring_0",
+     "pos": [
+      -0.1295,
+      0.094,
+      0
+     ]
+    },
+    {
+     "name": "Ring_1",
+     "pos": [
+      0.1295,
+      0.094,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Gem",
+   "src": "proc:Gem_Hex",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Gem_Green",
+     "pos": [
+      -0.0488,
+      0.088,
+      0.0918
+     ],
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "yaw": -28.0
+    },
+    {
+     "name": "Gem_Pink",
+     "pos": [
+      0.0,
+      0.088,
+      0.104
+     ],
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Gem_Purple",
+     "pos": [
+      0.0488,
+      0.088,
+      0.0918
+     ],
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "yaw": 28.0
+    }
+   ]
+  },
+  {
+   "id": "Bone",
+   "src": "P_Bone",
+   "fit": {
+    "w": 0.042
+   },
+   "inst": [
+    {
+     "name": "Bone_0",
+     "pos": [
+      0.0735,
+      0.1265,
+      0.0735
+     ],
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "yaw": 45.0
+    },
+    {
+     "name": "Bone_1",
+     "pos": [
+      -0.0735,
+      0.1265,
+      0.0735
+     ],
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "yaw": 135.0
+    }
+   ],
+   "decimate": 1400
+  },
+  {
+   "id": "Potion",
+   "src": "proc:Potion_Surface",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Potion",
+     "pos": [
+      0,
+      0.125,
+      0
+     ],
+     "scale": 0.95
+    }
+   ]
+  }
+ ]
+}

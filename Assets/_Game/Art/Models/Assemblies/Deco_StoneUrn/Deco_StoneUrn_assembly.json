@@ -1,0 +1,30 @@
+{
+ "name": "Deco_StoneUrn",
+ "parts": {
+  "Stone": {
+   "src": "proc:Su_Stone",
+   "scale": 1.0,
+   "size": [
+    0.7152,
+    0.66,
+    0.72
+   ],
+   "faces": 1436,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Soil": {
+   "src": "proc:Su_Soil",
+   "scale": 1.0,
+   "size": [
+    0.54,
+    0.54,
+    0.06
+   ],
+   "faces": 96,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

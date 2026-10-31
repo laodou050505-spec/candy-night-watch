@@ -1,0 +1,18 @@
+{
+ "name": "Deco_TreeC",
+ "parts": {
+  "DeadC": {
+   "src": "proc:Tr_DeadC",
+   "scale": 1.0,
+   "size": [
+    2.8246,
+    3.3119,
+    2.5478
+   ],
+   "faces": 7524,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

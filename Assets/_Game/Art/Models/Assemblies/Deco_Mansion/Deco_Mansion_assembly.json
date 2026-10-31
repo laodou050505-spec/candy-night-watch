@@ -1,0 +1,102 @@
+{
+ "name": "Deco_Mansion",
+ "parts": {
+  "Wall": {
+   "src": "proc:Ms_Wall",
+   "scale": 1.0,
+   "size": [
+    17.2,
+    10.9,
+    13.9
+   ],
+   "faces": 476,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Trim": {
+   "src": "proc:Ms_Trim",
+   "scale": 1.0,
+   "size": [
+    14.9825,
+    3.0,
+    12.885
+   ],
+   "faces": 8052,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Roof": {
+   "src": "proc:Ms_Roof",
+   "scale": 1.0,
+   "size": [
+    17.8,
+    11.45,
+    14.53
+   ],
+   "faces": 1028,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Window": {
+   "src": "proc:Ms_Window",
+   "scale": 1.0,
+   "size": [
+    13.6217,
+    2.35,
+    10.4
+   ],
+   "faces": 276,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Door": {
+   "src": "proc:Ms_Door",
+   "scale": 1.0,
+   "size": [
+    1.0,
+    0.12,
+    2.4
+   ],
+   "faces": 12,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Chimney": {
+   "src": "proc:Ms_Chimney",
+   "scale": 1.0,
+   "size": [
+    10.7,
+    2.2,
+    6.5
+   ],
+   "faces": 240,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Iron": {
+   "src": "proc:Ms_Iron",
+   "scale": 1.0,
+   "size": [
+    14.329,
+    3.9517,
+    5.402
+   ],
+   "faces": 1452,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Steps": {
+   "src": "proc:Ms_Steps",
+   "scale": 1.0,
+   "size": [
+    1.52,
+    1.33,
+    0.96
+   ],
+   "faces": 432,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

@@ -1,0 +1,128 @@
+{
+ "name": "Deco_Greenhouse",
+ "allow_overlap": 0.02,
+ "allow_pairs": [
+  [
+   "Base",
+   "Glass"
+  ],
+  [
+   "Glass",
+   "Frame"
+  ],
+  [
+   "Base",
+   "Frame"
+  ],
+  [
+   "Glass",
+   "Door"
+  ],
+  [
+   "Frame",
+   "Door"
+  ],
+  [
+   "Base",
+   "Door"
+  ],
+  [
+   "Steps",
+   "Glass"
+  ],
+  [
+   "Steps",
+   "Frame"
+  ],
+  [
+   "Steps",
+   "Door"
+  ],
+  [
+   "Steps",
+   "Base"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Base",
+   "src": "proc:Gh_Base",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Base",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Glass",
+   "src": "proc:Gh_Glass",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Glass",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Frame",
+   "src": "proc:Gh_Frame",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Frame",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Door",
+   "src": "proc:Gh_Door",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Door",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Steps",
+   "src": "proc:Gh_Steps",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Steps",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

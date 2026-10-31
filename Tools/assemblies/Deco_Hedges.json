@@ -1,0 +1,24 @@
+{
+ "name": "Deco_Hedges",
+ "allow_overlap": 0.01,
+ "allow_pairs": [],
+ "parts": [
+  {
+   "id": "Hedge",
+   "src": "proc:Hd_Hedge",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Hedge",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ],
+   "decimate": 16000
+  }
+ ]
+}

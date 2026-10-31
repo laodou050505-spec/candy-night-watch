@@ -1,0 +1,36 @@
+{
+  "name": "L10_CandleCluster",
+  "parts": [
+    "PART_Body",
+    "PART_Flame_06",
+    "PART_Flame_07",
+    "PART_Flame_08",
+    "PART_Flame_09",
+    "PART_Flame_10",
+    "PART_Flame_11"
+  ],
+  "faces_in": 19386,
+  "islands": 7,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "size_m": [
+    0.274,
+    0.273,
+    0.35
+  ],
+  "textures": [
+    {
+      "file": "L10_CandleCluster_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 0
+    }
+  ],
+  "lod_faces": [
+    9980,
+    5114,
+    2218
+  ]
+}

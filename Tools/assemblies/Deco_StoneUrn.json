@@ -1,0 +1,44 @@
+{
+ "name": "Deco_StoneUrn",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Soil",
+   "Stone"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Stone",
+   "src": "proc:Su_Stone",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stone",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Soil",
+   "src": "proc:Su_Soil",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Soil",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

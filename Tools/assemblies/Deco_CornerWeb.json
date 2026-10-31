@@ -1,0 +1,23 @@
+{
+ "name": "Deco_CornerWeb",
+ "allow_overlap": 0.01,
+ "allow_pairs": [],
+ "parts": [
+  {
+   "id": "Web",
+   "src": "proc:Wb_Web",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Web",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "name": "Deco_Graveyard",
+ "parts": {
+  "Plinth": {
+   "src": "proc:Gy_Plinth",
+   "scale": 1.0,
+   "size": [
+    5.5907,
+    3.7937,
+    0.25
+   ],
+   "faces": 320,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Fence": {
+   "src": "proc:Gy_Fence",
+   "scale": 1.0,
+   "size": [
+    4.46,
+    2.9727,
+    0.8875
+   ],
+   "faces": 2976,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stone": {
+   "src": "S12_Gravestone",
+   "scale": 0.9505,
+   "size": [
+    0.627,
+    0.8535,
+    0.95
+   ],
+   "faces": 21756,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Skull": {
+   "src": "P_Skull",
+   "scale": 0.1801,
+   "size": [
+    0.1601,
+    0.1654,
+    0.18
+   ],
+   "faces": 8078,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Pumpkin": {
+   "src": "proc:Ct_Pumpkin",
+   "scale": 1.0127,
+   "size": [
+    2.6144,
+    0.4979,
+    0.36
+   ],
+   "faces": 2496,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": [],
+ "drops": {
+  "Skull": 0.25,
+  "Pumpkins": 0.25
+ }
+}

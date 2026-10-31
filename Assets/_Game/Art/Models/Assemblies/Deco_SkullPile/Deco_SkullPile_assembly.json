@@ -1,0 +1,18 @@
+{
+ "name": "Deco_SkullPile",
+ "parts": {
+  "Body": {
+   "src": "P_SkullPile",
+   "scale": 0.4675,
+   "size": [
+    0.4148,
+    0.4673,
+    0.36
+   ],
+   "faces": 4000,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

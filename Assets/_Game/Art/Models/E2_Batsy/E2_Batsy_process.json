@@ -1,0 +1,28 @@
+{
+  "name": "E2_Batsy",
+  "faces_in": 27460,
+  "islands": 10,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.2046,
+  "size_m": [
+    0.074,
+    0.204,
+    0.1
+  ],
+  "textures": [
+    {
+      "file": "E2_Batsy_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 6.838
+    }
+  ],
+  "lod_faces": [
+    14000,
+    6996,
+    2800
+  ]
+}

@@ -1,0 +1,11 @@
+Plinth	Ct_Plinth
+Wall	Ct_Wall
+Roof	Ct_Roof
+Band	Ct_Band
+Door	Ct_Door
+Window	Ct_Window
+Trim	Ct_Trim
+Chimney	Ct_Chimney
+Pumpkin	Ct_Pumpkin
+MushStem	Ct_MushStem
+MushCap	Ct_MushCap

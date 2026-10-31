@@ -1,0 +1,114 @@
+{
+ "name": "Deco_Manor",
+ "parts": {
+  "Plinth": {
+   "src": "proc:Mn_Plinth",
+   "scale": 1.0,
+   "size": [
+    8.7998,
+    8.6222,
+    0.45
+   ],
+   "faces": 480,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Walls": {
+   "src": "proc:Mn_Walls",
+   "scale": 1.0,
+   "size": [
+    6.53,
+    3.3446,
+    6.12
+   ],
+   "faces": 228,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Trim": {
+   "src": "proc:Mn_Trim",
+   "scale": 1.0,
+   "size": [
+    6.5521,
+    4.45,
+    6.7
+   ],
+   "faces": 564,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Roof": {
+   "src": "proc:Mn_Roof",
+   "scale": 1.0,
+   "size": [
+    6.8414,
+    5.0,
+    6.47
+   ],
+   "faces": 648,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Window": {
+   "src": "proc:Mn_Window",
+   "scale": 1.0,
+   "size": [
+    6.3482,
+    3.62,
+    5.6
+   ],
+   "faces": 144,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Door": {
+   "src": "proc:Mn_Door",
+   "scale": 1.0,
+   "size": [
+    0.95,
+    0.1,
+    1.9
+   ],
+   "faces": 12,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Steps": {
+   "src": "proc:Mn_Steps",
+   "scale": 1.0,
+   "size": [
+    2.5,
+    1.76,
+    0.15
+   ],
+   "faces": 24,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Chimney": {
+   "src": "proc:Mn_Chimney",
+   "scale": 1.0,
+   "size": [
+    0.75,
+    0.75,
+    2.74
+   ],
+   "faces": 24,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Pumpkin": {
+   "src": "proc:Mn_Pumpkin",
+   "scale": 1.0,
+   "size": [
+    3.45,
+    0.75,
+    0.3851
+   ],
+   "faces": 2496,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

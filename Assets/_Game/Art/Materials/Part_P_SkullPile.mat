@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Part_P_SkullPile
+  m_Shader: {fileID: 4800000, guid: bc65f2d11967d4b92a19408436e494e5, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 43dcaf6ff52e147bdaf708cb2f391cbb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _Charge: 0
+    - _ColorLine: 0.4
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _Cutout: 0
+    - _Flap: 0
+    - _FlapBias: 0
+    - _FlapPhase: 0
+    - _FlapPivotY: 0.055
+    - _FlapRoot: 0.042
+    - _FlapSpan: 0.1
+    - _Frost: 0
+    - _OutlinePush: 0
+    - _OutlineWidth: 0.0025
+    - _RimPower: 3.2
+    - _RimStrength: 0.35
+    - _Silhouette: 0
+    - _Soft: 0.06
+    - _Stride: 0
+    - _StrideHip: 0.07
+    - _StridePhase: 0
+    - _StrideQuad: 0
+    - _Wiggle: 0
+    - _WiggleHeight: 0.2
+    - _WigglePhase: 0
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FrostColor: {r: 0.75, g: 0.92, b: 1, a: 1}
+    - _MidTint: {r: 0.7, g: 0.72, b: 0.88, a: 1}
+    - _OutlineColor: {r: 0.16499996, g: 0.09399996, b: 0.21999997, a: 1}
+    - _RimColor: {r: 0.62, g: 0.91, b: 1, a: 1}
+    - _ShadowTint: {r: 0.24, g: 0.23, b: 0.42, a: 1}
+    - _Steps: {r: 0.18, g: 0.55, b: 0, a: 0}
+    - _StrideFwd: {r: -1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

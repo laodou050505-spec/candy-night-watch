@@ -1,0 +1,30 @@
+{
+ "name": "Deco_Lantern",
+ "parts": {
+  "Iron": {
+   "src": "proc:Ln_Iron",
+   "scale": 1.0,
+   "size": [
+    0.2985,
+    0.2604,
+    0.545
+   ],
+   "faces": 2056,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Glass": {
+   "src": "proc:Ln_Glass",
+   "scale": 1.0,
+   "size": [
+    0.22,
+    0.22,
+    0.29
+   ],
+   "faces": 120,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

@@ -1,0 +1,7 @@
+Plinth	Gy_Plinth
+Fence	Gy_Fence
+Stone_0	S12_Gravestone
+Stone_1	S12_Gravestone
+Stone_2	S12_Gravestone
+Skull	P_Skull
+Pumpkins	Ct_Pumpkin

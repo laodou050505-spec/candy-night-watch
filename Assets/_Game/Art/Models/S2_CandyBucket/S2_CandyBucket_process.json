@@ -1,0 +1,54 @@
+{
+  "name": "S2_CandyBucket",
+  "parts": [
+    "PART_Bucket",
+    "PART_Candy_02",
+    "PART_Candy_03",
+    "PART_Candy_04",
+    "PART_Candy_05",
+    "PART_Candy_06",
+    "PART_Candy_07",
+    "PART_Candy_08",
+    "PART_Candy_09",
+    "PART_Candy_10",
+    "PART_Candy_11",
+    "PART_Candy_12",
+    "PART_Candy_13",
+    "PART_Candy_14",
+    "PART_Candy_15",
+    "PART_Candy_16",
+    "PART_Candy_17",
+    "PART_Candy_18",
+    "PART_Candy_19",
+    "PART_Candy_20",
+    "PART_Candy_21",
+    "PART_Candy_22",
+    "PART_Candy_23",
+    "PART_Candy_24",
+    "PART_Candy_25"
+  ],
+  "faces_in": 30496,
+  "islands": 25,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "size_m": [
+    0.227,
+    0.219,
+    0.24
+  ],
+  "textures": [
+    {
+      "file": "S2_CandyBucket_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 0
+    }
+  ],
+  "lod_faces": [
+    19974,
+    11084,
+    6346
+  ]
+}

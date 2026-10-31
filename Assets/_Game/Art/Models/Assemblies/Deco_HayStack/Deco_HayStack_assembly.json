@@ -1,0 +1,66 @@
+{
+ "name": "Deco_HayStack",
+ "parts": {
+  "Bale": {
+   "src": "proc:Hb_Bale",
+   "scale": 1.0,
+   "size": [
+    1.3938,
+    0.8257,
+    0.6625
+   ],
+   "faces": 4812,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Twine": {
+   "src": "proc:Hb_Twine",
+   "scale": 1.0,
+   "size": [
+    0.648,
+    0.616,
+    0.556
+   ],
+   "faces": 1536,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stalk": {
+   "src": "proc:Cs_Stalk",
+   "scale": 1.0,
+   "size": [
+    0.9067,
+    0.9361,
+    2.1482
+   ],
+   "faces": 6624,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "CLeaf": {
+   "src": "proc:Cs_Leaf",
+   "scale": 1.0,
+   "size": [
+    1.3685,
+    1.4108,
+    1.5409
+   ],
+   "faces": 7896,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Tie": {
+   "src": "proc:Cs_Tie",
+   "scale": 1.0,
+   "size": [
+    0.3797,
+    0.294,
+    0.3161
+   ],
+   "faces": 1060,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

@@ -1,0 +1,138 @@
+{
+ "name": "Deco_PumpkinPatch",
+ "parts": {
+  "Soil": {
+   "src": "proc:Pp_Soil",
+   "scale": 1.0,
+   "size": [
+    9.3078,
+    14.0129,
+    0.4107
+   ],
+   "faces": 4860,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Vine": {
+   "src": "proc:Pp_Vine",
+   "scale": 1.0,
+   "size": [
+    8.5409,
+    13.2148,
+    0.09
+   ],
+   "faces": 2400,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Leaf": {
+   "src": "proc:Pp_Leaf",
+   "scale": 1.0,
+   "size": [
+    9.2468,
+    12.9219,
+    0.2248
+   ],
+   "faces": 7600,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Pumpkin": {
+   "src": "proc:Pp_Pumpkin",
+   "scale": 1.0,
+   "size": [
+    0.6,
+    0.6,
+    0.4147
+   ],
+   "faces": 832,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stem": {
+   "src": "proc:Pp_Stem",
+   "scale": 1.0,
+   "size": [
+    0.1106,
+    0.07,
+    0.1634
+   ],
+   "faces": 48,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Cart": {
+   "src": "proc:Pp_Cart",
+   "scale": 1.0,
+   "size": [
+    1.9373,
+    1.018,
+    0.77
+   ],
+   "faces": 1388,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Bale": {
+   "src": "proc:Hb_Bale",
+   "scale": 1.0,
+   "size": [
+    1.3938,
+    0.8257,
+    0.6625
+   ],
+   "faces": 1800,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Twine": {
+   "src": "proc:Hb_Twine",
+   "scale": 1.0,
+   "size": [
+    0.648,
+    0.616,
+    0.556
+   ],
+   "faces": 1536,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stalk": {
+   "src": "proc:Cs_Stalk",
+   "scale": 1.0,
+   "size": [
+    0.9067,
+    0.9361,
+    2.1482
+   ],
+   "faces": 2600,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "CLeaf": {
+   "src": "proc:Cs_Leaf",
+   "scale": 1.0,
+   "size": [
+    1.3685,
+    1.4108,
+    1.5409
+   ],
+   "faces": 7896,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Tie": {
+   "src": "proc:Cs_Tie",
+   "scale": 1.0,
+   "size": [
+    0.3797,
+    0.294,
+    0.3161
+   ],
+   "faces": 1060,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

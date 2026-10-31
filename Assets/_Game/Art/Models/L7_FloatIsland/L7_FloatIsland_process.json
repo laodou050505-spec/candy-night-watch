@@ -1,0 +1,28 @@
+{
+  "name": "L7_FloatIsland",
+  "faces_in": 75496,
+  "islands": 254,
+  "debris_removed_islands": 39,
+  "debris_removed_faces": 2602,
+  "scale": 6.39667,
+  "size_m": [
+    5.594,
+    6.434,
+    6.0
+  ],
+  "textures": [
+    {
+      "file": "L7_FloatIsland_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 8.85
+    }
+  ],
+  "lod_faces": [
+    39981,
+    19947,
+    7950
+  ]
+}

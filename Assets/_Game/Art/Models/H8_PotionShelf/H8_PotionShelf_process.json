@@ -1,0 +1,28 @@
+{
+  "name": "H8_PotionShelf",
+  "faces_in": 29060,
+  "islands": 18,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 1.50073,
+  "size_m": [
+    0.637,
+    1.472,
+    1.5
+  ],
+  "textures": [
+    {
+      "file": "H8_PotionShelf_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 10.09
+    }
+  ],
+  "lod_faces": [
+    22000,
+    10970,
+    4329
+  ]
+}

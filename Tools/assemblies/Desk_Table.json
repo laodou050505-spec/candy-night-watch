@@ -1,0 +1,110 @@
+{
+ "name": "Desk_Table",
+ "allow_overlap": 0.006,
+ "allow_pairs": [
+  [
+   "Top",
+   "Rim"
+  ],
+  [
+   "Leg",
+   "Top"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Top",
+   "src": "proc:Top_Wood",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Top",
+     "pos": [
+      0,
+      0.66,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Rim",
+   "src": "proc:Table_Rim",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Rim",
+     "pos": [
+      0,
+      0.625,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Leg",
+   "src": "P_TableLeg",
+   "fit": {
+    "h": 0.665
+   },
+   "inst": [
+    {
+     "name": "Leg_0",
+     "pos": [
+      -0.9159,
+      0,
+      0.1615
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_1",
+     "pos": [
+      -0.5978,
+      0,
+      -0.7124
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_2",
+     "pos": [
+      0.5978,
+      0,
+      -0.7124
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_3",
+     "pos": [
+      0.9159,
+      0,
+      0.1615
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_4",
+     "pos": [
+      -0.393,
+      0,
+      0.8429
+     ],
+     "face_out": true
+    },
+    {
+     "name": "Leg_5",
+     "pos": [
+      0.393,
+      0,
+      0.8429
+     ],
+     "face_out": true
+    }
+   ],
+   "decimate": 1600
+  }
+ ]
+}

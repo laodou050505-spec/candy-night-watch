@@ -1,0 +1,30 @@
+{
+ "name": "Deco_Wall",
+ "parts": {
+  "Wall": {
+   "src": "proc:Wl_Wall",
+   "scale": 1.0,
+   "size": [
+    13.04,
+    9.94,
+    1.3
+   ],
+   "faces": 19824,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Twig": {
+   "src": "proc:Wl_Twig",
+   "scale": 1.0,
+   "size": [
+    13.0345,
+    10.1394,
+    0.8479
+   ],
+   "faces": 4200,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

@@ -1,0 +1,323 @@
+{
+ "name": "Desk_Bucket",
+ "allow_overlap": 0.004,
+ "allow_pairs": [
+  [
+   "Handle",
+   "Shell"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Shell",
+   "src": "P_BucketShell",
+   "fit": {
+    "h": 0.2
+   },
+   "hollow": {
+    "cut": 0.7,
+    "keep_largest": true,
+    "rx": 0.8,
+    "rz": 0.45,
+    "inside_color": [
+     0.45,
+     0.16,
+     0.04
+    ]
+   },
+   "inst": [
+    {
+     "name": "Shell",
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "yaw": -90
+    }
+   ]
+  },
+  {
+   "id": "Handle",
+   "src": "proc:Bucket_Handle",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Handle",
+     "pos": [
+      0,
+      0.122,
+      0
+     ],
+     "scale": [
+      0.92,
+      1,
+      1
+     ]
+    }
+   ],
+   "no_support": true
+  },
+  {
+   "id": "Bed",
+   "src": "proc:Candy_Bed",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Bed",
+     "pos": [
+      0,
+      0.0158,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Ball",
+   "src": "P_CandyBall",
+   "fit": {
+    "d": 0.03
+   },
+   "drop": true,
+   "inst": [
+    {
+     "name": "Candy_1",
+     "pos": [
+      -0.0287,
+      0.142,
+      0.0047
+     ],
+     "yaw": 130
+    },
+    {
+     "name": "Candy_4",
+     "pos": [
+      -0.0344,
+      0.178,
+      0.0259
+     ],
+     "yaw": -62
+    },
+    {
+     "name": "Candy_8",
+     "pos": [
+      -0.0086,
+      0.226,
+      -0.0431
+     ],
+     "yaw": 38
+    },
+    {
+     "name": "Candy_11",
+     "pos": [
+      -0.0288,
+      0.262,
+      0.0122
+     ],
+     "yaw": -26
+    },
+    {
+     "name": "Candy_14",
+     "pos": [
+      0.0307,
+      0.298,
+      -0.0389
+     ],
+     "yaw": 163
+    }
+   ],
+   "decimate": 500,
+   "scatter": 0.055
+  },
+  {
+   "id": "Corn",
+   "src": "P_CandyCorn",
+   "fit": {
+    "h": 0.032
+   },
+   "drop": true,
+   "inst": [
+    {
+     "name": "Candy_3",
+     "pos": [
+      0.0128,
+      0.166,
+      0.0335
+     ],
+     "yaw": 96,
+     "rot": [
+      10,
+      5,
+      0
+     ]
+    },
+    {
+     "name": "Candy_6",
+     "pos": [
+      0.0387,
+      0.202,
+      0.0037
+     ],
+     "yaw": -99,
+     "rot": [
+      23,
+      12,
+      0
+     ]
+    },
+    {
+     "name": "Candy_9",
+     "pos": [
+      -0.0316,
+      0.238,
+      0.0246
+     ],
+     "yaw": 47,
+     "rot": [
+      -17,
+      -2,
+      0
+     ]
+    },
+    {
+     "name": "Candy_12",
+     "pos": [
+      -0.0367,
+      0.274,
+      0.0198
+     ],
+     "yaw": 113,
+     "rot": [
+      -3,
+      9,
+      0
+     ]
+    },
+    {
+     "name": "Candy_15",
+     "pos": [
+      -0.0117,
+      0.31,
+      -0.0329
+     ],
+     "yaw": -13,
+     "rot": [
+      9,
+      11,
+      0
+     ]
+    }
+   ],
+   "decimate": 400,
+   "scatter": 0.055
+  },
+  {
+   "id": "Wrapped",
+   "src": "S10_CandyWrapped",
+   "fit": {
+    "w": 0.05
+   },
+   "drop": true,
+   "inst": [
+    {
+     "name": "Candy_2",
+     "pos": [
+      0.0417,
+      0.154,
+      0.0035
+     ],
+     "yaw": -48,
+     "rot": [
+      10,
+      -11,
+      0
+     ]
+    },
+    {
+     "name": "Candy_5",
+     "pos": [
+      -0.0287,
+      0.19,
+      -0.0325
+     ],
+     "yaw": 87,
+     "rot": [
+      -1,
+      22,
+      0
+     ]
+    },
+    {
+     "name": "Candy_10",
+     "pos": [
+      0.0056,
+      0.25,
+      0.0039
+     ],
+     "yaw": -69,
+     "rot": [
+      -9,
+      18,
+      0
+     ]
+    },
+    {
+     "name": "Candy_13",
+     "pos": [
+      -0.0251,
+      0.286,
+      -0.0149
+     ],
+     "yaw": -8,
+     "rot": [
+      18,
+      -24,
+      0
+     ]
+    }
+   ],
+   "level": true,
+   "decimate": 700,
+   "scatter": 0.055
+  },
+  {
+   "id": "Lolly",
+   "src": "proc:Lollipop",
+   "fit": {
+    "h": 0.1
+   },
+   "drop": true,
+   "inst": [
+    {
+     "name": "Candy_0",
+     "pos": [
+      0.0267,
+      0.13,
+      -0.0136
+     ],
+     "yaw": -17,
+     "rot": [
+      0,
+      17,
+      0
+     ]
+    },
+    {
+     "name": "Candy_7",
+     "pos": [
+      -0.0267,
+      0.214,
+      -0.0136
+     ],
+     "yaw": -8,
+     "rot": [
+      0,
+      17,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "name": "Deco_Greenhouse",
+ "parts": {
+  "Base": {
+   "src": "proc:Gh_Base",
+   "scale": 1.0,
+   "size": [
+    9.2,
+    5.2,
+    0.8
+   ],
+   "faces": 216,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Glass": {
+   "src": "proc:Gh_Glass",
+   "scale": 1.0,
+   "size": [
+    8.9,
+    6.68,
+    5.525
+   ],
+   "faces": 124,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Frame": {
+   "src": "proc:Gh_Frame",
+   "scale": 1.0,
+   "size": [
+    9.0,
+    6.874,
+    6.775
+   ],
+   "faces": 4708,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Door": {
+   "src": "proc:Gh_Door",
+   "scale": 1.0,
+   "size": [
+    1.1,
+    0.1,
+    2.24
+   ],
+   "faces": 12,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Steps": {
+   "src": "proc:Gh_Steps",
+   "scale": 1.0,
+   "size": [
+    3.0,
+    2.15,
+    0.35
+   ],
+   "faces": 216,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

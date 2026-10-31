@@ -1,0 +1,12 @@
+Bale_0	Hb_Bale
+Bale_1	Hb_Bale
+Bale_2	Hb_Bale
+Twine_0	Hb_Twine
+Twine_1	Hb_Twine
+Twine_2	Hb_Twine
+Stalk_0	Cs_Stalk
+Stalk_1	Cs_Stalk
+CLeaf_0	Cs_Leaf
+CLeaf_1	Cs_Leaf
+Tie_0	Cs_Tie
+Tie_1	Cs_Tie

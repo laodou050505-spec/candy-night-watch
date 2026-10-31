@@ -1,0 +1,72 @@
+{
+ "name": "Deco_CornShock",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Stalk",
+   "Leaf"
+  ],
+  [
+   "Stalk",
+   "Tie"
+  ],
+  [
+   "Leaf",
+   "Tie"
+  ],
+  [
+   "Leaf",
+   "Leaf"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Stalk",
+   "src": "proc:Cs_Stalk",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stalk",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Leaf",
+   "src": "proc:Cs_Leaf",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Leaf",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Tie",
+   "src": "proc:Cs_Tie",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Tie",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

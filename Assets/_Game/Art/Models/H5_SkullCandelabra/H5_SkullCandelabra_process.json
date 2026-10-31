@@ -1,0 +1,33 @@
+{
+  "name": "H5_SkullCandelabra",
+  "parts": [
+    "PART_Body",
+    "PART_Flame_16",
+    "PART_Flame_17",
+    "PART_Flame_18"
+  ],
+  "faces_in": 26906,
+  "islands": 4,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "size_m": [
+    0.151,
+    0.266,
+    0.38
+  ],
+  "textures": [
+    {
+      "file": "H5_SkullCandelabra_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 0
+    }
+  ],
+  "lod_faces": [
+    13996,
+    7200,
+    3132
+  ]
+}

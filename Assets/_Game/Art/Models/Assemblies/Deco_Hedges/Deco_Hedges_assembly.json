@@ -1,0 +1,18 @@
+{
+ "name": "Deco_Hedges",
+ "parts": {
+  "Hedge": {
+   "src": "proc:Hd_Hedge",
+   "scale": 1.0,
+   "size": [
+    13.8153,
+    10.3011,
+    1.7562
+   ],
+   "faces": 16000,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

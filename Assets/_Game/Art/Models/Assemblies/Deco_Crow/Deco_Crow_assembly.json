@@ -1,0 +1,18 @@
+{
+ "name": "Deco_Crow",
+ "parts": {
+  "Body": {
+   "src": "P_Crow2",
+   "scale": 0.3844,
+   "size": [
+    0.3797,
+    0.2806,
+    0.34
+   ],
+   "faces": 4030,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

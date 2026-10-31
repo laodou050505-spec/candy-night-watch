@@ -1,0 +1,42 @@
+{
+ "name": "Desk_Table",
+ "parts": {
+  "Top": {
+   "src": "proc:Top_Wood",
+   "scale": 1.0,
+   "size": [
+    2.26,
+    2.26,
+    0.06
+   ],
+   "faces": 6400,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Rim": {
+   "src": "proc:Table_Rim",
+   "scale": 1.0,
+   "size": [
+    2.53,
+    2.519,
+    0.13
+   ],
+   "faces": 20160,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Leg": {
+   "src": "P_TableLeg",
+   "scale": 0.6653,
+   "size": [
+    0.4123,
+    0.3843,
+    0.665
+   ],
+   "faces": 1600,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

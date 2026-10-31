@@ -1,0 +1,42 @@
+{
+ "name": "Deco_AppleCrate",
+ "parts": {
+  "Wood": {
+   "src": "proc:Ac_Wood",
+   "scale": 1.0,
+   "size": [
+    0.7,
+    0.48,
+    0.36
+   ],
+   "faces": 1308,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Apple": {
+   "src": "proc:Ac_Apple",
+   "scale": 1.0,
+   "size": [
+    0.6257,
+    0.42,
+    0.1898
+   ],
+   "faces": 4032,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stem": {
+   "src": "proc:Ac_Stem",
+   "scale": 1.0,
+   "size": [
+    0.4847,
+    0.3004,
+    0.1104
+   ],
+   "faces": 240,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

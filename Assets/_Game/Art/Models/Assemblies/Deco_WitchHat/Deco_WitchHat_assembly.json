@@ -1,0 +1,42 @@
+{
+ "name": "Deco_WitchHat",
+ "parts": {
+  "Hat": {
+   "src": "proc:Wh_Hat",
+   "scale": 1.0,
+   "size": [
+    0.8961,
+    0.8878,
+    0.445
+   ],
+   "faces": 912,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Band": {
+   "src": "proc:Wh_Band",
+   "scale": 1.0,
+   "size": [
+    0.39,
+    0.39,
+    0.08
+   ],
+   "faces": 96,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Buckle": {
+   "src": "proc:Wh_Buckle",
+   "scale": 1.0,
+   "size": [
+    0.1,
+    0.03,
+    0.08
+   ],
+   "faces": 108,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

@@ -1,0 +1,120 @@
+{
+ "name": "Deco_ArchColumn",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Leaf",
+   "Vine"
+  ],
+  [
+   "Stem",
+   "Pumpkin"
+  ],
+  [
+   "Arch",
+   "Stone"
+  ],
+  [
+   "Pumpkin",
+   "Stone"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Stone",
+   "src": "proc:Col_Stone",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stone",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Arch",
+   "src": "proc:Col_Arch",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Arch",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Vine",
+   "src": "proc:Col_Vine",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Vine",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Leaf",
+   "src": "proc:Col_Leaf",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Leaf",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Pumpkin",
+   "src": "proc:Col_Pumpkin",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Pumpkin",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Stem",
+   "src": "proc:Col_Stem",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stem",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

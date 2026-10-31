@@ -1,0 +1,64 @@
+{
+ "name": "Deco_GardenGate",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Pillar",
+   "Iron"
+  ],
+  [
+   "Pillar",
+   "Finial"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Pillar",
+   "src": "proc:Gt_Pillar",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Pillar",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Iron",
+   "src": "proc:Gt_Iron",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Iron",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Finial",
+   "src": "proc:Gt_Finial",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Finial",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

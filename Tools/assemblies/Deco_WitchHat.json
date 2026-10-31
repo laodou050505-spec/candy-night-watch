@@ -1,0 +1,68 @@
+{
+ "name": "Deco_WitchHat",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Band",
+   "Hat"
+  ],
+  [
+   "Band",
+   "Buckle"
+  ],
+  [
+   "Buckle",
+   "Hat"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Hat",
+   "src": "proc:Wh_Hat",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Hat",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Band",
+   "src": "proc:Wh_Band",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Band",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Buckle",
+   "src": "proc:Wh_Buckle",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Buckle",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

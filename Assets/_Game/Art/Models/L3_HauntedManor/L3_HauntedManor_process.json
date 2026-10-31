@@ -1,0 +1,28 @@
+{
+  "name": "L3_HauntedManor",
+  "faces_in": 73404,
+  "islands": 402,
+  "debris_removed_islands": 5,
+  "debris_removed_faces": 392,
+  "scale": 9.0044,
+  "size_m": [
+    7.153,
+    6.054,
+    9.0
+  ],
+  "textures": [
+    {
+      "file": "L3_HauntedManor_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 19.606
+    }
+  ],
+  "lod_faces": [
+    44970,
+    22486,
+    8992
+  ]
+}

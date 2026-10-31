@@ -1,0 +1,124 @@
+{
+ "name": "Deco_Graveyard",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Fence",
+   "Plinth"
+  ],
+  [
+   "Stone",
+   "Plinth"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Plinth",
+   "src": "proc:Gy_Plinth",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Plinth",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Fence",
+   "src": "proc:Gy_Fence",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Fence",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Stone",
+   "src": "S12_Gravestone",
+   "fit": {
+    "h": 0.95
+   },
+   "inst": [
+    {
+     "name": "Stone_0",
+     "pos": [
+      -1.05,
+      0.235,
+      -0.35
+     ],
+     "yaw": -78
+    },
+    {
+     "name": "Stone_1",
+     "pos": [
+      0.0,
+      0.235,
+      -0.65
+     ],
+     "yaw": -90,
+     "scale": 1.15
+    },
+    {
+     "name": "Stone_2",
+     "pos": [
+      1.05,
+      0.235,
+      -0.3
+     ],
+     "yaw": -104,
+     "scale": 0.9
+    }
+   ]
+  },
+  {
+   "id": "Skull",
+   "src": "P_Skull",
+   "fit": {
+    "h": 0.18
+   },
+   "drop": true,
+   "inst": [
+    {
+     "name": "Skull",
+     "pos": [
+      0.55,
+      0.5,
+      0.45
+     ],
+     "yaw": -110
+    }
+   ]
+  },
+  {
+   "id": "Pumpkin",
+   "src": "proc:Ct_Pumpkin",
+   "fit": {
+    "h": 0.36
+   },
+   "drop": true,
+   "inst": [
+    {
+     "name": "Pumpkins",
+     "pos": [
+      -0.7,
+      0.5,
+      0.45
+     ],
+     "yaw": 20
+    }
+   ]
+  }
+ ]
+}

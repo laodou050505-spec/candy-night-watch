@@ -1,0 +1,54 @@
+{
+ "name": "Deco_Ground",
+ "parts": {
+  "Lawn": {
+   "src": "proc:Gr_Lawn",
+   "scale": 1.0,
+   "size": [
+    120.0,
+    120.0,
+    0.3
+   ],
+   "faces": 1024,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Patio": {
+   "src": "proc:Gr_Patio",
+   "scale": 1.0,
+   "size": [
+    7.9617,
+    7.9,
+    0.008
+   ],
+   "faces": 256,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Path": {
+   "src": "proc:Gr_Path",
+   "scale": 1.0,
+   "size": [
+    1.7,
+    31.2,
+    0.003
+   ],
+   "faces": 12,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Curb": {
+   "src": "proc:Gr_Curb",
+   "scale": 1.0,
+   "size": [
+    9.0802,
+    39.237,
+    0.1467
+   ],
+   "faces": 34656,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

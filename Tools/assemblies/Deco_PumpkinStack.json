@@ -1,0 +1,26 @@
+{
+ "name": "Deco_PumpkinStack",
+ "allow_overlap": 0.01,
+ "allow_pairs": [],
+ "parts": [
+  {
+   "id": "Body",
+   "src": "P_PumpkinStack",
+   "fit": {
+    "h": 0.95
+   },
+   "decimate": 4000,
+   "inst": [
+    {
+     "name": "Body",
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "yaw": -90
+    }
+   ]
+  }
+ ]
+}

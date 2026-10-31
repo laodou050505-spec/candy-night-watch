@@ -1,0 +1,18 @@
+{
+ "name": "Deco_PumpkinStack",
+ "parts": {
+  "Body": {
+   "src": "P_PumpkinStack",
+   "scale": 0.9505,
+   "size": [
+    0.6688,
+    0.665,
+    0.95
+   ],
+   "faces": 4000,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

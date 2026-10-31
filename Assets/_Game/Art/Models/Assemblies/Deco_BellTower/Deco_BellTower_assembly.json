@@ -1,0 +1,114 @@
+{
+ "name": "Deco_BellTower",
+ "parts": {
+  "Plinth": {
+   "src": "proc:Bt_Plinth",
+   "scale": 1.0,
+   "size": [
+    5.0793,
+    5.0949,
+    0.35
+   ],
+   "faces": 400,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stone": {
+   "src": "proc:Bt_Stone",
+   "scale": 1.0,
+   "size": [
+    2.6,
+    2.6,
+    6.67
+   ],
+   "faces": 384,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Roof": {
+   "src": "proc:Bt_Roof",
+   "scale": 1.0,
+   "size": [
+    2.4749,
+    2.4749,
+    2.51
+   ],
+   "faces": 96,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Bell": {
+   "src": "proc:Bt_Bell",
+   "scale": 1.0,
+   "size": [
+    1.04,
+    1.04,
+    1.2
+   ],
+   "faces": 512,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Beam": {
+   "src": "proc:Bt_Beam",
+   "scale": 1.0,
+   "size": [
+    1.8,
+    0.22,
+    0.2
+   ],
+   "faces": 12,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Clock": {
+   "src": "proc:Bt_Clock",
+   "scale": 1.0,
+   "size": [
+    1.2,
+    0.16,
+    1.2
+   ],
+   "faces": 128,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Hands": {
+   "src": "proc:Bt_Hands",
+   "scale": 1.0,
+   "size": [
+    1.38,
+    0.12,
+    1.38
+   ],
+   "faces": 744,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Door": {
+   "src": "proc:Bt_Door",
+   "scale": 1.0,
+   "size": [
+    0.9,
+    0.192,
+    1.85
+   ],
+   "faces": 52,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Vane": {
+   "src": "proc:Bt_Vane",
+   "scale": 1.0,
+   "size": [
+    1.1,
+    0.07,
+    0.8537
+   ],
+   "faces": 356,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

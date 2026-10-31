@@ -1,0 +1,5 @@
+Base	Gh_Base
+Glass	Gh_Glass
+Frame	Gh_Frame
+Door	Gh_Door
+Steps	Gh_Steps

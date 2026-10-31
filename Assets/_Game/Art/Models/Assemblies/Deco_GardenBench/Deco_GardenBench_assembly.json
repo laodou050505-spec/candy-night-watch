@@ -1,0 +1,30 @@
+{
+ "name": "Deco_GardenBench",
+ "parts": {
+  "Wood": {
+   "src": "proc:Bn_Wood",
+   "scale": 1.0,
+   "size": [
+    1.5,
+    0.5475,
+    0.4875
+   ],
+   "faces": 756,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Iron": {
+   "src": "proc:Bn_Iron",
+   "scale": 1.0,
+   "size": [
+    1.42,
+    0.685,
+    0.9426
+   ],
+   "faces": 1864,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

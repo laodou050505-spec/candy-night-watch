@@ -1,0 +1,3 @@
+Plaza	Ft_Plaza
+Stone	Ft_Stone
+Water	Ft_Water

@@ -1,0 +1,216 @@
+{
+ "name": "Deco_Manor",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Walls",
+   "Plinth"
+  ],
+  [
+   "Walls",
+   "Trim"
+  ],
+  [
+   "Walls",
+   "Roof"
+  ],
+  [
+   "Walls",
+   "Window"
+  ],
+  [
+   "Trim",
+   "Window"
+  ],
+  [
+   "Walls",
+   "Door"
+  ],
+  [
+   "Steps",
+   "Plinth"
+  ],
+  [
+   "Steps",
+   "Walls"
+  ],
+  [
+   "Chimney",
+   "Roof"
+  ],
+  [
+   "Chimney",
+   "Walls"
+  ],
+  [
+   "Trim",
+   "Roof"
+  ],
+  [
+   "Trim",
+   "Steps"
+  ],
+  [
+   "Window",
+   "Roof"
+  ],
+  [
+   "Pumpkin",
+   "Plinth"
+  ],
+  [
+   "Trim",
+   "Door"
+  ],
+  [
+   "Door",
+   "Steps"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Plinth",
+   "src": "proc:Mn_Plinth",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Plinth",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Walls",
+   "src": "proc:Mn_Walls",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Walls",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Trim",
+   "src": "proc:Mn_Trim",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Trim",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Roof",
+   "src": "proc:Mn_Roof",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Roof",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Window",
+   "src": "proc:Mn_Window",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Window",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Door",
+   "src": "proc:Mn_Door",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Door",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Steps",
+   "src": "proc:Mn_Steps",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Steps",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Chimney",
+   "src": "proc:Mn_Chimney",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Chimney",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Pumpkin",
+   "src": "proc:Mn_Pumpkin",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Pumpkin",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

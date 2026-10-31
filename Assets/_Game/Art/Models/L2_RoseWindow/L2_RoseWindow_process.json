@@ -1,0 +1,28 @@
+{
+  "name": "L2_RoseWindow",
+  "faces_in": 45472,
+  "islands": 71,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 14.00684,
+  "size_m": [
+    1.28,
+    14.0,
+    14.0
+  ],
+  "textures": [
+    {
+      "file": "L2_RoseWindow_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 9.432
+    }
+  ],
+  "lod_faces": [
+    29992,
+    14998,
+    5976
+  ]
+}

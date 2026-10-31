@@ -1,0 +1,88 @@
+{
+ "name": "Deco_GroundDetail",
+ "allow_overlap": 0.02,
+ "allow_pairs": [
+  [
+   "Leaves",
+   "Tuft"
+  ],
+  [
+   "LeavesPath",
+   "TuftPath"
+  ],
+  [
+   "Leaves",
+   "TuftPath"
+  ],
+  [
+   "LeavesPath",
+   "Tuft"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Leaves",
+   "src": "proc:Lv_Leaves",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Leaves",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Tuft",
+   "src": "proc:Gs_Tuft",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Tuft",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LeavesPath",
+   "src": "proc:Lv_LeavesPath",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "LeavesPath",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "TuftPath",
+   "src": "proc:Gs_TuftPath",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "TuftPath",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

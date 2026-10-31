@@ -1,0 +1,96 @@
+{
+ "name": "Deco_Ground",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Lawn",
+   "Patio"
+  ],
+  [
+   "Lawn",
+   "Path"
+  ],
+  [
+   "Patio",
+   "Path"
+  ],
+  [
+   "Curb",
+   "Lawn"
+  ],
+  [
+   "Curb",
+   "Path"
+  ],
+  [
+   "Curb",
+   "Patio"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Lawn",
+   "src": "proc:Gr_Lawn",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Lawn",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Patio",
+   "src": "proc:Gr_Patio",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Patio",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Path",
+   "src": "proc:Gr_Path",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Path",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Curb",
+   "src": "proc:Gr_Curb",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Curb",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

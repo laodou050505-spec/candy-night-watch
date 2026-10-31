@@ -1,0 +1,8 @@
+Top	Top_Wood
+Rim	Table_Rim
+Leg_0	P_TableLeg
+Leg_1	P_TableLeg
+Leg_2	P_TableLeg
+Leg_3	P_TableLeg
+Leg_4	P_TableLeg
+Leg_5	P_TableLeg

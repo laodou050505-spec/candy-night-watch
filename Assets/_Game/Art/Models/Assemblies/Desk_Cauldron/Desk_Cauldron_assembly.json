@@ -1,0 +1,78 @@
+{
+ "name": "Desk_Cauldron",
+ "parts": {
+  "Body": {
+   "src": "proc:Cauldron_Body",
+   "scale": 1.0,
+   "size": [
+    0.2199,
+    0.2205,
+    0.1455
+   ],
+   "faces": 8000,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Leg": {
+   "src": "P_CauldronLeg",
+   "scale": 0.035,
+   "size": [
+    0.019,
+    0.0294,
+    0.035
+   ],
+   "faces": 1600,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Ring": {
+   "src": "proc:Cauldron_Ring",
+   "scale": 1.0,
+   "size": [
+    0.053,
+    0.009,
+    0.053
+   ],
+   "faces": 768,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Gem": {
+   "src": "proc:Gem_Hex",
+   "scale": 1.0,
+   "size": [
+    0.0381,
+    0.044,
+    0.022
+   ],
+   "faces": 24,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Bone": {
+   "src": "P_Bone",
+   "scale": 0.042,
+   "size": [
+    0.0239,
+    0.042,
+    0.0324
+   ],
+   "faces": 1400,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Potion": {
+   "src": "proc:Potion_Surface",
+   "scale": 1.0,
+   "size": [
+    0.17,
+    0.17,
+    0.01
+   ],
+   "faces": 2560,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

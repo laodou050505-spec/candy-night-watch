@@ -1,0 +1,44 @@
+{
+ "name": "Deco_GardenBench",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Iron",
+   "Wood"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Wood",
+   "src": "proc:Bn_Wood",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wood",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Iron",
+   "src": "proc:Bn_Iron",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Iron",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "name": "Deco_HayBale",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Bale",
+   "Twine"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Bale",
+   "src": "proc:Hb_Bale",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Bale",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Twine",
+   "src": "proc:Hb_Twine",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Twine",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

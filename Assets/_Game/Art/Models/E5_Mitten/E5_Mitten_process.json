@@ -1,0 +1,28 @@
+{
+  "name": "E5_Mitten",
+  "faces_in": 16730,
+  "islands": 4,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.13006,
+  "size_m": [
+    0.116,
+    0.098,
+    0.13
+  ],
+  "textures": [
+    {
+      "file": "E5_Mitten_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 2.244
+    }
+  ],
+  "lod_faces": [
+    14000,
+    7000,
+    2800
+  ]
+}

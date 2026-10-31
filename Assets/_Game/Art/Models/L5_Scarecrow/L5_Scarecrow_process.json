@@ -1,0 +1,28 @@
+{
+  "name": "L5_Scarecrow",
+  "faces_in": 42734,
+  "islands": 65,
+  "debris_removed_islands": 4,
+  "debris_removed_faces": 76,
+  "scale": 2.20107,
+  "size_m": [
+    0.94,
+    2.14,
+    2.2
+  ],
+  "textures": [
+    {
+      "file": "L5_Scarecrow_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 12.494
+    }
+  ],
+  "lod_faces": [
+    20022,
+    10030,
+    4030
+  ]
+}

@@ -1,0 +1,90 @@
+{
+ "name": "Deco_Scarecrow",
+ "parts": {
+  "Wood": {
+   "src": "proc:Scr_Wood",
+   "scale": 1.0,
+   "size": [
+    1.5809,
+    0.0959,
+    1.627
+   ],
+   "faces": 840,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Shirt": {
+   "src": "proc:Scr_Shirt",
+   "scale": 1.0,
+   "size": [
+    1.377,
+    0.6041,
+    0.68
+   ],
+   "faces": 1232,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Rope": {
+   "src": "proc:Scr_Rope",
+   "scale": 1.0,
+   "size": [
+    0.51,
+    0.5259,
+    0.1746
+   ],
+   "faces": 896,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Head": {
+   "src": "proc:Scr_Head",
+   "scale": 1.0,
+   "size": [
+    0.4101,
+    0.4148,
+    0.3374
+   ],
+   "faces": 1904,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stem": {
+   "src": "proc:Scr_Stem",
+   "scale": 1.0,
+   "size": [
+    0.054,
+    0.0522,
+    0.0946
+   ],
+   "faces": 144,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Hat": {
+   "src": "proc:Scr_Hat",
+   "scale": 1.0,
+   "size": [
+    0.7994,
+    0.7628,
+    0.45
+   ],
+   "faces": 768,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Straw": {
+   "src": "proc:Scr_Straw",
+   "scale": 1.0,
+   "size": [
+    1.5409,
+    0.5959,
+    1.0376
+   ],
+   "faces": 1860,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

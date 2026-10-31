@@ -1,0 +1,28 @@
+{
+  "name": "L1_ArchColumn",
+  "faces_in": 52780,
+  "islands": 23,
+  "debris_removed_islands": 1,
+  "debris_removed_faces": 8,
+  "scale": 7.50366,
+  "size_m": [
+    2.004,
+    4.73,
+    7.5
+  ],
+  "textures": [
+    {
+      "file": "L1_ArchColumn_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 9.386
+    }
+  ],
+  "lod_faces": [
+    29987,
+    14991,
+    5988
+  ]
+}

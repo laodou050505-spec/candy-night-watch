@@ -1,0 +1,48 @@
+{
+ "name": "Deco_Wall",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Wall",
+   "Pumpkin"
+  ],
+  [
+   "Pumpkin",
+   "Glow"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Wall",
+   "src": "proc:Wl_Wall",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wall",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Twig",
+   "src": "proc:Wl_Twig",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Twig",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

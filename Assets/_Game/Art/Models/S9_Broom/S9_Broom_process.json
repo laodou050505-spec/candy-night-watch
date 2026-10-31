@@ -1,0 +1,28 @@
+{
+  "name": "S9_Broom",
+  "faces_in": 25796,
+  "islands": 6,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 1.40068,
+  "size_m": [
+    0.458,
+    1.017,
+    1.4
+  ],
+  "textures": [
+    {
+      "file": "S9_Broom_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 1.302
+    }
+  ],
+  "lod_faces": [
+    12004,
+    6004,
+    2402
+  ]
+}

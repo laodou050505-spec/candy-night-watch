@@ -1,0 +1,64 @@
+{
+ "name": "Deco_Fountain",
+ "allow_overlap": 0.02,
+ "allow_pairs": [
+  [
+   "Plaza",
+   "Stone"
+  ],
+  [
+   "Stone",
+   "Water"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Plaza",
+   "src": "proc:Ft_Plaza",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Plaza",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Stone",
+   "src": "proc:Ft_Stone",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stone",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Water",
+   "src": "proc:Ft_Water",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Water",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

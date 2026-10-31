@@ -1,0 +1,28 @@
+{
+  "name": "E1_Skelly",
+  "faces_in": 19482,
+  "islands": 5,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.2001,
+  "size_m": [
+    0.114,
+    0.136,
+    0.2
+  ],
+  "textures": [
+    {
+      "file": "E1_Skelly_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 7.08
+    }
+  ],
+  "lod_faces": [
+    16000,
+    8000,
+    3200
+  ]
+}

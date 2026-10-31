@@ -1,0 +1,30 @@
+{
+ "name": "Deco_LampPost",
+ "parts": {
+  "Iron": {
+   "src": "proc:Lp_Iron",
+   "scale": 1.0,
+   "size": [
+    0.44,
+    0.44,
+    3.18
+   ],
+   "faces": 464,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Glass": {
+   "src": "proc:Lp_Glass",
+   "scale": 1.0,
+   "size": [
+    0.35,
+    0.35,
+    0.41
+   ],
+   "faces": 32,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

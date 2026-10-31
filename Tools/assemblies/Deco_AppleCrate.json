@@ -1,0 +1,68 @@
+{
+ "name": "Deco_AppleCrate",
+ "allow_overlap": 0.012,
+ "allow_pairs": [
+  [
+   "Apple",
+   "Stem"
+  ],
+  [
+   "Apple",
+   "Apple"
+  ],
+  [
+   "Apple",
+   "Wood"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Wood",
+   "src": "proc:Ac_Wood",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wood",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Apple",
+   "src": "proc:Ac_Apple",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Apple",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Stem",
+   "src": "proc:Ac_Stem",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stem",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "S3_Cauldron",
+  "faces_in": 21972,
+  "islands": 28,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.19077,
+  "size_m": [
+    0.177,
+    0.191,
+    0.17
+  ],
+  "textures": [
+    {
+      "file": "S3_Cauldron_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 7.111
+    }
+  ],
+  "lod_faces": [
+    20000,
+    10000,
+    4000
+  ]
+}

@@ -1,0 +1,9 @@
+Plinth	Bt_Plinth
+Stone	Bt_Stone
+Roof	Bt_Roof
+Bell	Bt_Bell
+Beam	Bt_Beam
+Clock	Bt_Clock
+Hands	Bt_Hands
+Door	Bt_Door
+Vane	Bt_Vane

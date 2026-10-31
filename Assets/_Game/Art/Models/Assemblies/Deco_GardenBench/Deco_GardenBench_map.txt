@@ -1,0 +1,2 @@
+Wood	Bn_Wood
+Iron	Bn_Iron

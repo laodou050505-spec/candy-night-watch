@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CoverSky
+  m_Shader: {fileID: 4800000, guid: 34f45248006be45f981c8381e06744b4, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2501
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Fade: 1
+    - _Stars: 1
+    m_Colors:
+    - _Ground: {r: 0.12, g: 0.07, b: 0.2, a: 1}
+    - _Horizon: {r: 0.95, g: 0.41999996, b: 0.19999996, a: 1}
+    - _Mid: {r: 0.19999996, g: 0.07999996, b: 0.29999998, a: 1}
+    - _MoonDir: {r: 0.25180724, g: 0.40673664, b: -0.87815624, a: 0}
+    - _MoonGlow: {r: 1, g: 0.62, b: 0.41999996, a: 1}
+    - _Top: {r: 0.035, g: 0.02, b: 0.089999996, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

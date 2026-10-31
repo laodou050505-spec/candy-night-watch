@@ -1,0 +1,28 @@
+{
+  "name": "H3_GraveyardSet",
+  "faces_in": 37268,
+  "islands": 125,
+  "debris_removed_islands": 1,
+  "debris_removed_faces": 8,
+  "scale": 2.5624,
+  "size_m": [
+    2.286,
+    2.561,
+    1.1
+  ],
+  "textures": [
+    {
+      "file": "H3_GraveyardSet_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 18.798
+    }
+  ],
+  "lod_faces": [
+    25996,
+    12998,
+    5198
+  ]
+}

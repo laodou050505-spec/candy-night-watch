@@ -1,0 +1,108 @@
+{
+ "name": "Deco_FirePit",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Log",
+   "Fire"
+  ],
+  [
+   "Log",
+   "Ember"
+  ],
+  [
+   "Ember",
+   "Fire"
+  ],
+  [
+   "Stone",
+   "Ember"
+  ],
+  [
+   "Log",
+   "Stone"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Stone",
+   "src": "proc:Fp_Stone",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stone",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Log",
+   "src": "proc:Fp_Log",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Log",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Ember",
+   "src": "proc:Fp_Ember",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Ember",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Fire",
+   "src": "proc:Fp_Fire",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Fire",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Tripod",
+   "src": "proc:Fp_Tripod",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Tripod",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

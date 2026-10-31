@@ -1,0 +1,7 @@
+Wood	Scr_Wood
+Shirt	Scr_Shirt
+Rope	Scr_Rope
+Head	Scr_Head
+Stem	Scr_Stem
+Hat	Scr_Hat
+Straw	Scr_Straw

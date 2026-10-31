@@ -1,0 +1,188 @@
+{
+ "name": "Deco_BellTower",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Stone",
+   "Plinth"
+  ],
+  [
+   "Stone",
+   "Roof"
+  ],
+  [
+   "Bell",
+   "Beam"
+  ],
+  [
+   "Beam",
+   "Stone"
+  ],
+  [
+   "Clock",
+   "Stone"
+  ],
+  [
+   "Hands",
+   "Clock"
+  ],
+  [
+   "Hands",
+   "Stone"
+  ],
+  [
+   "Door",
+   "Stone"
+  ],
+  [
+   "Vane",
+   "Roof"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Plinth",
+   "src": "proc:Bt_Plinth",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Plinth",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Stone",
+   "src": "proc:Bt_Stone",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Stone",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Roof",
+   "src": "proc:Bt_Roof",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Roof",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Bell",
+   "src": "proc:Bt_Bell",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Bell",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Beam",
+   "src": "proc:Bt_Beam",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Beam",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Clock",
+   "src": "proc:Bt_Clock",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Clock",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Hands",
+   "src": "proc:Bt_Hands",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Hands",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Door",
+   "src": "proc:Bt_Door",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Door",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Vane",
+   "src": "proc:Bt_Vane",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Vane",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

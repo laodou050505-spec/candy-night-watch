@@ -1,0 +1,2 @@
+Stone	Su_Stone
+Soil	Su_Soil

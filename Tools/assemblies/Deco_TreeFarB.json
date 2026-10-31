@@ -1,0 +1,24 @@
+{
+ "name": "Deco_TreeFarB",
+ "allow_overlap": 0.01,
+ "allow_pairs": [],
+ "parts": [
+  {
+   "id": "Dead",
+   "src": "proc:Tr_DeadB",
+   "fit": {},
+   "keep_origin": true,
+   "decimate": 1300,
+   "inst": [
+    {
+     "name": "Dead",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

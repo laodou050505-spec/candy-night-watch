@@ -1,0 +1,23 @@
+{
+ "name": "Deco_TreeC",
+ "allow_overlap": 0.01,
+ "allow_pairs": [],
+ "parts": [
+  {
+   "id": "DeadC",
+   "src": "proc:Tr_DeadC",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "DeadC",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

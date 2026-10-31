@@ -1,0 +1,3 @@
+Hat	Wh_Hat
+Band	Wh_Band
+Buckle	Wh_Buckle

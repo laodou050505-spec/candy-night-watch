@@ -1,0 +1,42 @@
+{
+ "name": "Deco_Fountain",
+ "parts": {
+  "Plaza": {
+   "src": "proc:Ft_Plaza",
+   "scale": 1.0,
+   "size": [
+    8.6,
+    8.6,
+    0.004
+   ],
+   "faces": 192,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Stone": {
+   "src": "proc:Ft_Stone",
+   "scale": 1.0,
+   "size": [
+    4.888,
+    4.888,
+    3.25
+   ],
+   "faces": 1584,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Water": {
+   "src": "proc:Ft_Water",
+   "scale": 1.0,
+   "size": [
+    4.16,
+    4.16,
+    1.35
+   ],
+   "faces": 256,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

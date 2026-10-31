@@ -1,0 +1,7 @@
+Post	Pg_Post
+Beam	Pg_Beam
+Vine	Pg_Vine
+Leaf	Pg_Leaf
+Wire	Pg_Wire
+Bulb	Pg_Bulb
+BulbP	Pg_BulbP

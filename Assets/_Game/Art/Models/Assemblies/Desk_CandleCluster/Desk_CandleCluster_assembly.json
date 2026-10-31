@@ -1,0 +1,42 @@
+{
+ "name": "Desk_CandleCluster",
+ "parts": {
+  "Dish": {
+   "src": "proc:Candle_Dish",
+   "scale": 1.0,
+   "size": [
+    0.316,
+    0.316,
+    0.0273
+   ],
+   "faces": 1792,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Candle": {
+   "src": "proc:Candle_Float",
+   "scale": 1.0,
+   "size": [
+    0.0509,
+    0.0586,
+    0.163
+   ],
+   "faces": 900,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Flame": {
+   "src": "proc:Candle_Flame",
+   "scale": 1.0,
+   "size": [
+    0.016,
+    0.016,
+    0.0352
+   ],
+   "faces": 168,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

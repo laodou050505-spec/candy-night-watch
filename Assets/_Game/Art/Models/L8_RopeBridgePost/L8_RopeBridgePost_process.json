@@ -1,0 +1,28 @@
+{
+  "name": "L8_RopeBridgePost",
+  "faces_in": 20216,
+  "islands": 22,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 1.79945,
+  "size_m": [
+    1.777,
+    1.799,
+    1.6
+  ],
+  "textures": [
+    {
+      "file": "L8_RopeBridgePost_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 2.909
+    }
+  ],
+  "lod_faces": [
+    11998,
+    5998,
+    2400
+  ]
+}

@@ -1,0 +1,18 @@
+{
+ "name": "Deco_Owl",
+ "parts": {
+  "Body": {
+   "src": "P_Owl",
+   "scale": 0.4202,
+   "size": [
+    0.3482,
+    0.3133,
+    0.42
+   ],
+   "faces": 4000,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

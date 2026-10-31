@@ -1,0 +1,156 @@
+{
+ "name": "Desk_CandleCluster",
+ "allow_overlap": 0.006,
+ "allow_pairs": [
+  [
+   "Candle",
+   "Dish"
+  ],
+  [
+   "Flame",
+   "Candle"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Dish",
+   "src": "proc:Candle_Dish",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Dish",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Candle",
+   "src": "proc:Candle_Float",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Candle_0",
+     "pos": [
+      0.0,
+      0.012,
+      -0.02
+     ],
+     "scale": [
+      1,
+      1,
+      1.0
+     ],
+     "yaw": 0
+    },
+    {
+     "name": "Candle_1",
+     "pos": [
+      -0.075,
+      0.012,
+      0.035
+     ],
+     "scale": [
+      1,
+      1,
+      0.82
+     ],
+     "yaw": 67
+    },
+    {
+     "name": "Candle_2",
+     "pos": [
+      0.07,
+      0.012,
+      0.04
+     ],
+     "scale": [
+      1,
+      1,
+      0.7
+     ],
+     "yaw": 134
+    },
+    {
+     "name": "Candle_3",
+     "pos": [
+      0.055,
+      0.012,
+      -0.07
+     ],
+     "scale": [
+      1,
+      1,
+      0.58
+     ],
+     "yaw": 201
+    },
+    {
+     "name": "Candle_4",
+     "pos": [
+      -0.06,
+      0.012,
+      -0.065
+     ],
+     "scale": [
+      1,
+      1,
+      0.5
+     ],
+     "yaw": 268
+    }
+   ],
+   "decimate": 900
+  },
+  {
+   "id": "Flame",
+   "src": "proc:Candle_Flame",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Flame_0",
+     "pos": [
+      0.0,
+      0.171,
+      -0.02
+     ]
+    },
+    {
+     "name": "Flame_1",
+     "pos": [
+      -0.075,
+      0.14166,
+      0.035
+     ]
+    },
+    {
+     "name": "Flame_2",
+     "pos": [
+      0.07,
+      0.12209999999999999,
+      0.04
+     ]
+    },
+    {
+     "name": "Flame_3",
+     "pos": [
+      0.055,
+      0.10253999999999999,
+      -0.07
+     ]
+    },
+    {
+     "name": "Flame_4",
+     "pos": [
+      -0.06,
+      0.0895,
+      -0.065
+     ]
+    }
+   ]
+  }
+ ]
+}

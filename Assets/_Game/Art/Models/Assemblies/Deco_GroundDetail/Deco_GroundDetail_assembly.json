@@ -1,0 +1,54 @@
+{
+ "name": "Deco_GroundDetail",
+ "parts": {
+  "Leaves": {
+   "src": "proc:Lv_Leaves",
+   "scale": 1.0,
+   "size": [
+    19.6874,
+    16.1919,
+    0.0267
+   ],
+   "faces": 23520,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Tuft": {
+   "src": "proc:Gs_Tuft",
+   "scale": 1.0,
+   "size": [
+    12.174,
+    9.2106,
+    0.3939
+   ],
+   "faces": 11976,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "LeavesPath": {
+   "src": "proc:Lv_LeavesPath",
+   "scale": 1.0,
+   "size": [
+    14.3857,
+    16.4466,
+    0.0262
+   ],
+   "faces": 7368,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "TuftPath": {
+   "src": "proc:Gs_TuftPath",
+   "scale": 1.0,
+   "size": [
+    2.8212,
+    30.2517,
+    0.3985
+   ],
+   "faces": 11160,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

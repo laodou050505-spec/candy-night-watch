@@ -1,0 +1,28 @@
+{
+  "name": "L4_WitchCottage",
+  "faces_in": 75272,
+  "islands": 145,
+  "debris_removed_islands": 4,
+  "debris_removed_faces": 428,
+  "scale": 6.00293,
+  "size_m": [
+    5.701,
+    5.525,
+    6.0
+  ],
+  "textures": [
+    {
+      "file": "L4_WitchCottage_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 10.392
+    }
+  ],
+  "lod_faces": [
+    39983,
+    19980,
+    7998
+  ]
+}

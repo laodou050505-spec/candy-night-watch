@@ -1,0 +1,28 @@
+{
+  "name": "H7_CandyCornPile",
+  "faces_in": 13822,
+  "islands": 29,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.33764,
+  "size_m": [
+    0.316,
+    0.337,
+    0.32
+  ],
+  "textures": [
+    {
+      "file": "H7_CandyCornPile_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 7.265
+    }
+  ],
+  "lod_faces": [
+    12000,
+    6000,
+    2400
+  ]
+}

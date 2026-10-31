@@ -1,0 +1,136 @@
+{
+ "name": "Deco_SkullCandelabra",
+ "allow_overlap": 0.006,
+ "allow_pairs": [
+  [
+   "Candle",
+   "Frame"
+  ],
+  [
+   "Flame",
+   "Candle"
+  ],
+  [
+   "Skull",
+   "Frame"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Frame",
+   "src": "proc:Candelabra_Frame",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Frame",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ],
+   "decimate": 7000
+  },
+  {
+   "id": "Skull",
+   "src": "P_Skull",
+   "fit": {
+    "h": 0.062
+   },
+   "inst": [
+    {
+     "name": "Skull",
+     "pos": [
+      0,
+      0.028,
+      0.045
+     ],
+     "yaw": 0
+    }
+   ],
+   "decimate": 1600
+  },
+  {
+   "id": "Candle",
+   "src": "proc:Candle_Float",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Candle_0",
+     "pos": [
+      0,
+      0.271,
+      0
+     ],
+     "scale": [
+      0.6,
+      0.6,
+      0.62
+     ],
+     "yaw": 0
+    },
+    {
+     "name": "Candle_1",
+     "pos": [
+      -0.105,
+      0.191,
+      0
+     ],
+     "scale": [
+      0.6,
+      0.6,
+      0.5
+     ],
+     "yaw": 80
+    },
+    {
+     "name": "Candle_2",
+     "pos": [
+      0.105,
+      0.191,
+      0
+     ],
+     "scale": [
+      0.6,
+      0.6,
+      0.5
+     ],
+     "yaw": 160
+    }
+   ],
+   "decimate": 900
+  },
+  {
+   "id": "Flame",
+   "src": "proc:Candle_Flame",
+   "fit": {},
+   "inst": [
+    {
+     "name": "Flame_0",
+     "pos": [
+      0,
+      0.36806,
+      0
+     ]
+    },
+    {
+     "name": "Flame_1",
+     "pos": [
+      -0.105,
+      0.2685,
+      0
+     ]
+    },
+    {
+     "name": "Flame_2",
+     "pos": [
+      0.105,
+      0.2685,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

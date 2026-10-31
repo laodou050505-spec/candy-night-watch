@@ -1,0 +1,248 @@
+{
+ "name": "Deco_Mansion",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Wall",
+   "Window"
+  ],
+  [
+   "Trim",
+   "Wall"
+  ],
+  [
+   "Trim",
+   "Window"
+  ],
+  [
+   "Roof",
+   "Wall"
+  ],
+  [
+   "Roof",
+   "Trim"
+  ],
+  [
+   "Roof",
+   "Window"
+  ],
+  [
+   "Roof",
+   "Steps"
+  ],
+  [
+   "Door",
+   "Wall"
+  ],
+  [
+   "Door",
+   "Trim"
+  ],
+  [
+   "Door",
+   "Roof"
+  ],
+  [
+   "Door",
+   "Window"
+  ],
+  [
+   "Door",
+   "Iron"
+  ],
+  [
+   "Door",
+   "Steps"
+  ],
+  [
+   "Chimney",
+   "Wall"
+  ],
+  [
+   "Chimney",
+   "Trim"
+  ],
+  [
+   "Chimney",
+   "Roof"
+  ],
+  [
+   "Chimney",
+   "Window"
+  ],
+  [
+   "Chimney",
+   "Door"
+  ],
+  [
+   "Chimney",
+   "Iron"
+  ],
+  [
+   "Chimney",
+   "Steps"
+  ],
+  [
+   "Iron",
+   "Wall"
+  ],
+  [
+   "Iron",
+   "Trim"
+  ],
+  [
+   "Iron",
+   "Roof"
+  ],
+  [
+   "Iron",
+   "Window"
+  ],
+  [
+   "Iron",
+   "Steps"
+  ],
+  [
+   "Steps",
+   "Wall"
+  ],
+  [
+   "Steps",
+   "Trim"
+  ],
+  [
+   "Steps",
+   "Window"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Wall",
+   "src": "proc:Ms_Wall",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wall",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Trim",
+   "src": "proc:Ms_Trim",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Trim",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Roof",
+   "src": "proc:Ms_Roof",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Roof",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Window",
+   "src": "proc:Ms_Window",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Window",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Door",
+   "src": "proc:Ms_Door",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Door",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Chimney",
+   "src": "proc:Ms_Chimney",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Chimney",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Iron",
+   "src": "proc:Ms_Iron",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Iron",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Steps",
+   "src": "proc:Ms_Steps",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Steps",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

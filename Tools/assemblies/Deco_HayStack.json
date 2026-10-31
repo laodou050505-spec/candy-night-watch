@@ -1,0 +1,186 @@
+{
+ "name": "Deco_HayStack",
+ "allow_overlap": 0.02,
+ "allow_pairs": [
+  [
+   "Bale",
+   "Twine"
+  ],
+  [
+   "Bale",
+   "Bale"
+  ],
+  [
+   "Stalk",
+   "CLeaf"
+  ],
+  [
+   "Stalk",
+   "Tie"
+  ],
+  [
+   "CLeaf",
+   "Tie"
+  ],
+  [
+   "CLeaf",
+   "CLeaf"
+  ],
+  [
+   "Stalk",
+   "Stalk"
+  ],
+  [
+   "Twine",
+   "Twine"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Bale",
+   "src": "proc:Hb_Bale",
+   "fit": {},
+   "inst": [
+    {
+     "pos": [
+      -0.62,
+      0,
+      0
+     ],
+     "yaw": 3,
+     "name": "Bale_0"
+    },
+    {
+     "pos": [
+      0.62,
+      0,
+      0.05
+     ],
+     "yaw": -4,
+     "name": "Bale_1"
+    },
+    {
+     "pos": [
+      0.0,
+      0.52,
+      0.02
+     ],
+     "yaw": 2,
+     "name": "Bale_2"
+    }
+   ]
+  },
+  {
+   "id": "Twine",
+   "src": "proc:Hb_Twine",
+   "fit": {},
+   "inst": [
+    {
+     "pos": [
+      -0.62,
+      0,
+      0
+     ],
+     "yaw": 3,
+     "name": "Twine_0"
+    },
+    {
+     "pos": [
+      0.62,
+      0,
+      0.05
+     ],
+     "yaw": -4,
+     "name": "Twine_1"
+    },
+    {
+     "pos": [
+      0.0,
+      0.52,
+      0.02
+     ],
+     "yaw": 2,
+     "name": "Twine_2"
+    }
+   ]
+  },
+  {
+   "id": "Stalk",
+   "src": "proc:Cs_Stalk",
+   "fit": {},
+   "inst": [
+    {
+     "pos": [
+      -1.82,
+      0,
+      0.5
+     ],
+     "yaw": 20,
+     "name": "Stalk_0"
+    },
+    {
+     "pos": [
+      1.84,
+      0,
+      0.55
+     ],
+     "yaw": 70,
+     "scale": 0.9,
+     "name": "Stalk_1"
+    }
+   ]
+  },
+  {
+   "id": "CLeaf",
+   "src": "proc:Cs_Leaf",
+   "fit": {},
+   "inst": [
+    {
+     "pos": [
+      -1.82,
+      0,
+      0.5
+     ],
+     "yaw": 20,
+     "name": "CLeaf_0"
+    },
+    {
+     "pos": [
+      1.84,
+      0,
+      0.55
+     ],
+     "yaw": 70,
+     "scale": 0.9,
+     "name": "CLeaf_1"
+    }
+   ]
+  },
+  {
+   "id": "Tie",
+   "src": "proc:Cs_Tie",
+   "fit": {},
+   "inst": [
+    {
+     "pos": [
+      -1.82,
+      0,
+      0.5
+     ],
+     "yaw": 20,
+     "name": "Tie_0"
+    },
+    {
+     "pos": [
+      1.84,
+      0,
+      0.55
+     ],
+     "yaw": 70,
+     "scale": 0.9,
+     "name": "Tie_1"
+    }
+   ]
+  }
+ ]
+}

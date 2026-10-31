@@ -1,0 +1,8 @@
+Wall	Ms_Wall
+Trim	Ms_Trim
+Roof	Ms_Roof
+Window	Ms_Window
+Door	Ms_Door
+Chimney	Ms_Chimney
+Iron	Ms_Iron
+Steps	Ms_Steps

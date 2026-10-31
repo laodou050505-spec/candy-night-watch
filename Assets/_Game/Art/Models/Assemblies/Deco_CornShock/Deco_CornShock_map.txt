@@ -1,0 +1,3 @@
+Stalk	Cs_Stalk
+Leaf	Cs_Leaf
+Tie	Cs_Tie

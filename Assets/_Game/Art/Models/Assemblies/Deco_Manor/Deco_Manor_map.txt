@@ -1,0 +1,9 @@
+Plinth	Mn_Plinth
+Walls	Mn_Walls
+Trim	Mn_Trim
+Roof	Mn_Roof
+Window	Mn_Window
+Door	Mn_Door
+Steps	Mn_Steps
+Chimney	Mn_Chimney
+Pumpkin	Mn_Pumpkin

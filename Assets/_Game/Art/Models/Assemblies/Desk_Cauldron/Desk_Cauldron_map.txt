@@ -1,0 +1,12 @@
+Body	Cauldron_Body
+Leg_0	P_CauldronLeg
+Leg_1	P_CauldronLeg
+Leg_2	P_CauldronLeg
+Ring_0	Cauldron_Ring
+Ring_1	Cauldron_Ring
+Gem_Green	Gem_Hex
+Gem_Pink	Gem_Hex
+Gem_Purple	Gem_Hex
+Bone_0	P_Bone
+Bone_1	P_Bone
+Potion	Potion_Surface

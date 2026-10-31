@@ -1,0 +1,42 @@
+{
+ "name": "Deco_CornShock",
+ "parts": {
+  "Stalk": {
+   "src": "proc:Cs_Stalk",
+   "scale": 1.0,
+   "size": [
+    0.9067,
+    0.9361,
+    2.1482
+   ],
+   "faces": 6624,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Leaf": {
+   "src": "proc:Cs_Leaf",
+   "scale": 1.0,
+   "size": [
+    1.3685,
+    1.4108,
+    1.5409
+   ],
+   "faces": 7896,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Tie": {
+   "src": "proc:Cs_Tie",
+   "scale": 1.0,
+   "size": [
+    0.3797,
+    0.294,
+    0.3161
+   ],
+   "faces": 1060,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

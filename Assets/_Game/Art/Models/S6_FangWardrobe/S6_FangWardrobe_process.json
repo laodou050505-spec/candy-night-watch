@@ -1,0 +1,28 @@
+{
+  "name": "S6_FangWardrobe",
+  "faces_in": 48478,
+  "islands": 24,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 2.10103,
+  "size_m": [
+    0.895,
+    1.355,
+    2.1
+  ],
+  "textures": [
+    {
+      "file": "S6_FangWardrobe_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 3.988
+    }
+  ],
+  "lod_faces": [
+    25986,
+    12996,
+    5192
+  ]
+}

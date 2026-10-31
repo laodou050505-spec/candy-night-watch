@@ -1,0 +1,28 @@
+{
+  "name": "S7_Coffin",
+  "faces_in": 29816,
+  "islands": 26,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 1.70083,
+  "size_m": [
+    1.08,
+    1.114,
+    1.7
+  ],
+  "textures": [
+    {
+      "file": "S7_Coffin_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 12.809
+    }
+  ],
+  "lod_faces": [
+    15974,
+    7974,
+    3134
+  ]
+}

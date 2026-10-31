@@ -1,0 +1,5 @@
+Stone	Fp_Stone
+Log	Fp_Log
+Ember	Fp_Ember
+Fire	Fp_Fire
+Tripod	Fp_Tripod

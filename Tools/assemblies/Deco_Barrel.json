@@ -1,0 +1,44 @@
+{
+ "name": "Deco_Barrel",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Hoop",
+   "Wood"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Wood",
+   "src": "proc:Br_Wood",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wood",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Hoop",
+   "src": "proc:Br_Hoop",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Hoop",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "name": "Deco_Barrel",
+ "parts": {
+  "Wood": {
+   "src": "proc:Br_Wood",
+   "scale": 1.0,
+   "size": [
+    0.7344,
+    0.7432,
+    0.9
+   ],
+   "faces": 1152,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Hoop": {
+   "src": "proc:Br_Hoop",
+   "scale": 1.0,
+   "size": [
+    0.7952,
+    0.7952,
+    0.72
+   ],
+   "faces": 1440,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

@@ -1,0 +1,30 @@
+{
+ "name": "Deco_HayBale",
+ "parts": {
+  "Bale": {
+   "src": "proc:Hb_Bale",
+   "scale": 1.0,
+   "size": [
+    1.3938,
+    0.8257,
+    0.6625
+   ],
+   "faces": 4812,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Twine": {
+   "src": "proc:Hb_Twine",
+   "scale": 1.0,
+   "size": [
+    0.648,
+    0.616,
+    0.556
+   ],
+   "faces": 1536,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

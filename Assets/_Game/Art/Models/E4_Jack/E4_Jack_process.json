@@ -1,0 +1,28 @@
+{
+  "name": "E4_Jack",
+  "faces_in": 36600,
+  "islands": 11,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.22011,
+  "size_m": [
+    0.104,
+    0.195,
+    0.22
+  ],
+  "textures": [
+    {
+      "file": "E4_Jack_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 13.654
+    }
+  ],
+  "lod_faces": [
+    17998,
+    8998,
+    3596
+  ]
+}

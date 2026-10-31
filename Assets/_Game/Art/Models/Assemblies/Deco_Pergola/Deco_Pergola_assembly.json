@@ -1,0 +1,90 @@
+{
+ "name": "Deco_Pergola",
+ "parts": {
+  "Post": {
+   "src": "proc:Pg_Post",
+   "scale": 1.0,
+   "size": [
+    6.54,
+    5.94,
+    2.51
+   ],
+   "faces": 2328,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Beam": {
+   "src": "proc:Pg_Beam",
+   "scale": 1.0,
+   "size": [
+    7.1,
+    6.3,
+    0.39
+   ],
+   "faces": 1188,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Vine": {
+   "src": "proc:Pg_Vine",
+   "scale": 1.0,
+   "size": [
+    6.5186,
+    6.0262,
+    2.2588
+   ],
+   "faces": 7700,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Leaf": {
+   "src": "proc:Pg_Leaf",
+   "scale": 1.0,
+   "size": [
+    6.6216,
+    6.0389,
+    2.268
+   ],
+   "faces": 10752,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Wire": {
+   "src": "proc:Pg_Wire",
+   "scale": 1.0,
+   "size": [
+    6.7029,
+    5.7087,
+    0.565
+   ],
+   "faces": 7428,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Bulb": {
+   "src": "proc:Pg_Bulb",
+   "scale": 1.0,
+   "size": [
+    6.5326,
+    5.7399,
+    0.5774
+   ],
+   "faces": 8400,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "BulbP": {
+   "src": "proc:Pg_BulbP",
+   "scale": 1.0,
+   "size": [
+    6.5326,
+    5.7399,
+    0.5706
+   ],
+   "faces": 8160,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

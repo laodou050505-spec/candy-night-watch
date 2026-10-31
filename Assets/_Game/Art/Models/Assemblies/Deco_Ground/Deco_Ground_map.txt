@@ -1,0 +1,4 @@
+Lawn	Gr_Lawn
+Patio	Gr_Patio
+Path	Gr_Path
+Curb	Gr_Curb

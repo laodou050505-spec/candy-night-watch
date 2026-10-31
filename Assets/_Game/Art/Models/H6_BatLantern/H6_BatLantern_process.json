@@ -1,0 +1,28 @@
+{
+  "name": "H6_BatLantern",
+  "faces_in": 20050,
+  "islands": 10,
+  "debris_removed_islands": 0,
+  "debris_removed_faces": 0,
+  "scale": 0.68863,
+  "size_m": [
+    0.279,
+    0.688,
+    0.5
+  ],
+  "textures": [
+    {
+      "file": "H6_BatLantern_albedo.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "laplacian_var": 2.252
+    }
+  ],
+  "lod_faces": [
+    9998,
+    5000,
+    2000
+  ]
+}

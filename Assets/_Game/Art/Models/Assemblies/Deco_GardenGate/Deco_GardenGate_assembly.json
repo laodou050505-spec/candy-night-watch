@@ -1,0 +1,42 @@
+{
+ "name": "Deco_GardenGate",
+ "parts": {
+  "Pillar": {
+   "src": "proc:Gt_Pillar",
+   "scale": 1.0,
+   "size": [
+    12.82,
+    0.6,
+    2.33
+   ],
+   "faces": 1944,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Iron": {
+   "src": "proc:Gt_Iron",
+   "scale": 1.0,
+   "size": [
+    12.0884,
+    0.8953,
+    2.6441
+   ],
+   "faces": 4800,
+   "boundary": 0,
+   "nonmanifold": 0
+  },
+  "Finial": {
+   "src": "proc:Gt_Finial",
+   "scale": 1.0,
+   "size": [
+    12.66,
+    0.4,
+    1.0862
+   ],
+   "faces": 5824,
+   "boundary": 0,
+   "nonmanifold": 0
+  }
+ },
+ "overlaps": []
+}

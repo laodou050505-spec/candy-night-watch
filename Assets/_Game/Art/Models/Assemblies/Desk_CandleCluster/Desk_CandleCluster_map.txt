@@ -1,0 +1,11 @@
+Dish	Candle_Dish
+Candle_0	Candle_Float
+Candle_1	Candle_Float
+Candle_2	Candle_Float
+Candle_3	Candle_Float
+Candle_4	Candle_Float
+Flame_0	Candle_Flame
+Flame_1	Candle_Flame
+Flame_2	Candle_Flame
+Flame_3	Candle_Flame
+Flame_4	Candle_Flame

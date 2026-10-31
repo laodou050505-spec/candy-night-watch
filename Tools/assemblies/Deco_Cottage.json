@@ -1,0 +1,244 @@
+{
+ "name": "Deco_Cottage",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Wall",
+   "Plinth"
+  ],
+  [
+   "Wall",
+   "Roof"
+  ],
+  [
+   "Roof",
+   "Band"
+  ],
+  [
+   "Wall",
+   "Door"
+  ],
+  [
+   "Wall",
+   "Window"
+  ],
+  [
+   "Wall",
+   "Trim"
+  ],
+  [
+   "Trim",
+   "Window"
+  ],
+  [
+   "Trim",
+   "Door"
+  ],
+  [
+   "Trim",
+   "Band"
+  ],
+  [
+   "Trim",
+   "Roof"
+  ],
+  [
+   "Chimney",
+   "Roof"
+  ],
+  [
+   "Chimney",
+   "Wall"
+  ],
+  [
+   "Pumpkin",
+   "Plinth"
+  ],
+  [
+   "MushStem",
+   "Plinth"
+  ],
+  [
+   "MushStem",
+   "MushCap"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Plinth",
+   "src": "proc:Ct_Plinth",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Plinth",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Wall",
+   "src": "proc:Ct_Wall",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wall",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Roof",
+   "src": "proc:Ct_Roof",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Roof",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Band",
+   "src": "proc:Ct_Band",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Band",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Door",
+   "src": "proc:Ct_Door",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Door",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Window",
+   "src": "proc:Ct_Window",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Window",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Trim",
+   "src": "proc:Ct_Trim",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Trim",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Chimney",
+   "src": "proc:Ct_Chimney",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Chimney",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Pumpkin",
+   "src": "proc:Ct_Pumpkin",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Pumpkin",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MushStem",
+   "src": "proc:Ct_MushStem",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "MushStem",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MushCap",
+   "src": "proc:Ct_MushCap",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "MushCap",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

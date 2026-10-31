@@ -1,0 +1,25 @@
+{
+    "name": "TrickOrFreeze.Editor",
+    "rootNamespace": "TrickOrFreeze.EditorTools",
+    "references": [
+        "TrickOrFreeze.Core",
+        "TrickOrFreeze.Runtime",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.TextMeshPro",
+        "ByteDance.PICO.XR",
+        "Unity.InputSystem",
+        "Unity.XR.CoreUtils"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

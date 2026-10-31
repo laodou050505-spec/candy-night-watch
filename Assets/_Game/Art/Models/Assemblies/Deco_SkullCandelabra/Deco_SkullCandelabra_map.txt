@@ -1,0 +1,8 @@
+Frame	Candelabra_Frame
+Skull	P_Skull
+Candle_0	Candle_Float
+Candle_1	Candle_Float
+Candle_2	Candle_Float
+Flame_0	Candle_Flame
+Flame_1	Candle_Flame
+Flame_2	Candle_Flame

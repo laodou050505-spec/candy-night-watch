@@ -1,0 +1,184 @@
+{
+ "name": "Deco_Pergola",
+ "allow_overlap": 0.01,
+ "allow_pairs": [
+  [
+   "Post",
+   "Beam"
+  ],
+  [
+   "Vine",
+   "Beam"
+  ],
+  [
+   "Vine",
+   "Leaf"
+  ],
+  [
+   "Vine",
+   "Post"
+  ],
+  [
+   "Leaf",
+   "Beam"
+  ],
+  [
+   "Leaf",
+   "Post"
+  ],
+  [
+   "Wire",
+   "Bulb"
+  ],
+  [
+   "Wire",
+   "Beam"
+  ],
+  [
+   "Wire",
+   "Post"
+  ],
+  [
+   "Bulb",
+   "Vine"
+  ],
+  [
+   "Bulb",
+   "Leaf"
+  ],
+  [
+   "Wire",
+   "Vine"
+  ],
+  [
+   "Wire",
+   "Leaf"
+  ],
+  [
+   "Wire",
+   "BulbP"
+  ],
+  [
+   "BulbP",
+   "Vine"
+  ],
+  [
+   "BulbP",
+   "Leaf"
+  ]
+ ],
+ "parts": [
+  {
+   "id": "Post",
+   "src": "proc:Pg_Post",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Post",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Beam",
+   "src": "proc:Pg_Beam",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Beam",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Vine",
+   "src": "proc:Pg_Vine",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Vine",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Leaf",
+   "src": "proc:Pg_Leaf",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Leaf",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Wire",
+   "src": "proc:Pg_Wire",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Wire",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Bulb",
+   "src": "proc:Pg_Bulb",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "Bulb",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "BulbP",
+   "src": "proc:Pg_BulbP",
+   "fit": {},
+   "keep_origin": true,
+   "inst": [
+    {
+     "name": "BulbP",
+     "pos": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}
