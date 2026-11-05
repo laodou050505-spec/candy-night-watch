@@ -18,14 +18,25 @@ namespace TrickOrFreeze
         public TMP_FontAsset fontZh, fontTitleEn, fontEn;
         // 封面与界面美术（Tripo 生成的整套贴图：标题字、南瓜主按钮、奶油票券次按钮、星空纸面板、剪纸关卡卡、图标）
         public CoverStage cover;
-        public Sprite logo, btnPrimary, btnSecondary, panel, card;
+        public Sprite logo, logoEn, btnPrimary, btnSecondary, panel, card;   // 11-04 标题图分中英两张（中文模式只见中文、英文模式只见英文）
         public Sprite shopCard;          // 糖果铺升级卡（竖版、不带编号圈和星槽）
         public Sprite[] icons;
         public Sprite[] gestures;            // 手势图标（游戏手套渲染，见 Tools/make_ui_kit.py）
 
-        enum Screen { Title, Nights, Settings, Shop, Playing, Paused, Result }
+        enum Screen { Title, Nights, Settings, Shop, Playing, Paused, Result, Ending }
         Screen screen = Screen.Title;
-        RectTransform title, nights, top, subtitle, banner, result, side, settings, pause, coverLogo, coverButtons, shop;
+        RectTransform title, nights, top, subtitle, banner, result, side, settings, pause, coverLogo, coverButtons, shop, ending;
+        // 11-05 结局：文字逐行淡入、天上下星星雨
+        readonly List<TextMeshProUGUI> endingLines = new List<TextMeshProUGUI>();
+        float endingT = -1, endingStarT;
+        int endingStarN;
+        NightResult endingResult;
+        TrickOrFreeze.View.SkyStars endingSky;
+        // 11-05 用户：结尾看着有些阴森——结局时天慢慢亮起来（黎明天色 + 暖色晨光 + 提亮环境光），离开结局还原
+        struct DawnSave { public bool saved; public Color sun, amb, eq, gr, fog; public float sunI; }
+        DawnSave dawnSave;
+        float endingDawn;
+        Light endingSun; Material endingSkyMat;
         float practiceBackT = -1;
         readonly List<GameObject> coverUi = new List<GameObject>();
         readonly Dictionary<RectTransform, float> popScale = new Dictionary<RectTransform, float>();
@@ -114,6 +125,15 @@ namespace TrickOrFreeze
             UpdateSkillDock(gm, 0.016f);
         }
 
+        /// <summary>编辑器预览：结局卡（文字直接全显）</summary>
+        public void EditorPreviewEnding()
+        {
+            EditorPreview("Ending");
+            var r = new NightResult { win = true, allDone = true, candies = 9, stars = 3 };
+            if (Application.isPlaying) { OpenEnding(r); endingT = System.IO.File.Exists("/tmp/tofdbg/endT.txt") ? float.Parse(System.IO.File.ReadAllText("/tmp/tofdbg/endT.txt").Trim()) : 0f; }
+            else { FillEnding(r); ending.gameObject.SetActive(true); endingCard.gameObject.SetActive(true); }
+        }
+
         public void EditorClear()
         {
             for (int i = transform.childCount - 1; i >= 0; i--) DestroyImmediate(transform.GetChild(i).gameObject);
@@ -132,6 +152,7 @@ namespace TrickOrFreeze
             Build();
             Show(keep);
             if (keep == Screen.Result && pendingResult != null) FillResult(pendingResult);
+            if (keep == Screen.Ending) FillEnding(endingResult);   // 切换语言时结局卡按新语言重排，动画接着播
         }
 
         Vector3 Wp(Vector3 local) => loop ? loop.W(local) : local;
@@ -146,6 +167,7 @@ namespace TrickOrFreeze
             BuildHud();
             BuildPause();
             BuildResult();
+            BuildEnding();
         }
 
         WorldButton Button(Transform parent, string name, string text, Vector2 pos, Vector2 size, Color col, float font, bool ribbon, System.Action click)
@@ -231,26 +253,88 @@ namespace TrickOrFreeze
         }
 
         // 贴图按钮：底图 + 可选图标 + 设计字；悬停放大发光，按下压扁回弹
+        // 11-04 排版（用户：语言切换后注意排版、注意边距）：底图是保持比例显示的，看得见的底图宽 = min(框宽, 框高 × 底图宽高比)，
+        // 原来按整个框排字，框比底图宽时字会跑出底图、压到图标上。现在图标和字都排在看得见的底图的安全区里
+        // （避开南瓜梗、爆炸星、吊牌孔），图标与字之间留固定间距、整组居中；字太长就按宽度缩小，四周留白一致。
         WorldButton ArtButton(Transform parent, string name, string text, Vector2 pos, Vector2 size, Sprite sp, bool primary, float font, System.Action click, Sprite icon = null)
         {
             var root = UIKit.Node(parent, name, pos, size);
-            var glow = UIKit.Img(root, "Glow", UIKit.Glow(), new Color(1f, 0.78f, 0.4f, 0), new Vector2(0, -size.y * 0.04f), new Vector2(size.x * 1.15f, size.y * 1.3f));
+            var safe = ButtonSafeRect(sp, size, out var fs);
+            var glow = UIKit.Img(root, "Glow", UIKit.Glow(), new Color(1f, 0.78f, 0.4f, 0), new Vector2(0, -fs.y * 0.04f), new Vector2(fs.x * 1.15f, fs.y * 1.3f));
             var face = UIKit.Img(root, "Face", sp, Color.white, Vector2.zero, size); face.preserveAspect = true;
-            float tx = 0;
+            float ty = fs.y * (primary ? 0.05f : 0.02f), th = fs.y * 0.6f;
+            TextMeshProUGUI label;
             if (icon)
             {
-                float ih = size.y * (primary ? 0.5f : 0.56f);
-                UIKit.Img(root, "Icon", icon, Color.white, new Vector2(-size.x * 0.3f, size.y * 0.03f), new Vector2(ih, ih)).preserveAspect = true;
-                tx = size.x * 0.095f;
+                // 11-04 用户：图标贴按钮框左边对齐，文字在剩下的空间里居中
+                // 按图标“看得见的部分”对齐（IconBounds 记着每张图标的透明留白），不同图标的左边缘和视觉大小一致
+                var vb = IconBounds.Of(icon);
+                float vis = Mathf.Min(fs.y * (primary ? 0.5f : 0.54f), safe.width * 0.3f);   // 可见部分的较长边
+                float ih = vis / Mathf.Max(vb.width, vb.height), gap = vis * 0.2f;
+                float left = safe.xMin - vb.xMin * ih;                                       // 图片左边 = 可见左边缘贴住安全区左边
+                float cyI = fs.y * 0.03f - (vb.center.y - 0.5f) * ih;                         // 可见部分竖直居中
+                UIKit.Img(root, "Icon", icon, Color.white, new Vector2(left + ih / 2, cyI), new Vector2(ih, ih)).preserveAspect = true;
+                float tx0 = safe.xMin + vb.width * ih + gap;
+                label = MakeLabel(root, text, font, primary, new Vector2((tx0 + safe.xMax) / 2, ty), new Vector2(safe.xMax - tx0, th));
             }
-            var label = primary
-                ? Fancy(root, "Label", Head, text, font, new Color(1f, 0.98f, 0.9f), new Color(1f, 0.86f, 0.55f), new Vector2(tx, size.y * 0.05f), new Vector2(size.x * 0.66f, size.y * 0.6f), 0.3f)
-                : UIKit.Text(root, "Label", Body, text, font, UIKit.Ink, new Vector2(tx, size.y * 0.02f), new Vector2(size.x * 0.66f, size.y * 0.6f), TextAlignmentOptions.Center, 0f);
+            else label = MakeLabel(root, text, font, primary, new Vector2(safe.center.x, ty), new Vector2(safe.width, th));
             var b = root.gameObject.AddComponent<WorldButton>();
             b.face = face; b.glow = glow; b.label = label; b.baseColor = Color.white; b.hoverColor = new Color(1f, 0.95f, 0.85f); b.onClick = click;
             var bc = root.gameObject.AddComponent<BoxCollider>();
-            bc.size = new Vector3(size.x * 0.92f, size.y * 0.75f, 20); bc.isTrigger = true;
+            bc.size = new Vector3(fs.x * 0.92f, fs.y * 0.75f, 20); bc.isTrigger = true;   // 点击范围跟看得见的底图一致
             return b;
+        }
+
+        TextMeshProUGUI MakeLabel(Transform root, string text, float font, bool primary, Vector2 pos, Vector2 box)
+        {
+            var t = primary
+                ? Fancy(root, "Label", Head, text, font, new Color(1f, 0.98f, 0.9f), new Color(1f, 0.86f, 0.55f), pos, box, 0.3f)
+                : UIKit.Text(root, "Label", Body, text, font, UIKit.Ink, pos, box, TextAlignmentOptions.Center, 0f);
+            FitWidth(t, font);
+            return t;
+        }
+
+        /// <summary>按钮底图里放字和图标的安全区（相对按钮中心）；fs = 实际看得见的底图大小</summary>
+        Rect ButtonSafeRect(Sprite sp, Vector2 size, out Vector2 fs)
+        {
+            float asp = sp ? sp.rect.width / sp.rect.height : size.x / size.y;
+            float fw = Mathf.Min(size.x, size.y * asp);
+            fs = new Vector2(fw, fw / asp);
+            // 左、右、上、下留白（占底图的比例）：南瓜按钮避开梗和右上角爆炸星；吊牌按钮避开左边的孔
+            Vector4 m = sp == btnPrimary ? new Vector4(0.09f, 0.09f, 0.2f, 0.15f) : sp == btnSecondary ? new Vector4(0.11f, 0.06f, 0.18f, 0.18f) : new Vector4(0.08f, 0.08f, 0.12f, 0.12f);
+            return Rect.MinMaxRect(-fs.x / 2 + fs.x * m.x, -fs.y / 2 + fs.y * m.w, fs.x / 2 - fs.x * m.y, fs.y / 2 - fs.y * m.z);
+        }
+
+        /// <summary>单行放不下就按宽度等比缩小字号（最小到原来的 62%），再放不下才换行。
+        /// 11-04：字宽直接按字体字形算——按钮刚搭出来时还是隐藏的，这时 GetPreferredValues 量出来的宽度不对，字号就缩不下去。
+        /// </summary>
+        static void FitWidth(TextMeshProUGUI t, float font)
+        {
+            t.enableWordWrapping = false; t.enableAutoSizing = false; t.fontSize = font;
+            float box = t.rectTransform.sizeDelta.x * 0.96f, w = MeasureText(t.font, t.text, font);
+            float size = w > box && w > 0 ? Mathf.Max(font * 0.62f, font * box / w) : font;
+            t.fontSize = size;
+            if (MeasureText(t.font, t.text, size) > box * 1.04f) t.enableWordWrapping = true;   // 缩到最小还放不下才换行（留 4% 测量误差）
+            var sd = t.rectTransform.sizeDelta;                                                   // 框高至少一行字高（框矮时“+ -”这类短字不会被压小）
+            if (sd.y < size * 1.25f) t.rectTransform.sizeDelta = new Vector2(sd.x, size * 1.25f);
+        }
+
+        /// <summary>按字体字形的前进宽度算一行字有多宽（UI 单位）；字体里没有的字按半个字号估</summary>
+        static float MeasureText(TMP_FontAsset f, string text, float size)
+        {
+            if (!f || string.IsNullOrEmpty(text)) return 0;
+            float k = size / f.faceInfo.pointSize * f.faceInfo.scale, w = 0;
+            foreach (var ch in text)
+            {
+                if (f.characterLookupTable.TryGetValue(ch, out var c) && c.glyph != null) { w += c.glyph.metrics.horizontalAdvance * k; continue; }
+                bool found = false;
+                if (f.fallbackFontAssetTable != null)
+                    foreach (var fb in f.fallbackFontAssetTable)
+                        if (fb && fb.characterLookupTable.TryGetValue(ch, out var c2) && c2.glyph != null)
+                        { w += c2.glyph.metrics.horizontalAdvance * size / fb.faceInfo.pointSize * fb.faceInfo.scale; found = true; break; }
+                if (!found) w += size * 0.5f;
+            }
+            return w;
         }
 
         // 换场景都走淡入淡出（VR 里不会突然跳变）
@@ -264,7 +348,7 @@ namespace TrickOrFreeze
             if (!cover) { BuildTitleLegacy(); return; }
             coverLogo = AnchorCanvas(cover.logoAnchor, "UI_Logo", new Vector2(1536, 820), 0.00082f);
             UIKit.Img(coverLogo, "Halo", UIKit.Glow(), new Color(0.55f, 0.35f, 1f, 0.32f), new Vector2(0, 40), new Vector2(1750, 900));
-            UIKit.Img(coverLogo, "Logo", logo, Color.white, new Vector2(0, 60), new Vector2(1536, 651)).preserveAspect = true;
+            UIKit.Img(coverLogo, "Logo", Loc.IsZh || !logoEn ? logo : logoEn, Color.white, new Vector2(0, 60), new Vector2(1536, 651)).preserveAspect = true;
             UIKit.Img(coverLogo, "SubBack", UIKit.Ribbon(), new Color(0.19f, 0.11f, 0.3f, 0.92f), new Vector2(0, -330), new Vector2(1500, 112));   // 副标题垫一条深紫缎带，压在花园背景上也看得清
             Fancy(coverLogo, "Sub", Body, Loc.T("game.subtitle"), Loc.IsZh ? 52 : 46, new Color(1f, 0.95f, 0.85f), new Color(0.75f, 1f, 0.92f), new Vector2(0, -330), new Vector2(1400, 90), 0.22f);
             var lb = coverLogo.gameObject.AddComponent<TrickOrFreeze.Ambient.Bobber>(); lb.amplitude = 0.012f; lb.period = 5f; lb.tilt = 0.4f;
@@ -275,17 +359,17 @@ namespace TrickOrFreeze
             bool fresh = Progress.Unlocked <= 0;
             string startLabel = fresh ? Loc.T("ui.start") : Loc.T("ui.continue", null, new System.Collections.Generic.Dictionary<string, string> { { "n", (next + 1).ToString() } });
             float y0 = fresh ? 300 : 370;
-            ArtButton(coverButtons, "Start", startLabel, new Vector2(0, y0), new Vector2(660, 300), btnPrimary, true, Loc.IsZh ? 72 : 56, () => StartNightFaded(next), Icon("Play"));
+            ArtButton(coverButtons, "Start", startLabel, new Vector2(0, y0), new Vector2(660, 300), btnPrimary, true, 72, () => StartNightFaded(next), Icon("Play"));
             float y = y0 - 230;
-            if (!fresh) { ArtButton(coverButtons, "Nights", Loc.T("ui.nights"), new Vector2(0, y), new Vector2(560, 180), btnSecondary, false, Loc.IsZh ? 56 : 44, () => { Sfx.Instance?.Ui("btn"); Show(Screen.Nights); }, Icon("Moon")); y -= 185; }
+            if (!fresh) { ArtButton(coverButtons, "Nights", Loc.T("ui.nights"), new Vector2(0, y), new Vector2(560, 180), btnSecondary, false, 56, () => { Sfx.Instance?.Ui("btn"); Show(Screen.Nights); }, Icon("Moon")); y -= 185; }
             // 玩法（动手练一遍，10-29 用户：玩中学）+ 糖果铺（用剩下的糖换升级）
-            ArtButton(coverButtons, "Practice", Loc.T("ui.practice"), new Vector2(-200, y), new Vector2(390, 170), btnSecondary, false, Loc.IsZh ? 50 : 34, () => { Sfx.Instance?.Ui("btn"); Fade(() => loop.StartPractice()); }, Icon("Hand"));
-            ArtButton(coverButtons, "Shop", Loc.T("ui.shop"), new Vector2(200, y), new Vector2(390, 170), btnSecondary, false, Loc.IsZh ? 50 : 34, () => { Sfx.Instance?.Ui("btn"); FillShop(); Show(Screen.Shop); }, Icon("Candy"));
+            ArtButton(coverButtons, "Practice", Loc.T("ui.practice"), new Vector2(-200, y), new Vector2(390, 170), btnSecondary, false, 50, () => { Sfx.Instance?.Ui("btn"); Fade(() => loop.StartPractice()); }, Icon("Hand"));
+            ArtButton(coverButtons, "Shop", Loc.T("ui.shop"), new Vector2(200, y), new Vector2(390, 170), btnSecondary, false, 50, () => { Sfx.Instance?.Ui("btn"); FillShop(); Show(Screen.Shop); }, Icon("Candy"));
             y -= 180;
             // 10-30 用户：封面按钮不能只有图标没有字
-            ArtButton(coverButtons, "Settings", Loc.T("ui.settings"), new Vector2(-285, y), new Vector2(270, 140), btnSecondary, false, Loc.IsZh ? 38 : 30, () => { Sfx.Instance?.Ui("btn"); Show(Screen.Settings); }, Icon("Gear"));
-            ArtButton(coverButtons, "Lang", Loc.T("ui.lang"), new Vector2(0, y), new Vector2(270, 140), btnSecondary, false, Loc.IsZh ? 34 : 38, () => Loc.SetLang(Loc.IsZh ? "en" : "zh"), Icon("Globe"));
-            ArtButton(coverButtons, "Quit", Loc.T("ui.quit"), new Vector2(285, y), new Vector2(270, 140), btnSecondary, false, Loc.IsZh ? 38 : 30, () => Application.Quit(), Icon("Back"));
+            ArtButton(coverButtons, "Settings", Loc.T("ui.settings"), new Vector2(-285, y), new Vector2(270, 140), btnSecondary, false, 38, () => { Sfx.Instance?.Ui("btn"); Show(Screen.Settings); }, Icon("Gear"));
+            ArtButton(coverButtons, "Lang", Loc.T("ui.lang"), new Vector2(0, y), new Vector2(270, 140), btnSecondary, false, 38, () => Loc.SetLang(Loc.IsZh ? "en" : "zh"), Icon("Globe"));
+            ArtButton(coverButtons, "Quit", Loc.T("ui.quit"), new Vector2(285, y), new Vector2(270, 140), btnSecondary, false, 38, () => Application.Quit(), Icon("Back"));
             UIKit.Text(coverButtons, "Hint", Body, Loc.T("ui.pinchHint"), 36, new Color(1, 1, 1, 0.7f), new Vector2(0, -460), new Vector2(880, 60), TextAlignmentOptions.Center, 0);
         }
 
@@ -374,7 +458,7 @@ namespace TrickOrFreeze
             UIKit.Text(settings, "TutLabel", Body, Loc.T("ui.tutorial"), 40, UIKit.Cream, new Vector2(-330, -78), new Vector2(300, 70), TextAlignmentOptions.Left, 0.18f);
             var tb = ArtButton(settings, "Tutorial", GameSettings.TutorialDone ? Loc.T("ui.off") : Loc.T("ui.on"), new Vector2(110, -78), new Vector2(260, 88), btnSecondary, false, 36, () => { GameSettings.TutorialDone = !GameSettings.TutorialDone; Sfx.Instance?.Ui("btn"); });
             tutLabel = tb.label as TextMeshProUGUI;
-            ArtButton(settings, "Recenter", Loc.T("ui.recenter"), new Vector2(0, -185), new Vector2(480, 112), btnPrimary, true, Loc.IsZh ? 40 : 34, () =>
+            ArtButton(settings, "Recenter", Loc.T("ui.recenter"), new Vector2(0, -185), new Vector2(480, 112), btnPrimary, true, 40, () =>
             {
                 Sfx.Instance?.Ui("btn");
                 var xr = Object.FindAnyObjectByType<XRFloorOrigin>(FindObjectsInactive.Include);
@@ -396,8 +480,8 @@ namespace TrickOrFreeze
             for (int i = shop.childCount - 1; i >= 0; i--) { var c = shop.GetChild(i); if (c.name != "Panel" && c.name != "Head") Destroy(c.gameObject); }
             // 现有糖果币（右上角）
             // 10-31 重排：糖果币放到标题右边（原来压在第三张卡右上角）
-            UIKit.Img(shop, "CoinIcon", Icon("Candy"), Color.white, new Vector2(445, 272), new Vector2(60, 60)).preserveAspect = true;
-            UIKit.Text(shop, "Coins", Body, "× " + Progress.Coins, 42, UIKit.Gold, new Vector2(475 + 85, 272), new Vector2(170, 60), TextAlignmentOptions.Left, 0.18f);
+            UIKit.Img(shop, "CoinIcon", Icon("Candy"), Color.white, new Vector2(405, 272), new Vector2(60, 60)).preserveAspect = true;   // 11-04 整组往里收，右边离面板边框留出边距
+            UIKit.Text(shop, "Coins", Body, "× " + Progress.Coins, 42, UIKit.Gold, new Vector2(500, 272), new Vector2(120, 70), TextAlignmentOptions.Left, 0.18f);
             // 卡片：竖版贴纸（ShopCard），从上到下：图标（圆垫里）→ 名字 → 说明 → 等级圆点 → 价格按钮，互不重叠
             var cs = new Vector2(330, 360);
             for (int i = 0; i < Shop.All.Length; i++)
@@ -409,8 +493,8 @@ namespace TrickOrFreeze
                 UIKit.Img(root, "Face", shopCard ? shopCard : card, Color.white, Vector2.zero, cs).preserveAspect = true;
                 // 圆垫中心在卡片顶部往下 23% 处（ShopCard 画的位置），图标放在里面
                 UIKit.Img(root, "Icon", Icon(id == Shop.Cauldron ? "Cauldron" : id == Shop.Magnet ? "Candy" : "Star"), Color.white, new Vector2(0, cs.y * 0.27f), new Vector2(84, 84)).preserveAspect = true;
-                UIKit.Text(root, "Name", Body, Loc.T("shop." + id), Loc.IsZh ? 36 : 30, UIKit.Ink, new Vector2(0, 26), new Vector2(290, 52), TextAlignmentOptions.Center, 0);
-                UIKit.Text(root, "Desc", Body, Loc.T("shop." + id + ".desc"), Loc.IsZh ? 24 : 20, new Color(0.3f, 0.2f, 0.38f), new Vector2(0, -18), new Vector2(280, 46), TextAlignmentOptions.Center, 0);
+                FitWidth(UIKit.Text(root, "Name", Body, Loc.T("shop." + id), 34, UIKit.Ink, new Vector2(0, 26), new Vector2(276, 52), TextAlignmentOptions.Center, 0), 34);   // 11-04 中英同字号，长了按卡片宽度缩
+                FitWidth(UIKit.Text(root, "Desc", Body, Loc.T("shop." + id + ".desc"), 24, new Color(0.3f, 0.2f, 0.38f), new Vector2(0, -18), new Vector2(276, 46), TextAlignmentOptions.Center, 0), 24);
                 for (int k = 0; k < max; k++)
                     UIKit.Img(root, "Pip" + k, UIKit.Dot(), k < lv ? UIKit.Pumpkin : new Color(0.3f, 0.2f, 0.38f, 0.3f), new Vector2((k - (max - 1) * 0.5f) * 34, -62), new Vector2(22, 22));
                 bool canBuy = cost > 0 && Progress.Coins >= cost;
@@ -437,7 +521,7 @@ namespace TrickOrFreeze
                 string name = Loc.T("shop.glove." + skinId);
                 bool canAfford = Progress.Coins >= skinCost;
                 string label = owned ? name : name + "  " + skinCost;
-                var sb = ArtButton(shop, "Skin_" + skinId, label, bpos, new Vector2(280, 88), equipped ? btnPrimary : btnSecondary, equipped, Loc.IsZh ? 28 : 22, () =>
+                var sb = ArtButton(shop, "Skin_" + skinId, label, bpos, new Vector2(280, 88), equipped ? btnPrimary : btnSecondary, equipped, 28, () =>
                 {
                     if (equipped) return;
                     if (!owned)
@@ -465,7 +549,7 @@ namespace TrickOrFreeze
             popScale[pause] = pause.localScale.x;
             UIKit.Img(pause, "Panel", panel, Color.white, Vector2.zero, new Vector2(1280, 843)).preserveAspect = true;
             Fancy(pause, "Head", Head, Loc.T("ui.paused"), Loc.IsZh ? 72 : 64, new Color(1f, 0.92f, 0.6f), new Color(1f, 0.62f, 0.2f), new Vector2(0, 255), new Vector2(800, 110), 0.28f);
-            ArtButton(pause, "Resume", Loc.T("ui.resume"), new Vector2(0, 128), new Vector2(560, 180), btnPrimary, true, Loc.IsZh ? 56 : 46, () => { Sfx.Instance?.Ui("btn"); loop.paused = false; Show(Screen.Playing); }, Icon("Play"));
+            ArtButton(pause, "Resume", Loc.T("ui.resume"), new Vector2(0, 128), new Vector2(560, 180), btnPrimary, true, 56, () => { Sfx.Instance?.Ui("btn"); loop.paused = false; Show(Screen.Playing); }, Icon("Play"));
             // 10-31 暂停页加音量调节 + 语言切换，复用 BuildSettings 同款滑块
             Image PBar(string n, float y, string label, System.Func<float> get, System.Action<float> set)
             {
@@ -477,13 +561,11 @@ namespace TrickOrFreeze
                 ArtButton(pause, n + "Plus", "+", new Vector2(368, y), new Vector2(92, 64), btnSecondary, false, 42, () => { set(get() + 0.1f); Sfx.Instance?.Ui("btn"); });
                 return fill;
             }
-            musicBarP = PBar("PMus", -8, Loc.T("ui.music"), () => GameSettings.Music, v => GameSettings.Music = v);
-            sfxBarP   = PBar("PSfx", -76, Loc.T("ui.sfx"),   () => GameSettings.Sfx,   v => GameSettings.Sfx   = v);
-            // 10-31 暂停页语言切换（中文/英文），避免玩家去封面翻设置
-            ArtButton(pause, "LangP", Loc.T("ui.lang"), new Vector2(0, -156), new Vector2(340, 80), btnSecondary, false, Loc.IsZh ? 34 : 38, () => Loc.SetLang(Loc.IsZh ? "en" : "zh"), Icon("Globe"));
+            musicBarP = PBar("PMus", -20, Loc.T("ui.music"), () => GameSettings.Music, v => GameSettings.Music = v);
+            sfxBarP   = PBar("PSfx", -110, Loc.T("ui.sfx"),   () => GameSettings.Sfx,   v => GameSettings.Sfx   = v);
             // 10-31 Restart：loop.paused = false 移入淡出回调（之前在 fade 前重置会导致短暂闪现游戏画面）
-            ArtButton(pause, "Restart", Loc.T("ui.restart"), new Vector2(-220, -288), new Vector2(380, 124), btnSecondary, false, 38, () => { Sfx.Instance?.Ui("btn"); Fade(() => { loop.paused = false; loop.StartNight(loop.game.nightIndex); }); }, Icon("Retry"));
-            ArtButton(pause, "Title",   Loc.T("ui.toTitle"),  new Vector2( 220, -288), new Vector2(380, 124), btnSecondary, false, 38, () => { Sfx.Instance?.Ui("back"); ToTitleFaded(); }, Icon("Back"));
+            ArtButton(pause, "Restart", Loc.T("ui.restart"), new Vector2(-220, -258), new Vector2(380, 124), btnSecondary, false, 38, () => { Sfx.Instance?.Ui("btn"); Fade(() => { loop.paused = false; loop.StartNight(loop.game.nightIndex); }); }, Icon("Retry"));
+            ArtButton(pause, "Title",   Loc.T("ui.toTitle"),  new Vector2( 220, -258), new Vector2(380, 124), btnSecondary, false, 38, () => { Sfx.Instance?.Ui("back"); ToTitleFaded(); }, Icon("Back"));
         }
 
         /// <summary>应用切到后台 / 失焦时自动弹出暂停（由 GameLoop.OnApplicationPause/Focus 调用）</summary>
@@ -528,7 +610,7 @@ namespace TrickOrFreeze
             subBack = UIKit.Img(subtitle, "Back", UIKit.Ribbon(), UIKit.Cream, new Vector2(0, 30), new Vector2(1260, 150));
             subText = UIKit.Text(subtitle, "Text", Body, "", 54, UIKit.Ink, new Vector2(0, 32), new Vector2(1100, 126), outline: 0);
             // 10-30 用户：提示要在两行以内、不能超出框——放不下时自动缩字（最小 38 号），框高只够两行
-            subText.enableAutoSizing = true; subText.fontSizeMin = 38; subText.fontSizeMax = 54; subText.enableWordWrapping = true; subText.lineSpacing = -8;
+            subText.enableAutoSizing = true; subText.fontSizeMin = 38; subText.fontSizeMax = 54; subText.enableWordWrapping = true; subText.lineSpacing = Loc.IsZh ? 6 : -8;   // 11-04 中文两行字之间要留缝，英文行高本身就大
             subIcon = UIKit.Img(subtitle, "Gesture", null, Color.white, new Vector2(-640, 34), new Vector2(170, 170)); subIcon.preserveAspect = true; subIcon.gameObject.SetActive(false);
             BuildSkillDock();
             dots = UIKit.Node(subtitle, "Dots", new Vector2(0, -62), new Vector2(600, 40));
@@ -613,9 +695,153 @@ namespace TrickOrFreeze
                 tipT.enableAutoSizing = true; tipT.fontSizeMin = 18; tipT.fontSizeMax = 26;
             }
             bool hasNext = win && !r.allDone;
-            if (hasNext) ArtButton(result, "Next",  Loc.T("ui.next"),  new Vector2(285, -355), new Vector2(380, 124), btnPrimary,   true,  Loc.IsZh ? 46 : 38, () => StartNightFaded(r.next), Icon("Play"));
+            if (hasNext) ArtButton(result, "Next",  Loc.T("ui.next"),  new Vector2(285, -355), new Vector2(380, 124), btnPrimary,   true,  46, () => StartNightFaded(r.next), Icon("Play"));
+            // 11-05 最后一夜守住：主按钮换成“看结局”
+            if (r.allDone)
+            {
+                ArtButton(result, "Ending", Loc.T("ui.ending", "看结局"), new Vector2(285, -355), new Vector2(380, 124), btnPrimary, true, 46, () => { Sfx.Instance?.Ui("btn"); Fade(() => OpenEnding(r)); }, Icon("Star"));
+                hasNext = true;   // 其余两个按钮按“有主按钮”的位置排
+            }
             ArtButton(result, "Retry", Loc.T("ui.retry"), new Vector2(hasNext ? -60 : 150, -355), new Vector2(300, 108), btnSecondary, false, 34, () => StartNightFaded(loop != null ? loop.game.nightIndex : 0), Icon("Retry"));
             ArtButton(result, "Menu",  Loc.T("ui.menu"),  new Vector2(hasNext ? -360 : -190, -355), new Vector2(hasNext ? 240 : 300, 108), btnSecondary, false, 32, () => ToTitleFaded(Screen.Nights), Icon("Moon"));
+        }
+
+        // ---------- 结局（11-05 用户：最后一关之后要有收尾，能回标题、能退出）----------
+        // 结局卡：标题 + 四行小故事（逐行淡入）+ 十二夜评价星合计 + 落款；同时天上一颗颗冒出各色小鬼变的星星。
+        // 结局（11-05 用户：不要大段文字）：一句一句的短字幕轮流出现 → 桌子后面小鬼排队举牌 → 最后一张小卡片（标题、成绩、两个按钮）
+        static readonly string[] EndingSteps = { "ending.s1", "ending.s2", "ending.s3" };
+        const float EndingStepSec = 2.6f;
+        TextMeshProUGUI endingCaption;
+        Image endingCaptionBack;
+        RectTransform endingCard;
+
+        void BuildEnding()
+        {
+            ending = Sheet("UI_Ending", new Vector3(0, 1.3f, -1.75f), new Vector2(1280, 843), Color.clear);
+            var vp = ending.GetComponent<VrPanel>(); if (vp) vp.elevationDeg = 8f;   // 略高于视线，越过桌上的糖桶
+            ending.gameObject.SetActive(false);
+        }
+
+        void FillEnding(NightResult r)
+        {
+            for (int ci = ending.childCount - 1; ci >= 0; ci--) { var co = ending.GetChild(ci).gameObject; if (Application.isPlaying) Destroy(co); else DestroyImmediate(co); }
+            endingLines.Clear();
+            // 字幕：一行，大字，居中，左右留足边距
+            endingCaptionBack = UIKit.Img(ending, "CaptionBack", UIKit.Panel(), new Color(0.1f, 0.05f, 0.16f, 0f), new Vector2(0, 40), new Vector2(980, 124));
+            endingCaption = Fancy(ending, "Caption", Head, "", Loc.IsZh ? 64 : 54, new Color(1f, 0.95f, 0.7f), new Color(1f, 0.6f, 0.15f), new Vector2(0, 42), new Vector2(900, 100), 0.26f);
+            endingCaption.enableAutoSizing = true; endingCaption.fontSizeMin = 36; endingCaption.fontSizeMax = Loc.IsZh ? 64 : 54;
+            endingCaption.alpha = 0;
+            // 收尾小卡片
+            endingCard = UIKit.Node(ending, "Card", new Vector2(0, 0), new Vector2(1000, 700));
+            UIKit.Img(endingCard, "Panel", panel, Color.white, Vector2.zero, new Vector2(1000, 659)).preserveAspect = true;
+            Fancy(endingCard, "Head", Head, Loc.T("ending.title"), Loc.IsZh ? 70 : 58, new Color(1f, 0.95f, 0.6f), new Color(1f, 0.6f, 0.15f), new Vector2(0, 200), new Vector2(820, 104), 0.28f);
+            // 收尾两句：说清楚故事结束了（短句、居中、左右各留 110）
+            string[] tail = { "ending.t1", "ending.t2" };
+            for (int i = 0; i < tail.Length; i++)
+            {
+                var tt = UIKit.Text(endingCard, "Tail" + i, Body, Loc.T(tail[i]), 32, UIKit.Cream, new Vector2(0, 108 - i * 54), new Vector2(780, 50), TextAlignmentOptions.Center, 0.14f);
+                tt.enableAutoSizing = true; tt.fontSizeMin = 22; tt.fontSizeMax = 32;
+            }
+            int total = 0; for (int i = 0; i < NightDefs.NIGHTS.Length; i++) total += Progress.Stars(i);
+            var args = new Dictionary<string, string> { { "n", (r != null ? r.candies : 0).ToString() }, { "stars", total.ToString() }, { "max", (NightDefs.NIGHTS.Length * 3).ToString() } };
+            var sc = UIKit.Text(endingCard, "Score", Body, Loc.T("ending.score", null, args), 30, UIKit.Gold, new Vector2(0, -20), new Vector2(780, 48), TextAlignmentOptions.Center, 0.14f);
+            sc.enableAutoSizing = true; sc.fontSizeMin = 22; sc.fontSizeMax = 30;
+            UIKit.Text(endingCard, "Sign", Body, Loc.T("ending.sign"), 26, new Color(1f, 0.85f, 0.55f, 0.85f), new Vector2(0, -74), new Vector2(780, 40), TextAlignmentOptions.Center, 0.1f);
+            ArtButton(endingCard, "Title", Loc.T("ui.toTitle"), new Vector2(-190, -200), new Vector2(340, 112), btnPrimary, true, 40, () => { Sfx.Instance?.Ui("btn"); ToTitleFaded(); }, Icon("Moon"));
+            ArtButton(endingCard, "Quit", Loc.T("ui.quitGame"), new Vector2(190, -200), new Vector2(310, 102), btnSecondary, false, 34, () => { Sfx.Instance?.Ui("back"); Application.Quit(); }, Icon("Back"));
+            endingCard.gameObject.SetActive(false);
+            popScale[endingCard] = 1f;
+        }
+
+        void OpenEnding(NightResult r)
+        {
+            endingResult = r;
+            FillEnding(r);
+            Show(Screen.Ending);
+            endingT = 0; endingStarT = 0.4f; endingStarN = 0; endingDawn = 0;
+            Sfx.Instance?.Ui("star");
+            SaveDawnLighting();
+        }
+
+        void SaveDawnLighting()
+        {
+            if (!endingSun) foreach (var l in Object.FindObjectsByType<Light>(FindObjectsInactive.Exclude)) if (l.type == LightType.Directional) { endingSun = l; break; }
+            if (!endingSkyMat && loop && loop.worldRoot) { var sd = loop.worldRoot.Find("SkyDome"); if (sd) endingSkyMat = sd.GetComponent<Renderer>().material; }   // 用实例：编辑器里退出运行不会把天亮存进材质资产
+            if (dawnSave.saved) return;
+            dawnSave = new DawnSave { saved = true, amb = RenderSettings.ambientSkyColor, eq = RenderSettings.ambientEquatorColor, gr = RenderSettings.ambientGroundColor, fog = RenderSettings.fogColor,
+                                      sun = endingSun ? endingSun.color : Color.white, sunI = endingSun ? endingSun.intensity : 1f };
+        }
+
+        // 亮度只往“清晨”提一档：环境光约 2 倍、主光转暖，不做成大白天（头显里一下子全亮会刺眼，也会过曝）
+        void ApplyDawnLighting(float k)
+        {
+            if (!dawnSave.saved) return;
+            RenderSettings.ambientSkyColor = Color.Lerp(dawnSave.amb, new Color(0.42f, 0.4f, 0.55f), k);
+            RenderSettings.ambientEquatorColor = Color.Lerp(dawnSave.eq, new Color(0.34f, 0.26f, 0.3f), k);
+            RenderSettings.ambientGroundColor = Color.Lerp(dawnSave.gr, new Color(0.12f, 0.09f, 0.1f), k);
+            RenderSettings.fogColor = Color.Lerp(dawnSave.fog, new Color(0.55f, 0.42f, 0.5f), k);
+            if (endingSun) { endingSun.color = Color.Lerp(dawnSave.sun, new Color(1f, 0.8f, 0.62f), k); endingSun.intensity = Mathf.Lerp(dawnSave.sunI, 1.15f, k); }
+            if (endingSkyMat) endingSkyMat.SetFloat("_Dawn", k);
+        }
+
+        void RestoreDawnLighting()
+        {
+            if (!dawnSave.saved) return;
+            ApplyDawnLighting(0);
+            RenderSettings.ambientSkyColor = dawnSave.amb; RenderSettings.ambientEquatorColor = dawnSave.eq; RenderSettings.ambientGroundColor = dawnSave.gr; RenderSettings.fogColor = dawnSave.fog;
+            if (endingSun) { endingSun.color = dawnSave.sun; endingSun.intensity = dawnSave.sunI; }
+            if (endingSkyMat) endingSkyMat.SetFloat("_Dawn", 0);
+            dawnSave.saved = false;
+        }
+
+        void TickEnding(float dt)
+        {
+            if (endingT < 0) return;
+            endingT += dt;
+            // 字幕一句一句来：每句 2.6 秒（0.4 秒淡入、0.5 秒淡出），三句播完弹出小卡片
+            int step = Mathf.FloorToInt(endingT / EndingStepSec);
+            if (endingCaption)
+            {
+                if (step < EndingSteps.Length)
+                {
+                    float k = endingT - step * EndingStepSec;
+                    string txt = Loc.T(EndingSteps[step]);
+                    if (endingCaption.text != txt) endingCaption.text = txt;
+                    endingCaption.alpha = Mathf.Clamp01(k / 0.4f) * Mathf.Clamp01((EndingStepSec - k) / 0.5f);
+                }
+                else endingCaption.alpha = 0;
+                if (endingCaptionBack) { var c = endingCaptionBack.color; c.a = endingCaption.alpha * 0.72f; endingCaptionBack.color = c; }
+            }
+            if (endingCard && !endingCard.gameObject.activeSelf && step >= EndingSteps.Length)
+            {
+                endingCard.gameObject.SetActive(true);
+                endingCard.localScale = Vector3.one * 0.85f;
+                Sfx.Instance?.Ui("star");
+            }
+            // 天亮：4 秒内从夜色过渡到清晨
+            endingDawn = Mathf.MoveTowards(endingDawn, 1f, dt / 4f);
+            ApplyDawnLighting(Mathf.SmoothStep(0, 1, endingDawn));
+            // 彩纸：糖果色碎屑从桌子上方一阵阵往上撒
+            if (Mathf.Repeat(endingT, 1.3f) < dt && endingT < 12f && loop && loop.fx)
+            {
+                Color[] cc = { new Color(1f, 0.55f, 0.75f), new Color(1f, 0.85f, 0.35f), new Color(0.5f, 0.95f, 0.85f), new Color(0.75f, 0.6f, 1f) };
+                var c = cc[Mathf.FloorToInt(endingT / 1.3f) % cc.Length];
+                float x = Mathf.Sin(endingT * 1.7f) * 0.5f;
+                loop.fx.Burst(loop.W(new Vector3(x, Layout.TABLE.y + 0.25f, -1.4f)), c, 45, 0.9f, 1.2f, 0.014f, 1.8f);
+            }
+            // 星星雨：前 8 秒每 0.45 秒一颗，各种小鬼的颜色轮着来；之后每 1.6 秒一颗
+            if (!endingSky) endingSky = Object.FindAnyObjectByType<TrickOrFreeze.View.SkyStars>();
+            endingStarT -= dt;
+            if (endingStarT <= 0 && endingSky)
+            {
+                string[] kinds = { KindIds.Bat, KindIds.Pumpkin, KindIds.Ghost, KindIds.Cat, KindIds.Skeleton, KindIds.Spider };
+                var kind = kinds[endingStarN % kinds.Length];
+                float a = (endingStarN * 47f % 120f - 60f) * Mathf.Deg2Rad;
+                var local = new Vector3(Mathf.Sin(a) * 2.2f, 0.9f + (endingStarN % 3) * 0.35f, -2.6f - Mathf.Cos(a) * 0.6f);
+                endingSky.AddStar(kind, loop ? loop.W(local) : local);
+                endingStarN++;
+                endingStarT = endingT < 8f ? 0.45f : 1.6f;
+            }
         }
 
         void Show(Screen s)
@@ -631,6 +857,8 @@ namespace TrickOrFreeze
             if (shop) shop.gameObject.SetActive(s == Screen.Shop);
             pause.gameObject.SetActive(s == Screen.Paused);
             result.gameObject.SetActive(s == Screen.Result);
+            if (ending) ending.gameObject.SetActive(s == Screen.Ending);
+            if (s != Screen.Ending) { endingT = -1; if (loop) loop.HideEndingParade(); RestoreDawnLighting(); }
             bool play = s == Screen.Playing;
             top.gameObject.SetActive(play);
             if (skillDock && !play) skillDock.gameObject.SetActive(false);
@@ -817,6 +1045,7 @@ namespace TrickOrFreeze
                     if (resultDelay <= 0 && pendingResult != null) { FillResult(pendingResult); Show(Screen.Result); }
                 }
             }
+            if (screen == Screen.Ending) TickEnding(dt);
             // 面板出现时从 0.85 弹到 1
             foreach (var kv in popScale)
                 if (kv.Key && kv.Key.gameObject.activeSelf) kv.Key.localScale = Vector3.Lerp(kv.Key.localScale, Vector3.one * kv.Value, dt * 10);
@@ -858,6 +1087,27 @@ namespace TrickOrFreeze
     public static class Progress
     {
         public static int Unlocked => PlayerPrefs.GetInt("tof_unlocked", 0);
+
+        // 11-05 用户：把游玩记录直接设成“十二夜全部通关”的样子（头显上的发行包不能改存档，只能由游戏启动时写入）。
+        // 只写一次（按版本号记），之后正常游玩产生的记录不会被覆盖；想再套用一次就把 PresetVer 加 1。
+        const int PresetVer = 1;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void ApplyClearedPreset()
+        {
+            if (PlayerPrefs.GetInt("tof_preset", 0) >= PresetVer) return;
+            int n = NightDefs.NIGHTS.Length;
+            PlayerPrefs.SetInt("tof_unlocked", n - 1);
+            for (int i = 0; i < n; i++)
+            {
+                PlayerPrefs.SetInt("tof_stars_" + i, Mathf.Max(3, Stars(i)));
+                PlayerPrefs.SetInt("tof_best_" + i, Mathf.Max(11, BestCandies(i)));
+            }
+            PlayerPrefs.SetInt("tof_coins", Mathf.Max(Coins, n * 11));   // 每夜剩 11 颗换来的糖果币
+            PlayerPrefs.SetInt("tut.done", 1);
+            PlayerPrefs.SetInt("tof_preset", PresetVer);
+            PlayerPrefs.Save();
+            Debug.Log("[TOF] 已套用通关存档：十二夜全部三星");
+        }
         public static int Stars(int night) => PlayerPrefs.GetInt("tof_stars_" + night, 0);
         public static int BestCandies(int night) => PlayerPrefs.GetInt("tof_best_" + night, 0);
         public static int Coins { get => PlayerPrefs.GetInt("tof_coins", 0); set { PlayerPrefs.SetInt("tof_coins", Mathf.Max(0, value)); PlayerPrefs.Save(); } }

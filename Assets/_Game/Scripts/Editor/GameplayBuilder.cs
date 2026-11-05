@@ -160,7 +160,7 @@ namespace TrickOrFreeze.EditorTools
             BuildLadders(world.transform);
             var cover = BuildCover(world.transform, cam);
             hud.cover = cover;
-            hud.logo = UISprite("Logo_zh"); hud.btnPrimary = UISprite("Btn_Primary"); hud.btnSecondary = UISprite("Btn_Secondary");
+            hud.logo = UISprite("Logo_zh"); hud.logoEn = UISprite("Logo_en"); hud.btnPrimary = UISprite("Btn_Primary"); hud.btnSecondary = UISprite("Btn_Secondary");
             hud.panel = UISprite("Panel"); hud.card = UISprite("Card"); hud.shopCard = UISprite("ShopCard");
             var iconNames = new[] { "Moon", "Candy", "Cauldron", "Star", "Lock", "Gear", "Globe", "Back", "Pause", "Play", "Retry", "Hand" };
             hud.icons = System.Array.ConvertAll(iconNames, n => UISprite("Icon_" + n));
@@ -244,7 +244,7 @@ namespace TrickOrFreeze.EditorTools
         /// 宝石大半埋进锅壁、只露出 3 毫米冠部，外面一圈铁质包边也埋进去只露出一道细边；每颗都沿锅壁法线朝外。
         /// 最多 7 颗（格数随章节、升级变化），Slot_0 在正中，往后左右交替排开。旧的大宝石隐藏。
         /// </summary>
-        static void BuildCauldronSlots(Transform pot)
+        static void BuildCauldronSlots(Transform pot, float potScale = -1f)
         {
             if (!pot) return;
             foreach (Transform c in pot) if (c.name.StartsWith("Gem_")) c.gameObject.SetActive(false);
@@ -284,7 +284,7 @@ namespace TrickOrFreeze.EditorTools
                         return g;
                     }
                     // 网格单位：宝石半径 1、冠高 0.55、亭部深 0.8；尺寸 = 半径（米）
-                    float gk = Layout.BOX.scale / 1.05f;                                      // 宝石跟着锅一起缩放
+                    float gk = (potScale > 0 ? potScale : Layout.BOX.scale) / 1.05f;          // 宝石跟着锅一起缩放（封面小锅传自己的世界缩放）
                     if (ringMat) Piece("Socket_" + i, bezelMesh, ringMat, 0.0135f * gk, 0.0045f * gk);
                     Piece("Slot_" + i, gemMesh, gemMat, 0.0105f * gk, 0.0028f * gk);
                 }
@@ -533,11 +533,29 @@ namespace TrickOrFreeze.EditorTools
             // —— 左：漂浮小舞台 ——
             var dio = new GameObject("Diorama").transform; dio.SetParent(stage, false);
             dio.localPosition = new Vector3(0.62f, 0.2f, -2.25f); dio.localRotation = Quaternion.Euler(0, -14f, 0);   // 玩家左手边（+X）
-            var bob = dio.gameObject.AddComponent<TrickOrFreeze.Ambient.Bobber>(); bob.amplitude = 0.03f; bob.period = 6f; bob.tilt = 0.6f;
+            var bob = dio.gameObject.AddComponent<TrickOrFreeze.Ambient.Bobber>(); bob.amplitude = 0.03f; bob.period = 6f; bob.tilt = 0f;   // 11-05：不再左右摇摆——桌沿那条细描边随摇摆一直爬动出锯齿
             const float Y = 0.42f;                                                       // 缩小后的桌面高度（相对 Diorama）
             var table = PlaceH(dio, "Desk_Table", Vector3.zero, 0, 0.42f);               // 游戏里那张南瓜桌当舞台
+            // 11-05 用户：封面桌面边缘一直有横截面锯齿、晃起来不舒服。原因：桌面（Top）和桌沿（Rim）是两块几乎贴合的网格，
+            //   Top 的描边壳在桌沿上方跟 Rim 的表面挤在同一深度，缩小到 0.56 倍后只剩一两个像素宽，随漂浮一直闪成锯齿。
+            //   封面桌用自己的材质：桌面不画描边，桌沿描边往后推一点只在外轮廓露出来。
+            foreach (var r in table.GetComponentsInChildren<Renderer>(true))
+            {
+                if (r.name != "Top" && r.name != "Rim") continue;
+                var src = r.sharedMaterial; bool top = r.name == "Top";
+                r.sharedMaterial = SaveMat("Cover_Table" + r.name, src.shader, m =>
+                {
+                    m.CopyPropertiesFromMaterial(src);
+                    m.SetFloat("_OutlineWidth", top ? 0f : src.GetFloat("_OutlineWidth"));
+                    m.SetFloat("_OutlinePush", top ? 0f : 0.008f);
+                });
+            }
             PlaceH(dio, "Desk_Bucket", new Vector3(0, Y, 0), 0, 0.46f);
-            PlaceH(dio, "Desk_Cauldron", new Vector3(0.43f, Y, 0.1f), -30f, 0.24f);
+            var coverPot = PlaceH(dio, "Desk_Cauldron", new Vector3(0.43f, Y, 0.1f), -30f, 0.24f);
+            // 11-04 用户：封面上的锅还是旧样子——和游戏里的锅走同一套处理（嵌入锅壁的宝石灯 + 骨头锅耳），封面上点亮 4 颗做装饰
+            BuildCauldronSlots(coverPot.transform, coverPot.transform.lossyScale.x);
+            SeatCauldronEars(coverPot.transform);
+            for (int i = 0; i < 7; i++) { var sl = coverPot.transform.Find("Slot_" + i); if (sl) sl.gameObject.SetActive(i < 4); }
             PlaceH(dio, "Desk_CandleCluster", new Vector3(-0.44f, Y, -0.08f), 20f, 0.2f);
             // 小鬼（模型正面朝 -X：yaw +90 让正面朝玩家 +Z）
             PlaceH(dio, "E1_Skelly", new Vector3(-0.2f, Y, 0.2f), 90f + 25f, 0.27f).AddComponent<TrickOrFreeze.Ambient.Swayer>().angle = 5f;
@@ -612,12 +630,12 @@ namespace TrickOrFreeze.EditorTools
             }
             var sea = candles.gameObject.AddComponent<TrickOrFreeze.Ambient.CandleSea>(); sea.amplitude = 0.035f; sea.period = 5.5f;
             // 两盏漂着的小南瓜灯
-            Float(PlaceH(dio, "H1_JackLanternBig", new Vector3(-0.98f, Y + 0.5f, -0.12f), 90f + 35f, 0.11f), 0.04f, 4.4f, 6f);
-            Float(PlaceH(dio, "H1_JackLanternBig", new Vector3(1.12f, Y + 0.62f, 0.12f), 90f - 50f, 0.09f), 0.035f, 5.1f, 7f);
+            Float(PlaceH(dio, "H1_JackLanternBig", new Vector3(-0.98f, Y + 0.5f, -0.12f), 90f + 35f, 0.11f), 0.03f, 4.4f, 1.5f);
+            Float(PlaceH(dio, "H1_JackLanternBig", new Vector3(1.12f, Y + 0.62f, 0.12f), 90f - 50f, 0.09f), 0.03f, 5.1f, 1.5f);
             // 左后方一座漂浮的小墓园（墓碑、铁栅栏）＋一摞南瓜，配一盏淡紫光
             var isle = new GameObject("CoverGraveIsle").transform; isle.SetParent(dio, false);
             isle.localPosition = new Vector3(1.3f, 0.12f, -1.05f); isle.localRotation = Quaternion.Euler(0, -35f, 0);   // 左后方、比桌面略低，和桌子分开
-            Float(isle.gameObject, 0.025f, 7f, 1.2f);
+            Float(isle.gameObject, 0.015f, 8f, 0f);   // 11-05 用户：桌子左侧右眼锯齿——不再倾斜摇摆，栅栏尖、草叶这些细线一晃就闪
             PlaceH(isle, "H3_GraveyardSet", Vector3.zero, 0, 0.42f);
             // 10-30 用户：小墓园要正对玩家。模型正面（RIP 墓碑、南瓜、破土的手、栅栏开口）朝它自己的 -X，
             // 按玩家（舞台原点）方向转：-X 指向玩家
@@ -626,9 +644,41 @@ namespace TrickOrFreeze.EditorTools
                 if (toPlayer.sqrMagnitude > 1e-4f) isle.rotation = Quaternion.LookRotation(toPlayer.normalized, Vector3.up) * Quaternion.Euler(0, 90f, 0);
             }
             PlaceH(isle, "Deco_PumpkinStack", new Vector3(0.22f, 0.06f, 0.36f), -60f, 0.2f);       // 左后侧，不挡墓碑
+            // 11-05：小墓园离得远、细节又碎（栅栏、草叶、破土的手），描边在头显里只剩一两个像素、会一直闪——封面这座浮岛不画描边
+            foreach (var r in isle.GetComponentsInChildren<Renderer>(true))
+            {
+                var mats = r.sharedMaterials;
+                for (int mi = 0; mi < mats.Length; mi++)
+                {
+                    var src = mats[mi]; if (!src || !src.HasProperty("_OutlineWidth")) continue;
+                    mats[mi] = SaveMat("Cover_Isle_" + src.name, src.shader, m => { m.CopyPropertiesFromMaterial(src); m.SetFloat("_OutlineWidth", 0f); });
+                }
+                r.sharedMaterials = mats;
+            }
             var isleLight = new GameObject("IsleGlow").AddComponent<Light>(); isleLight.transform.SetParent(isle, false); isleLight.transform.localPosition = new Vector3(-0.3f, 0.45f, 0f);
             isleLight.type = LightType.Point; isleLight.color = new Color(0.62f, 0.5f, 1f); isleLight.intensity = 0.7f; isleLight.range = 1.0f; isleLight.shadows = LightShadows.None;
             // 黑暗里飘着的暖橙 / 淡紫光点
+            // 11-05 用户：封面桌子左侧右眼锯齿。桌沿那颗南瓜灯用的是“彩色勾线”（描边按本色提亮），离眼睛近、
+            //   在头显里是一圈闪动的红色细线；小鬼们也一样。封面布景统一：墨色描边、宽度减到 7 成（桌子本身前面已单独处理）。
+            foreach (var r in dio.GetComponentsInChildren<Renderer>(true))
+            {
+                if (r.transform.IsChildOf(table.transform) || r.transform.IsChildOf(isle)) continue;
+                var mats = r.sharedMaterials; bool changed = false;
+                for (int mi = 0; mi < mats.Length; mi++)
+                {
+                    var src = mats[mi];
+                    if (!src || !src.HasProperty("_OutlineWidth") || src.name.StartsWith("Cover_")) continue;
+                    if (src.GetFloat("_OutlineWidth") <= 0f) continue;
+                    mats[mi] = SaveMat("Cover_" + src.name, src.shader, m =>
+                    {
+                        m.CopyPropertiesFromMaterial(src);
+                        m.SetFloat("_OutlineWidth", src.GetFloat("_OutlineWidth") * 0.7f);
+                        if (m.HasProperty("_ColorLine")) m.SetFloat("_ColorLine", 0f);
+                    });
+                    changed = true;
+                }
+                if (changed) r.sharedMaterials = mats;
+            }
             var motes = new GameObject("CoverMotes").AddComponent<TrickOrFreeze.Ambient.AmbientParticles>();
             motes.transform.SetParent(dio, false); motes.transform.localPosition = new Vector3(0.1f, Y + 0.45f, -0.1f);
             motes.coverMode = true; motes.coverBox = new Vector3(2.6f, 1.3f, 1.6f);

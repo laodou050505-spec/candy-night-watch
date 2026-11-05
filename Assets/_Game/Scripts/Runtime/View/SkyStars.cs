@@ -1,7 +1,7 @@
 // 甩成星星的敌人变成夜空里的星星（10-31：原来这里是空的占位，玩家只看得到飞出去的拖尾，什么星星都没有）。
 //   1. 原地“啵”地冒出一颗卡通五角星（深紫描边 + 按敌人种类着色的星身 + 背后一团柔光），转着弹一下；
 //   2. 沿弧线飞上铁拱门上方的夜空，越飞越远（保持看起来大约 2° 大小）；
-//   3. 停在天上一闪一闪，这一夜甩出去的都留在那儿，攒成一片；新的一夜清空。
+//   3. 停在天上一闪一闪几秒，然后慢慢淡掉（11-04 用户：变成星星后不要一直挂在天上）；新的一夜也会清空。
 // 头显上关了后期（没有 Bloom），“亮”靠星身自发光颜色 + 叠加柔光。
 using System.Collections.Generic;
 using TrickOrFreeze.Core;
@@ -29,7 +29,7 @@ namespace TrickOrFreeze.View
         [System.NonSerialized] Material rimMatInst, fillMatInst;
         [System.NonSerialized] MaterialPropertyBlock mpb;
         static readonly int ID_Base = Shader.PropertyToID("_BaseColor");
-        const float POP = 0.35f, RISE = 1.9f, SIZE0 = 0.09f;
+        const float POP = 0.35f, RISE = 1.9f, SIZE0 = 0.09f, STAY = 2.5f, FADE = 1.2f;
 
         static Color KindColor(string kind)
         {
@@ -207,6 +207,9 @@ namespace TrickOrFreeze.View
         public void Tick(float dt, float time)
         {
             if (stars.Count == 0) return;
+            for (int i = stars.Count - 1; i >= 0; i--)                                    // 淡完的星星删掉
+                if (!stars[i].root || stars[i].t > POP + RISE + STAY + FADE)
+                { if (stars[i].root) { if (Application.isPlaying) Destroy(stars[i].root.gameObject); else DestroyImmediate(stars[i].root.gameObject); } stars.RemoveAt(i); }
             var camP = cam ? cam.transform.position : Vector3.zero;
             foreach (var s in stars)
             {
@@ -240,6 +243,8 @@ namespace TrickOrFreeze.View
                 {
                     s.root.position = s.to;
                     size = s.sizeTo * (1f + 0.12f * Mathf.Sin(time * 3f + s.phase));   // 一闪一闪
+                    float out01 = Mathf.Clamp01((s.t - POP - RISE - STAY) / FADE);       // 停一会儿后缩小淡出
+                    size *= 1f - out01 * out01;
                 }
                 s.root.localScale = Vector3.one * size;
                 // 永远正对着玩家；星身慢慢转

@@ -80,7 +80,7 @@
   "ui.continue": "继续第 {n} 夜",
   "ui.exit": "退出",
   "ui.gazeDot": "视线光点",
-  "ui.lang": "English",
+  "ui.lang": "切换语言",
   "ui.locked": "未解锁",
   "ui.menu": "选关",
   "ui.moon": "月亮",
@@ -104,7 +104,6 @@
   "ui.tip.1": "盯住木头鬼，它就不敢动",
   "ui.tip.2": "捏住僵住的它，丢进坩埚",
   "ui.tip.3": "守住南瓜糖桶，直到天亮",
-  "ui.title.en": "Trick or Freeze!",
   "ui.toTitle": "回到封面",
   "ui.tutorial": "新手教学",
   "ui.practice": "玩法",
@@ -167,5 +166,15 @@
   "shop.equip": "装备",
   "result.stats": "被偷走 {lost} · 消化 {digested} · 星星 {stars} · 隔空拉来 {pulls}",
   "result.failFew": "天亮了，可糖只剩 {n} 颗……",
-  "hint.pumpkinRun": "南瓜头被盯久了会逃。扫一眼就移开，用余光照着它；手对准它一捏，也能把它隔空拉过来。"
+  "hint.pumpkinRun": "南瓜头被盯久了会逃。扫一眼就移开，用余光照着它；手对准它一捏，也能把它隔空拉过来。",
+  "ending.title": "全剧终",
+  "ending.sign": "万圣节快乐！",
+  "ui.quitGame": "退出游戏",
+  "ui.ending": "看结局",
+  "ending.s1": "天亮了，最后一夜也守住了",
+  "ending.s2": "小鬼们打着哈欠，回家睡觉去了",
+  "ending.s3": "这个万圣节，糖果一颗也没让它们抢走",
+  "ending.score": "剩糖 {n} 颗　·　评价星 {stars}/{max}",
+  "ending.t1": "十二个万圣夜，你全部守住了",
+  "ending.t2": "游戏到这里就结束啦，谢谢你的守护"
 }

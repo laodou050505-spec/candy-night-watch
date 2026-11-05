@@ -322,15 +322,18 @@ def i_lock(c, N):
 
 
 def i_globe(c, N):
-    """语言切换：对话气泡 + “文 / A”（真字体排版）"""
-    m = L(N, N); d = ImageDraw.Draw(m)
-    d.rounded_rectangle([N * .1, N * .16, N * .9, N * .72], radius=N * .14, fill=255)
-    d.polygon([(N * .28, N * .66), (N * .24, N * .88), (N * .46, N * .7)], fill=255)
-    sticker(c, rounded(m, N * .01), 'cream')
-    zh = text_mask(c.size, '文', FONT_ZH_EXTRA, N * .34, (N * .33, N * .43))
-    en = text_mask(c.size, 'A', FONT_BALOO, N * .38, (N * .68, N * .45))
-    c.paste(Image.new('RGBA', c.size, P['violet'][1] + (255,)), (0, 0), zh)
-    c.paste(Image.new('RGBA', c.size, P['pumpkin'][1] + (255,)), (0, 0), en)
+    """语言切换：地球（11-04 改为不带文字，原来的“文 / A”在两种语言下都中英混排）"""
+    cx, cy, r = N * .5, N * .52, N * .34
+    m = L(N, N); ImageDraw.Draw(m).ellipse([cx - r, cy - r, cx + r, cy + r], fill=255)
+    sticker(c, m, 'mint')
+    lines = L(N, N); d = ImageDraw.Draw(lines); w = int(N * .034)
+    d.ellipse([cx - r * .42, cy - r, cx + r * .42, cy + r], outline=255, width=w)     # 经线
+    d.line([cx, cy - r, cx, cy + r], fill=255, width=w)
+    d.line([cx - r, cy, cx + r, cy], fill=255, width=w)                               # 赤道
+    for k in (-.52, .52):                                                             # 纬线
+        yy = cy + r * k; hw = r * (1 - k * k) ** .5
+        d.line([cx - hw, yy, cx + hw, yy], fill=255, width=w)
+    c.paste(Image.new('RGBA', c.size, INK + (235,)), (0, 0), ImageChops.multiply(lines, m))
 
 
 # ---------------- 手势图标（游戏手套渲染 + 动作符号） ----------------
@@ -412,8 +415,53 @@ def gestures():
     gesture('Shield', 'shield', ov_many(ov_arrow([(.12, .1), (.12, .2), (.12, .3), (.12, .36)], 'mint', .045), ov_arrow([(.88, .1), (.88, .2), (.88, .3), (.88, .36)], 'mint', .045)), scale=.74, offset=(0, .06))
     gesture('Lamp', 'lamp', None, scale=.86)   # 10-30：新手势——五指张开、手背朝自己，手背亮南瓜鬼脸（raw_lamp 由 HandView 渲染）
     # 通用“捏一下”的小手（按钮提示用）= 捏合手势
-    Image.open(UI / 'Gesture_Pinch.png').save(UI / 'Icon_Hand.png')
-    print('   Icon_Hand.png (= Gesture_Pinch)')
+    icon_hand()
+
+
+def icon_hand():
+    """“玩法”按钮的小手（11-04 用户：图标没截干净）：渲染图的袖口在画面右边被硬切成一刀直边，
+    这里把袖口斜着收短、末端画成圆口（袖口里面一圈深橙），再整体描边。"""
+    import numpy as np
+    N = 512 * SS
+    src = Image.open(GEST / 'raw_pinch.png').convert('RGBA')
+    a = np.asarray(src).copy(); h, w = a.shape[:2]
+    bb = src.getbbox()
+    cut = bb[0] + (bb[2] - bb[0]) * .86                                   # 袖口在这里收掉
+    yy, xx = np.mgrid[0:h, 0:w]
+    ys = np.nonzero(a[:, int(cut), 3] > 100)[0]; cy, ry = (ys.min() + ys.max()) / 2, (ys.max() - ys.min()) / 2
+    rx = ry * .32
+    keep = (xx < cut) | (((xx - cut) / rx) ** 2 + ((yy - cy) / ry) ** 2 <= 1)
+    a[~keep] = 0
+    src = Image.fromarray(a)
+    inner = L(w, h); ImageDraw.Draw(inner).ellipse([cut - rx * .55, cy - ry * .78, cut + rx * .75, cy + ry * .78], fill=255)
+    src.paste(Image.new('RGBA', (w, h), (176, 70, 20, 255)), (0, 0), ImageChops.multiply(inner, src.split()[3]))
+    src = src.crop(src.getbbox())
+    k = N * .74 / max(src.size)
+    src = src.resize((int(src.width * k), int(src.height * k)), Image.LANCZOS)
+    x = int((N - src.width) / 2 + N * .08); y = int((N - src.height) / 2)
+    c = Image.new('RGBA', (N, N), (0, 0, 0, 0))
+    hand = L(N, N); hand.paste(src.split()[3].point(lambda v: 255 if v > 100 else 0), (x, y))
+    ow = int(N * .022); rim = dilate(hand, ow)
+    c.paste(Image.new('RGBA', (N, N), INK + (110,)), (0, 0), shift(rim, 0, ow * .7))
+    c.paste(Image.new('RGBA', (N, N), INK + (255,)), (0, 0), rim)
+    c.alpha_composite(src, (x, y))
+    ov_ticks(.17, .5, 180, spread=40)(c, N)
+    finish(c, UI / 'Icon_Hand.png', (256, 256))
+
+
+def icon_bounds():
+    """每个图标看得见的部分在图里的范围（0~1），写成 C# 表：按钮里按可见部分左对齐，不受透明留白影响"""
+    rows = []
+    for f in sorted(UI.glob('Icon_*.png')):
+        im = Image.open(f).convert('RGBA'); W, H = im.size
+        bb = im.split()[3].point(lambda v: 255 if v > 40 else 0).getbbox()
+        rows.append(f'            {{ "{f.stem}", new Rect({bb[0] / W:.3f}f, {1 - bb[3] / H:.3f}f, {(bb[2] - bb[0]) / W:.3f}f, {(bb[3] - bb[1]) / H:.3f}f) }},')
+    out = ROOT / 'Assets' / '_Game' / 'Scripts' / 'Runtime' / 'UI' / 'IconBounds.cs'
+    out.write_text('// 自动生成（Tools/make_ui_kit.py icon_bounds）：每个图标可见部分在图片里的范围，x/y 从左下角算，单位为图片宽高的比例。\n'
+                   'using System.Collections.Generic;\nusing UnityEngine;\n\nnamespace TrickOrFreeze.UI\n{\n    public static class IconBounds\n    {\n'
+                   '        public static readonly Dictionary<string, Rect> All = new Dictionary<string, Rect>\n        {\n' + '\n'.join(rows) +
+                   '\n        };\n\n        public static Rect Of(Sprite sp) => sp && All.TryGetValue(sp.name, out var r) ? r : new Rect(0, 0, 1, 1);\n    }\n}\n', encoding='utf-8')
+    print('  ', out.name, len(rows), '个图标')
 
 
 def hint_arrow():
@@ -500,7 +548,27 @@ def shop_card():
 
 
 # ---------------- 标题字 ----------------
-def logo():
+def _glyph_row(mask, W, H, text, font, px, cy, tilts, lifts, sizes, track=.98):
+    """一行东倒西歪的字：逐字旋转、上下蹦、大小不一，整行水平居中"""
+    row = L(W, H); x = 0.0
+    for i, ch in enumerate(text):
+        if ch == ' ':
+            x += px * .32; continue
+        t, lf, sz = tilts[i % len(tilts)], lifts[i % len(lifts)], sizes[i % len(sizes)]
+        g = Image.new('L', (int(px * 2), int(px * 2)), 0)
+        fg = ImageFont.truetype(str(font), int(px * sz))
+        dg = ImageDraw.Draw(g); bb = dg.textbbox((0, 0), ch, font=fg)
+        dg.text(((g.width - (bb[2] - bb[0])) / 2 - bb[0], (g.height - (bb[3] - bb[1])) / 2 - bb[1]), ch, font=fg, fill=255)
+        g = g.rotate(t, resample=Image.BICUBIC)
+        adv = (bb[2] - bb[0]) * track
+        row.paste(Image.new('L', g.size, 255), (int(x + adv / 2 - g.width / 2), int(cy + H * lf - g.height / 2)), g)
+        x += adv
+    bb = row.getbbox()
+    row = shift(row, (W - (bb[2] - bb[0])) / 2 - bb[0], 0)
+    return ImageChops.lighter(mask, row)
+
+
+def logo_zh():
     """标题字：参考万圣节海报的夸张手写字——每个字东倒西歪、大小不一、上下蹦，底下挂糖浆滴落；
     南瓜橙字 + 深紫错版 + 孔版颗粒，外圈奶油色贴纸边；四周几颗爆炸星。英文副标用 Creepster（自带滴落）荧光绿。"""
     W, H = 1536 * 2, 651 * 2
@@ -568,9 +636,65 @@ def logo():
     finish(c, UI / 'Logo_zh.png', (1536, 651))
 
 
+def logo(lang='zh'):
+    """标题字：参考万圣节海报的夸张手写字——每个字东倒西歪、大小不一、上下蹦，底下挂糖浆滴落；
+    南瓜橙字 + 深紫错版 + 孔版颗粒，外圈奶油色贴纸边；四周几颗爆炸星和一弯小月亮。
+    11-04 用户：中文模式从头到尾只能是中文、英文模式只能是英文——拆成两张：
+    Logo_zh.png 只有“万圣守糖夜”，Logo_en.png 只有 CANDY NIGHT WATCH（同一套造型，Baloo 2 圆胖字体对应快乐体）。"""
+    W, H = 1536 * 2, 651 * 2
+    c = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+    mask = L(W, H)
+    if lang == 'zh':
+        mask = _glyph_row(mask, W, H, '万圣守糖夜', FONT_LOGO, H * .4, H * .42,
+                          [-9, 6, -5, 8, -7], [.02, -.03, .015, -.045, .025], [1.0, .9, 1.02, 1.16, .96])
+    else:
+        mask = _glyph_row(mask, W, H, 'CANDY', FONT_BALOO, H * .44, H * .3,
+                          [-8, 6, -4, 7, -6], [.015, -.025, .02, -.03, .01], [1.0, .94, 1.04, .96, 1.06], track=1.0)
+        mask = _glyph_row(mask, W, H, 'NIGHT WATCH', FONT_BALOO, H * .3, H * .72,
+                          [5, -6, 4, -5, 6, 0, -5, 6, -4, 5, -6], [-.01, .015, -.02, .01, -.015, 0, .02, -.01, .015, -.02, .01],
+                          [1.0, .95, 1.04, .97, 1.02, 1, .98, 1.03, .95, 1.02, .97], track=1.06)
+    mask = dilate(mask, H * .008)                   # 稍加粗，但笔画间要留缝（“糖”“夜”的笔画多）
+    # 糖浆滴落：在字的底边随机挑几处挂下圆头水滴
+    import numpy as np
+    a = np.asarray(mask); rnd = random.Random(5)
+    bb = mask.getbbox(); d = ImageDraw.Draw(mask)
+    cols = [int(bb[0] + (bb[2] - bb[0]) * k) for k in (.08, .2, .37, .55, .63, .8, .93)]
+    for cx in cols:
+        cx += rnd.randint(-20, 20)
+        ys = np.nonzero(a[:, max(0, min(W - 1, cx))] > 0)[0]
+        if len(ys) == 0: continue
+        y0 = ys.max(); L_ = H * rnd.uniform(.05, .1); r = H * rnd.uniform(.014, .022)
+        d.rounded_rectangle([cx - r * .7, y0 - r, cx + r * .7, y0 + L_], radius=r * .7, fill=255)
+        d.ellipse([cx - r, y0 + L_ - r, cx + r, y0 + L_ + r], fill=255)
+    mask = jitter(mask, H * .0022, seed=21)
+    ow = int(H * .03)
+    outer = dilate(mask, ow * 2.6)
+    c.paste(Image.new('RGBA', (W, H), INK + (130,)), (0, 0), shift(outer, ow * .4, ow * 1.3))
+    c.paste(Image.new('RGBA', (W, H), P['cream'][0] + (255,)), (0, 0), outer)
+    riso(c, outer, P['cream'][0], .04, 61)
+    c.paste(Image.new('RGBA', (W, H), INK + (255,)), (0, 0), dilate(mask, ow))
+    c.paste(Image.new('RGBA', (W, H), P['violet'][0] + (255,)), (0, 0), ImageChops.multiply(shift(mask, -ow * .32, -ow * .26), dilate(mask, ow)))   # 错版（收着点，不糊笔画）
+    c.paste(Image.new('RGBA', (W, H), P['pumpkin'][0] + (255,)), (0, 0), mask)
+    bb0 = mask.getbbox()
+    band = L(W, H); ImageDraw.Draw(band).rectangle([0, bb0[1] + (bb0[3] - bb0[1]) * .58, W, H], fill=255)
+    c.paste(Image.new('RGBA', (W, H), P['pumpkin'][1] + (255,)), (0, 0), ImageChops.multiply(mask, band))
+    riso(c, mask, P['pumpkin'][0], .045, 51); riso(c, mask, P['pumpkin'][0], .02, 52, light=True)
+    # 爆炸星点缀 + 一弯小月亮
+    bb = mask.getbbox()
+    burst(c, bb[0] - H * .02, bb[1] + H * .05, H * .07, 'lime', 9, .45, 10, 1)
+    burst(c, bb[2] + H * .01, bb[3] - H * .02, H * .055, 'pink', 8, .45, -8, 2)
+    burst(c, bb[0] + (bb[2] - bb[0]) * .46, bb[1] - H * .03, H * .04, 'gold', 8, .5, 0, 3)
+    mx, my, mr = bb[2] - H * .03, bb[1] + H * .01, H * .08
+    moon = L(W, H); dm = ImageDraw.Draw(moon)
+    dm.ellipse([mx - mr, my - mr, mx + mr, my + mr], fill=255); dm.ellipse([mx - mr * .45, my - mr * 1.25, mx + mr * 1.5, my + mr * .7], fill=0)
+    sticker(c, rounded(moon, H * .004), 'gold', outline=ow, shadow=False)
+    finish(c, UI / f'Logo_{lang}.png', (1536, 651))
+
+
 if __name__ == '__main__':
     print('图标'); [icon(n, f) for n, f in (('Play', i_play), ('Pause', i_pause), ('Back', i_back), ('Retry', i_retry), ('Star', i_star), ('Moon', i_moon),
                                             ('Candy', i_candy), ('Cauldron', i_cauldron), ('Gear', i_gear), ('Lock', i_lock), ('Globe', i_globe))]
     print('手势'); gestures(); hint_arrow()
     print('按钮 / 面板 / 卡片'); btn_primary(); btn_secondary(); panel(); card(); shop_card()
-    print('标题'); logo()
+    print('标题'); logo_zh(); logo('en')
+    icon_bounds()   # 11-04 用户：中文标题下的英文小字是点缀，保留

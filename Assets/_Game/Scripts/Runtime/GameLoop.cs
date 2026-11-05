@@ -129,8 +129,13 @@ namespace TrickOrFreeze
             if (game.brief != null && !game.brief.done) game.FinishBrief();
         }
 
+        // 11-05 结局的小鬼列队已取消（用户：小鬼全跑出来晃悠很奇怪），保留空实现以便旧调用安全
+        GameObject parade;
+        public void HideEndingParade() { if (parade) Destroy(parade); parade = null; }
+
         public void BackToTitle()
         {
+            HideEndingParade();
             ClearViews();
             game.phase = Phases.Title;
         }

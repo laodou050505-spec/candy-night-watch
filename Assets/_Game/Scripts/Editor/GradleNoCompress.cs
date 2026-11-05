@@ -24,6 +24,22 @@ namespace TrickOrFreeze.EditorTools
         public void OnPostGenerateGradleAndroidProject(string unityLibraryPath)
         {
             FixSplits(Path.Combine(unityLibraryPath, "src", "main", "assets", "bin", "Data"));
+            WriteLocalizedAppName(unityLibraryPath);
+        }
+
+        /// <summary>
+        /// 11-04 用户：中文从头到尾是中文、英文从头到尾是英文——应用名跟着头显系统语言：
+        /// 默认（中文）“万圣守糖夜”，系统语言是英文时 values-en 里的“Candy Night Watch”。
+        /// </summary>
+        static void WriteLocalizedAppName(string unityLibraryPath)
+        {
+            var res = Path.Combine(Path.GetDirectoryName(unityLibraryPath), "launcher", "src", "main", "res");
+            if (!Directory.Exists(res)) { Debug.LogWarning("[AppName] 找不到 " + res); return; }
+            var dir = Path.Combine(res, "values-en");
+            Directory.CreateDirectory(dir);
+            File.WriteAllText(Path.Combine(dir, "strings.xml"),
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n  <string name=\"app_name\">" + AndroidBuild.ProductNameEn + "</string>\n</resources>\n");
+            Debug.Log("[AppName] 已写入英文应用名 " + AndroidBuild.ProductNameEn);
         }
 
         /// <summary>按文件头声明的大小删掉多余的旧分片；校验失败抛异常中止打包。</summary>

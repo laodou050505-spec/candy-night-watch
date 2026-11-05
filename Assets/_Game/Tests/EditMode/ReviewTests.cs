@@ -172,5 +172,40 @@ namespace TrickOrFreeze.Tests
             Assert.That(Has(evs, GameEventTypes.ShieldEnd));
             Assert.That(t.dizzy > 0 || t.state == ToyStates.Falling, "护罩结束时被弹开晕一下");
         }
-    }
+    
+        [Test(Description = "11-04：糖桶空了，小鬼去拿桌上散落的糖，不在桶沿上反复进出偷糖状态")]
+        public void Review20_桶空去拿散糖()
+        {
+            var g = Night(2);
+            g.candyJar = 0;
+            var c = new Candy { id = 9001, state = CandyStates.Rest, pos = new Vector3(0.35f, TABLE.y, -0.45f) };
+            g.candies.Add(c);
+            var t = Spawn(g, KindIds.Skeleton, pos: new Vector3(JAR.x - 0.3f, TABLE.y, JAR.z + 0.1f));
+            bool stole = false, picked = false;
+            for (int i = 0; i < 300 && !picked; i++)
+            {
+                var evs = g.Update(0.02, Frame(head: AWAY));
+                if (t.state == ToyStates.Steal) stole = true;
+                if (Has(evs, GameEventTypes.PickCandy)) picked = true;
+            }
+            Assert.IsFalse(stole, "桶空时不应进入偷糖状态");
+            Assert.IsTrue(picked, "应走过去捡起散落的糖");
+            Assert.AreEqual(CandyStates.Gone, c.state);
+        }
+
+        [Test(Description = "11-04：偷糖站位按桶肚实际外壳半径算，脸不扎进桶壁")]
+        public void Review21_偷糖站位不穿桶()
+        {
+            var g = Night(2);
+            var t = Spawn(g, KindIds.Skeleton, pos: new Vector3(JAR.x + 0.4f, TABLE.y, JAR.z));
+            bool stole = false; float d = float.PositiveInfinity;
+            for (int i = 0; i < 200; i++)
+            {
+                g.Update(0.02, Frame(head: AWAY));
+                if (t.state == ToyStates.Steal) { stole = true; d = Mathf.Min(d, Vec.DistXZ(t.pos, JAR.pos)); }
+            }
+            Assert.IsTrue(stole, "应走到桶边开始偷糖");
+            Assert.GreaterOrEqual(d, JAR.outer + EnemyKinds.Get(t.kind).radius, $"站得太近 {d:F3}");
+        }
+}
 }

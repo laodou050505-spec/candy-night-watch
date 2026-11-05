@@ -284,6 +284,7 @@ namespace TrickOrFreeze.Core
             if (t.state == ToyStates.Flee)
             {
                 t.state = ToyStates.Gone;
+                if (t.candyCount <= 0) { t.hasCandy = false; return; }   // 空手离开（桶空、桌上也没糖）：不算丢糖、不播丢糖音效
                 candyLost += t.candyCount;
                 stats.lost += t.candyCount;
                 t.candyCount = 0;
@@ -306,6 +307,7 @@ namespace TrickOrFreeze.Core
                 else Retarget(t);
                 return;
             }
+            if (candyJar <= 0) { Retarget(t); return; }   // 11-04：到了桶边才发现空了——转身去拿糖，不在桶沿上反复进出偷糖状态
             t.state = ToyStates.Steal;
             t.stealT = 0;
             var re = Emit(GameEventTypes.ReachJar); re.id = t.id;
@@ -319,6 +321,7 @@ namespace TrickOrFreeze.Core
             t.replanT = 0.6f;
             if (t.hasCandy && (t.candyCount >= (k.steal > 0 ? k.steal : 1) || candyJar <= 0)) { StartFlee(t); return; }
             t.state = ToyStates.Walk;
+            if (candyJar <= 0 && bucketHeld == null) { GoForLooseCandy(t); return; }
             if (k.mover == Movers.Fly)
             {
                 // 飞行敌人：落地后先飞起来
@@ -353,6 +356,39 @@ namespace TrickOrFreeze.Core
             t.path = Safe(bestPath, t);
         }
 
+        /// <summary>
+        /// 11-04 用户：糖桶空了，小鬼要去糖所在的位置拿，不要趴在桶沿上鬼畜。
+        /// 以前桶空且桌上没认领的糖时，Retarget 又把目标设回糖桶 → 到桶边进 Steal → 发现桶空又 Retarget，每帧循环，看起来在桶沿抽搐。
+        /// 现在：优先去没人认领的散落糖，其次跟别人抢同一颗；桌上一颗散糖都没有就空手离开（不算丢糖）。
+        /// </summary>
+        void GoForLooseCandy(Toy t)
+        {
+            var k = t.Kind;
+            Candy best = null; float bestD = float.PositiveInfinity;
+            foreach (var c in candies)
+            {
+                if (c.state != CandyStates.Rest) continue;
+                bool taken = c.claimedBy != 0 && c.claimedBy != t.id && toys.Exists(o => o.id == c.claimedBy && o.state == ToyStates.Walk);
+                float d = Vector3.Distance(t.pos, c.pos) + (taken ? 3f : 0f);
+                if (d < bestD) { bestD = d; best = c; }
+            }
+            if (t.goal.type == Goal.CandyGoal && t.goal.candy != null && t.goal.candy.claimedBy == t.id) t.goal.candy.claimedBy = 0;
+            if (best == null) { t.goal = Goal.ToJar(); StartFlee(t); return; }
+            t.state = ToyStates.Walk;
+            t.goal = new Goal { type = Goal.CandyGoal, candy = best };
+            if (best.claimedBy == 0) best.claimedBy = t.id;
+            var target = best.pos;
+            if (k.mover == Movers.Fly)
+                t.path = Safe(OutFromUnder(t.pos, new[] { new Vector3(target.x, Mathf.Max(t.pos.y, target.y + 0.25f), target.z), target + Vector3.up * 0.02f }), t);
+            else if (k.mover == Movers.Drop)
+            {
+                bool on = IsOnTable(t.pos);
+                t.path = Safe(on ? new System.Collections.Generic.List<Vector3> { t.pos, target } : ClimbBack(t.pos, t.spawn), t);
+                if (!on) t.respawnDrop = true;
+            }
+            else t.path = Safe(PlanTo(t.pos, target), t);
+        }
+
         void MaybeRetarget(Toy t, double dt)
         {
             if (t.Kind.mover == Movers.Fly) return;
@@ -362,6 +398,7 @@ namespace TrickOrFreeze.Core
             if (OnClimbSegment(t) || (t.pos.y > 0.02f && !IsOnTable(t.pos))) { t.replanT = 0.3f; return; }
             var g = t.goal;
             if (g.type == Goal.CandyGoal && g.candy.state != CandyStates.Rest) { Retarget(t); return; }
+            if (g.type == Goal.Jar && candyJar <= 0 && bucketHeld == null) { Retarget(t); return; }
             if (candies.Exists(c => c.state == CandyStates.Rest && c.claimedBy == 0)) { Retarget(t); return; }
             t.replanT = 0.6f;
         }
@@ -488,8 +525,8 @@ namespace TrickOrFreeze.Core
         Vector3 FlyMouth(Toy t)
         {
             var b = bucketHeld != null ? bucketPos : JAR.pos;
-            float side = (t.id & 1) == 0 ? 0.11f : -0.11f;
-            return new Vector3(b.x + side, b.y + JAR.height * 0.9f, b.z - 0.05f);
+            float side = (t.id & 1) == 0 ? 0.12f : -0.12f;
+            return new Vector3(b.x + side, b.y + JAR.height + 0.05f, b.z - 0.05f);   // 11-04：悬停高度在桶沿之上，不卡进桶沿
         }
 
         static bool StepPath(Toy t, float d)

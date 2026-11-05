@@ -327,7 +327,7 @@ namespace TrickOrFreeze.View
             }
             else if (t.state == ToyStates.Steal)
             {
-                euler = new Vector3(18 + Mathf.Sin(ph * 2) * 6, 0, 0);       // 探身进糖桶
+                euler = new Vector3(10 + Mathf.Sin(ph * 2) * 4, 0, 0);       // 探身向糖桶（11-04：前倾从 18° 收到 10°，配合站位外移，脸不穿进桶壁）
                 bob = Mathf.Abs(Mathf.Sin(ph * 2)) * K.height * 0.05f;
             }
             else if (held)

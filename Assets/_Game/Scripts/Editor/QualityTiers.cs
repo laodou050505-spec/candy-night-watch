@@ -99,6 +99,11 @@ namespace TrickOrFreeze.EditorTools
             var addSh = so.FindProperty("m_AdditionalLightShadowsSupported"); if (addSh != null) addSh.boolValue = false;
             so.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(a);
+            // 11-05 用户：封面桌子左侧、锅那里有一道竖直的“截面”，眼睛一动它也跟着动。
+            //   原因是 Forward+：屏幕切成格子分灯，蜡烛点光一多，有的格子漏一盏灯，格子边缘就是一道硬分界，跟着视角走。
+            //   PICO 渲染器固定用普通 Forward（每个物体按距离挑灯，没有屏幕格子分界）。
+            var rd = AssetDatabase.LoadAssetAtPath<UniversalRendererData>("Assets/Settings/Mobile_Renderer.asset");
+            if (rd && rd.renderingMode != RenderingMode.Forward) { rd.renderingMode = RenderingMode.Forward; EditorUtility.SetDirty(rd); }
         }
     }
 }

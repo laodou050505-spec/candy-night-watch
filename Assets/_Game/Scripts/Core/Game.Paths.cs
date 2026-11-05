@@ -75,7 +75,7 @@ namespace TrickOrFreeze.Core
         static Vector3 JarApproach(Vector3 from, float radius)
         {
             var d = Vec.Norm(new Vector3(from.x - JAR.x, 0f, from.z - JAR.z));
-            float r = JAR.radius + radius + 0.01f;
+            float r = JAR.outer + radius + 0.012f;   // 11-04：按桶肚实际外壳站位（原来按 0.11 算，偷糖前倾时脸穿进桶壁）
             return new Vector3(JAR.x + d.x * r, TABLE.y, JAR.z + d.z * r);
         }
 
@@ -158,8 +158,8 @@ namespace TrickOrFreeze.Core
         // 飞行路径：从当前点直飞到糖桶上方，再下降
         static List<Vector3> FlyToJar(Vector3 p, EnemyKind k)
         {
-            var above = new Vector3(JAR.x + (p.x > 0 ? 0.11f : -0.11f), k.flyY, JAR.z - 0.05f);
-            return OutFromUnder(p, new Vector3[] { above, new Vector3(above.x, TABLE.y + JAR.height * 0.9f, above.z) });
+            var above = new Vector3(JAR.x + (p.x > 0 ? 0.12f : -0.12f), k.flyY, JAR.z - 0.05f);
+            return OutFromUnder(p, new Vector3[] { above, new Vector3(above.x, TABLE.y + JAR.height + 0.05f, above.z) });   // 悬停在桶口上方，不卡在桶沿里
         }
 
         static List<Vector3> FlyAway(Vector3 p, SpawnPoint spawn)

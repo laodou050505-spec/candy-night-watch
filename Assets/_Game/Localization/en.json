@@ -80,7 +80,7 @@
   "ui.continue": "Continue Night {n}",
   "ui.exit": "Quit",
   "ui.gazeDot": "Gaze Dot",
-  "ui.lang": "中文",
+  "ui.lang": "Language",
   "ui.locked": "Locked",
   "ui.menu": "Nights",
   "ui.moon": "Moon",
@@ -104,7 +104,6 @@
   "ui.tip.1": "Stare at a spook and it can't move",
   "ui.tip.2": "Pinch the frozen spook into the cauldron",
   "ui.tip.3": "Guard the candy bucket until dawn",
-  "ui.title.en": "Trick or Freeze!",
   "ui.toTitle": "Title Screen",
   "ui.tutorial": "Tutorial",
   "ui.practice": "How to Play",
@@ -167,5 +166,15 @@
   "shop.equip": "Equip",
   "result.stats": "Stolen {lost} · Digested {digested} · Stars {stars} · Pulled {pulls}",
   "result.failFew": "Dawn came, but only {n} candy left...",
-  "hint.pumpkinRun": "Stare too long and Pumpkin Head runs. Glance away, keep it in the corner of your eye, or aim and pinch to pull it."
+  "hint.pumpkinRun": "Stare too long and Pumpkin Head runs. Glance away, keep it in the corner of your eye, or aim and pinch to pull it.",
+  "ending.title": "The End",
+  "ending.sign": "Happy Halloween!",
+  "ui.quitGame": "Quit Game",
+  "ui.ending": "The Ending",
+  "ending.s1": "Dawn breaks. The last night is safe",
+  "ending.s2": "The ghouls yawn and head home to bed",
+  "ending.s3": "Not one candy went missing this Halloween",
+  "ending.score": "{n} candies left  ·  {stars}/{max} stars",
+  "ending.t1": "You guarded all twelve Halloween nights",
+  "ending.t2": "That's the end of the game. Thanks for keeping watch"
 }

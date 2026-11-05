@@ -41,6 +41,7 @@ namespace TrickOrFreeze.Core
             public static void Set(float nx, float nz) { x = nx; z = nz; }
             public static void Reset() { x = DefaultX; z = DefaultZ; }
             public const float y = TABLE.y, radius = 0.11f, height = 0.22f;   // 糖桶放大 1.3 倍（场景里 Desk_Bucket 同步缩放）
+            public const float outer = 0.145f;   // 11-04：桶肚最宽处的实际外壳半径（实测 0.140），小鬼靠桶站位按它算，脸不扎进桶壁
             public const float scale = 1.3f;
         }
 

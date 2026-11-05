@@ -46,5 +46,24 @@ namespace TrickOrFreeze.Tests
                 Assert.That(!string.IsNullOrEmpty(en[kv.Key]), "en 缺文本 " + kv.Key);
             }
         }
+
+        /// <summary>11-04 用户：中文从头到尾是中文、英文从头到尾是英文——两张表都不许混进另一种文字，封面标题图也要分两张。</summary>
+        [Test]
+        public void Extra_中英文不混用()
+        {
+            var zh = Load("zh.json");
+            var en = Load("en.json");
+            var cjk = new Regex("[\u3000-\u303F\u4E00-\u9FFF\uFF00-\uFFEF]");
+            foreach (var kv in en) Assert.IsFalse(cjk.IsMatch(kv.Value), "英文表混进中文：" + kv.Key + " = " + kv.Value);
+            var latinWord = new Regex("[A-Za-z]{2,}");
+            foreach (var kv in zh)
+            {
+                var v = Regex.Replace(kv.Value, "\\{[^}]*\\}", "");   // {n} 之类的参数名不算
+                Assert.IsFalse(latinWord.IsMatch(v), "中文表混进英文：" + kv.Key + " = " + kv.Value);
+            }
+            var ui = Path.Combine(Application.dataPath, "_Game/Art/UI");
+            Assert.IsTrue(File.Exists(Path.Combine(ui, "Logo_zh.png")), "缺中文标题图");
+            Assert.IsTrue(File.Exists(Path.Combine(ui, "Logo_en.png")), "缺英文标题图");
+        }
     }
 }

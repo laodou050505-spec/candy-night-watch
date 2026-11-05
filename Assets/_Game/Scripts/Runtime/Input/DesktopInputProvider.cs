@@ -22,6 +22,9 @@ namespace TrickOrFreeze.Input
         public InputFrame Frame => frame;
         public bool IsXR => false;
 
+        /// <summary>编辑器截图巡检用：直接设定转头角度（yaw 180 = 面朝桌子，pitch 正 = 抬头）</summary>
+        public void Look(float yawDeg, float pitchDeg) { yaw = yawDeg; pitch = pitchDeg; }
+
         public void Tick(float dt)
         {
             frame.hands.Clear();

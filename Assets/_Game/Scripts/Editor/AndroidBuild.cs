@@ -12,6 +12,7 @@ namespace TrickOrFreeze.EditorTools
     {
         public const string PackageId = "com.toybox.trickorfreeze";
         public const string ProductName = "万圣守糖夜";   // 10-28 改名（原《一二三·木头鬼》）；包名不变，覆盖安装
+        public const string ProductNameEn = "Candy Night Watch";   // 11-04 系统语言为英文时的应用名（GradleNoCompress 写进 values-en）
         const string Scene = "Assets/_Game/Scenes/Main.unity";
         const string OutDir = "Builds";
         const string Report = "Logs/android_build.txt";
@@ -22,6 +23,9 @@ namespace TrickOrFreeze.EditorTools
             PlayerSettings.SetApplicationIdentifier(t, PackageId);
             PlayerSettings.productName = ProductName;
             PlayerSettings.companyName = "toybox";
+            // 11-04 关掉 Unity 启动画面（“Made with Unity”是英文，中文模式不能出现）；Personal 授权下关不掉时打包日志会提示
+            PlayerSettings.SplashScreen.show = false;
+            PlayerSettings.SplashScreen.showUnityLogo = false;
             // 10-31 命令行打包时自动递增版本号，避免头显拒绝安装同版本包
             if (inClone)
             {
@@ -239,6 +243,13 @@ namespace TrickOrFreeze.EditorTools
         {
             File.WriteAllText(Report, "building\n");
             EditorApplication.delayCall += DoBuild;
+        }
+
+        /// <summary>同步打包（11-05：编辑器在后台不刷新时 delayCall 不触发，菜单打包会一直停在 building；由脚本直接调用这个）</summary>
+        public static void BuildApkNow()
+        {
+            File.WriteAllText(Report, "building\n");
+            DoBuild();
         }
 
         static void DoBuild()
