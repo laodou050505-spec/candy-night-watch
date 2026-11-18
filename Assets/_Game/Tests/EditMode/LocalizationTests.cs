@@ -59,6 +59,7 @@ namespace TrickOrFreeze.Tests
             foreach (var kv in zh)
             {
                 var v = Regex.Replace(kv.Value, "\\{[^}]*\\}", "");   // {n} 之类的参数名不算
+                v = v.Replace("Tripo XR", "");                          // 11-17 公司名是专有名词（署名“Tripo XR 出品”），不算混用
                 Assert.IsFalse(latinWord.IsMatch(v), "中文表混进英文：" + kv.Key + " = " + kv.Value);
             }
             var ui = Path.Combine(Application.dataPath, "_Game/Art/UI");

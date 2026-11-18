@@ -176,5 +176,6 @@
   "ending.s3": "这个万圣节，糖果一颗也没让它们抢走",
   "ending.score": "剩糖 {n} 颗　·　评价星 {stars}/{max}",
   "ending.t1": "十二个万圣夜，你全部守住了",
-  "ending.t2": "游戏到这里就结束啦，谢谢你的守护"
+  "ending.t2": "游戏到这里就结束啦，谢谢你的守护",
+  "ui.credit": "Tripo XR 出品"
 }

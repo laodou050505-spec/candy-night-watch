@@ -176,5 +176,6 @@
   "ending.s3": "Not one candy went missing this Halloween",
   "ending.score": "{n} candies left  ·  {stars}/{max} stars",
   "ending.t1": "You guarded all twelve Halloween nights",
-  "ending.t2": "That's the end of the game. Thanks for keeping watch"
+  "ending.t2": "That's the end of the game. Thanks for keeping watch",
+  "ui.credit": "Tripo XR Developers"
 }

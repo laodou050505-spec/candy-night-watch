@@ -23,9 +23,8 @@ namespace TrickOrFreeze.EditorTools
             PlayerSettings.SetApplicationIdentifier(t, PackageId);
             PlayerSettings.productName = ProductName;
             PlayerSettings.companyName = "toybox";
-            // 11-04 关掉 Unity 启动画面（“Made with Unity”是英文，中文模式不能出现）；Personal 授权下关不掉时打包日志会提示
-            PlayerSettings.SplashScreen.show = false;
-            PlayerSettings.SplashScreen.showUnityLogo = false;
+            // 11-17 启动画面：去掉 Made with Unity，换成排版一样的 MADE WITH + TRIPO 标志（每次打包都重新套一遍）
+            ApplySplash();
             // 10-31 命令行打包时自动递增版本号，避免头显拒绝安装同版本包
             if (inClone)
             {
@@ -250,6 +249,37 @@ namespace TrickOrFreeze.EditorTools
         {
             File.WriteAllText(Report, "building\n");
             DoBuild();
+        }
+
+        /// <summary>启动画面（11-17 公司署名）：仍用 Unity 自带的启动画面（位置、淡入淡出、深色背景都是同一套），关掉 Unity 标志，换成 Art/Brand/made_with_tripo.png
+        /// （透明底：左边两行小字 MADE / WITH，右边官方 TRIPO 标志；成品图来自 MonsterCity，不在这里重做）。
+        /// 头显（XR）里 Unity 不画启动画面的标志列表，只显示 Virtual Reality Splash Image 这一张贴图，所以两处都要填：
+        /// 头显用 made_with_tripo_vr.png（不透明深色底、内容居中）。图不在时什么都不改。</summary>
+        [MenuItem("Tools/TrickOrFreeze/Apply Splash (Made with Tripo)")]
+        public static void ApplySplash()
+        {
+            const string path = "Assets/_Game/Art/Brand/made_with_tripo.png";
+            var ti = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (ti == null) { Debug.LogWarning("[AndroidBuild] 没找到启动画面图 " + path + "，启动画面保持原样"); return; }
+            if (ti.textureType != TextureImporterType.Sprite || ti.mipmapEnabled || ti.textureCompression != TextureImporterCompression.Uncompressed)
+            { ti.textureType = TextureImporterType.Sprite; ti.spriteImportMode = SpriteImportMode.Single; ti.mipmapEnabled = false; ti.textureCompression = TextureImporterCompression.Uncompressed; ti.alphaIsTransparency = true; ti.SaveAndReimport(); }
+            var sp = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (!sp) { Debug.LogWarning("[AndroidBuild] 启动画面图导入失败 " + path); return; }
+            PlayerSettings.SplashScreen.show = true;
+            PlayerSettings.SplashScreen.showUnityLogo = false;
+            PlayerSettings.SplashScreen.logos = new[] { PlayerSettings.SplashScreenLogo.Create(2f, sp) };
+            const string vrPath = "Assets/_Game/Art/Brand/made_with_tripo_vr.png";
+            var vi = AssetImporter.GetAtPath(vrPath) as TextureImporter;
+            if (vi == null) { Debug.LogWarning("[AndroidBuild] 没找到头显启动图 " + vrPath); return; }
+            if (vi.textureType != TextureImporterType.Default || vi.mipmapEnabled || vi.textureCompression != TextureImporterCompression.Uncompressed || vi.npotScale != TextureImporterNPOTScale.None)
+            { vi.textureType = TextureImporterType.Default; vi.mipmapEnabled = false; vi.textureCompression = TextureImporterCompression.Uncompressed; vi.npotScale = TextureImporterNPOTScale.None; vi.wrapMode = TextureWrapMode.Clamp; vi.sRGBTexture = true; vi.SaveAndReimport(); }
+            var vt = AssetDatabase.LoadAssetAtPath<Texture2D>(vrPath);
+            var all = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset");
+            if (!vt || all == null || all.Length == 0) { Debug.LogWarning("[AndroidBuild] 头显启动图没设上"); return; }
+            var so = new SerializedObject(all[0]); var prop = so.FindProperty("m_VirtualRealitySplashScreen");
+            if (prop == null) { Debug.LogWarning("[AndroidBuild] 这个版本的 Unity 没有 m_VirtualRealitySplashScreen"); return; }
+            if (prop.objectReferenceValue != vt) { prop.objectReferenceValue = vt; so.ApplyModifiedPropertiesWithoutUndo(); AssetDatabase.SaveAssets(); }
+            Debug.Log("[AndroidBuild] 启动画面：MADE WITH TRIPO（普通标志列表 + 头显专用图都已填）");
         }
 
         static void DoBuild()

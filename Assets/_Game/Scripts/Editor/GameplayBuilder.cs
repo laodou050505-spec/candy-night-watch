@@ -160,6 +160,7 @@ namespace TrickOrFreeze.EditorTools
             BuildLadders(world.transform);
             var cover = BuildCover(world.transform, cam);
             hud.cover = cover;
+            hud.brandLogo = BrandSprite("tripo_logo_h_800_white");
             hud.logo = UISprite("Logo_zh"); hud.logoEn = UISprite("Logo_en"); hud.btnPrimary = UISprite("Btn_Primary"); hud.btnSecondary = UISprite("Btn_Secondary");
             hud.panel = UISprite("Panel"); hud.card = UISprite("Card"); hud.shopCard = UISprite("ShopCard");
             var iconNames = new[] { "Moon", "Candy", "Cauldron", "Star", "Lock", "Gear", "Globe", "Back", "Pause", "Play", "Retry", "Hand" };
@@ -489,6 +490,23 @@ namespace TrickOrFreeze.EditorTools
         }
 
         // 界面贴图：导入成 Sprite（保留透明、带 mip，VR 里远看不闪）
+        // 公司标志：官方原图，不压缩（标志小、压缩会糊边变色），带 mipmap + 三线性过滤（头显里显示得小，不闪）
+        static Sprite BrandSprite(string name)
+        {
+            string path = $"Assets/_Game/Art/Brand/{name}.png";
+            AssetDatabase.ImportAsset(path);
+            if (AssetImporter.GetAtPath(path) is TextureImporter ti)
+            {
+                bool dirty = ti.textureType != TextureImporterType.Sprite || !ti.mipmapEnabled || ti.textureCompression != TextureImporterCompression.Uncompressed || ti.filterMode != FilterMode.Trilinear;
+                ti.textureType = TextureImporterType.Sprite; ti.spriteImportMode = SpriteImportMode.Single; ti.mipmapEnabled = true; ti.alphaIsTransparency = true;
+                ti.sRGBTexture = true; ti.textureCompression = TextureImporterCompression.Uncompressed; ti.filterMode = FilterMode.Trilinear; ti.wrapMode = TextureWrapMode.Clamp;
+                if (dirty) ti.SaveAndReimport();
+            }
+            var sp = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (!sp) Debug.LogWarning("[GameplayBuilder] 缺少公司标志 " + path);
+            return sp;
+        }
+
         static Sprite UISprite(string name)
         {
             string path = $"Assets/_Game/Art/UI/{name}.png";

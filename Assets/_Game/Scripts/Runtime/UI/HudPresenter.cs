@@ -19,6 +19,7 @@ namespace TrickOrFreeze
         // 封面与界面美术（Tripo 生成的整套贴图：标题字、南瓜主按钮、奶油票券次按钮、星空纸面板、剪纸关卡卡、图标）
         public CoverStage cover;
         public Sprite logo, logoEn, btnPrimary, btnSecondary, panel, card;   // 11-04 标题图分中英两张（中文模式只见中文、英文模式只见英文）
+        public Sprite brandLogo;         // 公司标志（官方 TRIPO 横版白字原图，原样显示：不改色、不拉伸、不加效果）
         public Sprite shopCard;          // 糖果铺升级卡（竖版、不带编号圈和星槽）
         public Sprite[] icons;
         public Sprite[] gestures;            // 手势图标（游戏手套渲染，见 Tools/make_ui_kit.py）
@@ -371,6 +372,30 @@ namespace TrickOrFreeze
             ArtButton(coverButtons, "Lang", Loc.T("ui.lang"), new Vector2(0, y), new Vector2(270, 140), btnSecondary, false, 38, () => Loc.SetLang(Loc.IsZh ? "en" : "zh"), Icon("Globe"));
             ArtButton(coverButtons, "Quit", Loc.T("ui.quit"), new Vector2(285, y), new Vector2(270, 140), btnSecondary, false, 38, () => Application.Quit(), Icon("Back"));
             UIKit.Text(coverButtons, "Hint", Body, Loc.T("ui.pinchHint"), 36, new Color(1, 1, 1, 0.7f), new Vector2(0, -460), new Vector2(880, 60), TextAlignmentOptions.Center, 0);
+            BuildCredit(coverButtons, -572);
+        }
+
+        /// <summary>
+        /// 出品署名（11-17）：官方 TRIPO 标志在前、文字在后，排成一行，整行在按钮这一栏里居中（这一栏本来就是居中排的），放在最下面当页脚。
+        /// 标志用原图（白字版，深色背景上用）：不染色、保持比例。标志图四周自带留白（可见部分占图宽 86.5%、图高 67%），按可见部分算宽度来居中。
+        /// 文字用封面正文字体，跟着语言切换（中文“Tripo XR 出品”/ 英文“Tripo XR Developers”）。
+        /// </summary>
+        void BuildCredit(Transform parent, float y)
+        {
+            if (!brandLogo) return;
+            const float logoH = 66f, fontSize = 32f, gap = 16f;                 // 标志图高 66 → 字标大写字高约 30；文字 32 号，比上面的提示（36）和最小的按钮字（38）都小
+            float asp = brandLogo.rect.width / brandLogo.rect.height, logoW = logoH * asp;
+            float padL = logoW * (54f / 800f), visW = logoW * (692f / 800f);    // 原图 800×200，可见部分横向 54~746
+            string text = Loc.T("ui.credit");
+            float textW = MeasureText(Body, text, fontSize);
+            float total = visW + gap + textW, x0 = -total / 2f;
+            var root = UIKit.Node(parent, "Credit", new Vector2(0, y), new Vector2(total, logoH));
+            var img = UIKit.Img(root, "Logo", brandLogo, Color.white, new Vector2(x0 - padL + logoW / 2f, 0), new Vector2(logoW, logoH));
+            img.preserveAspect = true; img.raycastTarget = false;
+            // 文字和字标“TRIPO”踩在同一条基线上：原图里字标的基线在 y=144（图高 200，中线 100），所以基线比图片中线低 22%
+            float baseY = -logoH * (144f - 100f) / 200f;
+            var t = UIKit.Text(root, "Text", Body, text, fontSize, new Color(1f, 0.945f, 0.84f, 0.92f), new Vector2(x0 + visW + gap + textW / 2f, baseY), new Vector2(textW + 40f, logoH), TextAlignmentOptions.Baseline, 0);
+            t.enableWordWrapping = false;
         }
 
         // 没有封面布景时的后备标题面板（老样式）
